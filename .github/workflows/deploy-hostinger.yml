@@ -1,0 +1,47 @@
+name: Deploy EPR and MyProfit to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Check out release source
+        uses: actions/checkout@v4
+
+      - name: Install FTPS deployment client
+        run: sudo apt-get update && sudo apt-get install -y lftp
+
+      - name: Upload Git-managed site files
+        env:
+          FTP_HOST: ${{ secrets.HOSTINGER_FTP_HOST }}
+          FTP_USER: ${{ secrets.HOSTINGER_FTP_USER }}
+          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          FTP_ROOT: ${{ secrets.HOSTINGER_FTP_ROOT }}
+        run: |
+          test -n "$FTP_HOST"
+          test -n "$FTP_USER"
+          test -n "$FTP_PASSWORD"
+          test -n "$FTP_ROOT"
+          lftp -u "$FTP_USER","$FTP_PASSWORD" -e "
+            set ftp:ssl-force true;
+            set ftp:ssl-protect-data true;
+            set ssl:verify-certificate yes;
+            open ftps://$FTP_HOST;
+            mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* epr $FTP_ROOT/epr;
+            mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* myprofit $FTP_ROOT/myprofit;
+            bye
+          "
+
+      - name: Write deployment summary
+        run: |
+          echo "## Hostinger deployment" >> "$GITHUB_STEP_SUMMARY"
+          echo "Updated Git-managed EPR and MyProfit files." >> "$GITHUB_STEP_SUMMARY"
+          echo "Protected server configuration and booking data were excluded." >> "$GITHUB_STEP_SUMMARY"
