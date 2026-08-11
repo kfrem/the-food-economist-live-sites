@@ -3,300 +3,666 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Prime Cost Verdict | The Food Economist · MyProfit</title>
-<meta name="description" content="A free 90-second prime cost check for independent UK restaurants, cafes, takeaways and pubs. Rough weekly figures are fine.">
+<title>Restaurant Profit Check | MyProfit — The Food Economist</title>
+<meta name="description" content="A free Restaurant Profit Check for UK restaurants, cafés, pubs and takeaways. Start with a 60-second reading, then build a fuller picture using the frequencies you actually pay your costs at.">
 <meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#101A36;--gold:#C9AD00;--paper:#FBFAF5;--line:#D9D9D0;--muted:#5B6375;
---green:#1B7A47;--amber:#B57A00;--red:#A81D1D;}
-*{box-sizing:border-box}
-body{margin:0;background:var(--paper);color:var(--ink);line-height:1.55;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,Helvetica,sans-serif}
-.wrap{width:min(680px,calc(100% - 32px));margin:0 auto}
-header{background:var(--ink);color:#fff;padding:26px 0 24px;border-bottom:5px solid var(--gold)}
-.brands{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;letter-spacing:.10em;
-text-transform:uppercase;color:#E2C900;font-weight:700;margin-bottom:12px}
-.divider{color:#7C86A0;font-weight:400;letter-spacing:0}
-h1{margin:0 0 10px;font-size:clamp(25px,5.6vw,36px);line-height:1.14;font-weight:700}
-header p{margin:0;color:#DFE4F1;font-size:16px}
-main{padding:22px 0 60px}
-.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:18px 0}
-h2{font-size:19px;margin:0 0 6px}
-label{display:block;font-weight:700;font-size:14px;margin:14px 0 5px}
-.hint{font-weight:400;color:var(--muted);font-size:13px;margin:0 0 5px}
-input,select{width:100%;padding:12px;font-size:16px;border:1px solid #C3C7D2;border-radius:6px;
-background:#fff;color:var(--ink);font-family:inherit}
-input:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px}
-.row{display:flex;gap:10px}.row>*{flex:1}
-.btn{display:block;width:100%;padding:15px;margin-top:18px;font-size:17px;font-weight:700;
-border:0;border-radius:6px;background:var(--ink);color:#fff;cursor:pointer;font-family:inherit;text-align:center;
-text-decoration:none}
+:root{
+  --ink:#101F33; --navy:#1B3A5C; --gold:#C9A14E; --paper:#F7F4EE;
+  --rule:#D8CFBE; --risk:#A8432D; --safe:#3E7A52; --warn:#8A6A1F;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'IBM Plex Sans',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font-body);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:hidden}
+.wrap{width:min(1080px,calc(100% - 34px));margin:0 auto}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--gold);color:var(--ink);padding:10px 16px;border-radius:3px}
+
+nav{background:var(--ink);color:var(--paper);padding:14px 0}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:.02em;text-decoration:none}
+.brand img{height:26px;width:auto}
+.brand span{font-size:.82rem;color:#B9C6D4;letter-spacing:.12em;text-transform:uppercase}
+nav a.back{color:#B9C6D4;font-size:.86rem;text-decoration:none}
+nav a.back:hover{color:var(--gold)}
+
+header.hero{background:linear-gradient(180deg,var(--ink) 0%,#0C1828 100%);color:var(--paper);padding:52px 0 44px}
+.eyebrow{display:block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:12px}
+h1{font-family:var(--font-display);font-size:clamp(1.85rem,5vw,3rem);line-height:1.1;margin-bottom:14px;max-width:20ch}
+h1 em{color:var(--gold);font-style:italic}
+.lede{max-width:62ch;color:#C6D2DE;font-size:1.02rem}
+
+main{padding:34px 0 60px}
+h2{font-family:var(--font-display);font-size:clamp(1.35rem,3.4vw,1.85rem);margin-bottom:8px}
+h3{font-family:var(--font-display);font-size:1.12rem;margin-bottom:6px}
+.sub{color:#6B6250;font-size:.9rem;margin-bottom:18px;max-width:70ch}
+
+.card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:24px;margin:20px 0}
+.card.dark{background:var(--ink);color:var(--paper);border-color:#24384F}
+.card.dark h2,.card.dark h3{color:var(--paper)}
+.card.dark p{color:#C6D2DE}
+
+fieldset{border:0;margin:0;padding:0}
+legend{font-weight:600;font-size:.98rem;margin-bottom:4px}
+.frow{display:grid;grid-template-columns:1fr 130px 122px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dotted var(--rule)}
+.frow:last-of-type{border-bottom:0}
+.frow label{font-size:.93rem;font-weight:500}
+.frow label small{display:block;font-weight:400;color:#8A7E66;font-size:.74rem;line-height:1.35}
+input[type=number],input[type=text],input[type=email],input[type=tel],select{
+  width:100%;padding:10px;border:1px solid var(--rule);border-radius:3px;
+  font-family:var(--font-mono);font-size:.95rem;background:#FFFDF8;color:var(--ink)}
+input[type=number]{text-align:right}
+input:focus,select:focus{border-color:var(--gold);outline:none;box-shadow:0 0 0 3px rgba(201,161,78,.25)}
+select{font-family:var(--font-body);font-size:.86rem}
+.btn{display:inline-block;border:0;border-radius:3px;padding:14px 22px;font-family:var(--font-body);
+  font-size:1rem;font-weight:600;cursor:pointer;text-decoration:none;text-align:center}
+.btn-navy{background:var(--navy);color:var(--paper)}
+.btn-navy:hover{background:#23476E}
 .btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#D8B368}
+.btn-line{background:transparent;border:1px solid var(--rule);color:var(--ink)}
+.btn-block{display:block;width:100%}
 .btn:disabled{opacity:.55;cursor:not-allowed}
-#out{display:none}
-.verdict{padding:18px;border-radius:8px;color:#fff;text-align:center;margin-bottom:16px}
-.verdict .band{font-size:31px;font-weight:800;letter-spacing:.04em;margin:0}
-.verdict .say{margin:6px 0 0;font-size:15px;opacity:.95}
-.g{background:var(--green)}.a{background:var(--amber)}.r{background:var(--red)}
-table{width:100%;border-collapse:collapse;margin:6px 0 0}
-th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
-th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
-td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
-.flag{font-size:12px;font-weight:700;padding:2px 7px;border-radius:99px;color:#fff}
-.worst{background:#FFF6D6;border-left:4px solid var(--gold);padding:13px 15px;margin:16px 0;font-size:15px}
-.gate{background:var(--ink);color:#fff;padding:18px;border-radius:8px;margin-top:18px}
-.gate h3{margin:0 0 6px;font-size:17px}
-.gate p{margin:0 0 4px;color:#C8D2DD;font-size:14px}
-.gate input{margin-top:8px}
-.ok{background:#E8F5EC;border:1px solid var(--green);color:#14532d;padding:14px;border-radius:6px;
-margin-top:12px;font-size:15px;display:none}
-.err{color:#fff;background:var(--red);padding:11px;border-radius:6px;margin-top:10px;font-size:14px;display:none}
-.small{font-size:13px;color:var(--muted)}
-footer{border-top:1px solid var(--line);padding:20px 0 40px;font-size:12px;color:var(--muted)}
-footer a{color:var(--muted)}
-.honest{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:15px;font-size:14px;color:var(--muted)}
+
+details.detail{border:1px solid var(--rule);border-radius:4px;background:#fff;margin:20px 0}
+details.detail>summary{cursor:pointer;padding:18px 22px;font-weight:600;font-size:1.02rem;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px}
+details.detail>summary::-webkit-details-marker{display:none}
+details.detail>summary .hint{font-weight:400;color:#8A7E66;font-size:.82rem}
+details.detail>summary::after{content:"+";font-family:var(--font-mono);font-size:1.3rem;color:var(--gold)}
+details.detail[open]>summary::after{content:"–"}
+.detail-body{padding:0 22px 22px}
+.usingnote{background:#FFF8E8;border-left:3px solid var(--gold);padding:11px 14px;font-size:.84rem;margin-bottom:16px;border-radius:0 3px 3px 0}
+
+.customrow{display:grid;grid-template-columns:1fr 130px 122px 42px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px dotted var(--rule)}
+.rm{background:transparent;border:1px solid var(--rule);border-radius:3px;color:var(--risk);font-size:1.1rem;line-height:1;padding:9px 0;cursor:pointer;font-family:var(--font-body)}
+.rm:hover{background:#FBEEEA}
+
+.readout{background:#FFFEF9;border:1px solid var(--rule);border-radius:4px;padding:26px 24px;margin-top:20px}
+.readout .rhead{text-align:center;border-bottom:1px dashed #B9AE97;padding-bottom:14px;margin-bottom:16px}
+.readout .rhead b{font-family:var(--font-mono);letter-spacing:.09em;font-size:.95rem}
+.readout .rhead div{font-size:.74rem;color:#8A7E66}
+.band{text-align:center;font-family:var(--font-mono);font-weight:600;letter-spacing:.1em;padding:9px 6px;margin:14px 0;border:1.5px solid currentColor;border-radius:2px;font-size:.9rem}
+.band.hi{color:var(--risk)}.band.med{color:var(--warn)}.band.lo{color:var(--safe)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.stat{border:1px solid var(--rule);border-radius:3px;padding:13px 15px;background:#fff}
+.stat .l{font-size:.7rem;letter-spacing:.11em;text-transform:uppercase;color:#8A7E66}
+.stat .n{font-family:var(--font-mono);font-size:1.3rem;font-weight:600;line-height:1.25;word-break:break-word}
+.stat .a{font-size:.76rem;color:#6B6250}
+.stat.neg .n{color:var(--risk)}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 4px}
+table{width:100%;border-collapse:collapse;min-width:260px}
+caption{text-align:left;font-weight:600;font-size:.95rem;padding:14px 0 6px}
+th,td{padding:9px 6px;border-bottom:1px solid var(--rule);text-align:left;font-size:.88rem;vertical-align:top}
+th{font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#8A7E66;font-weight:600}
+td.n,th.n{text-align:right;font-family:var(--font-mono)}
+td.n{white-space:nowrap}
+tr.tot td{font-weight:600;border-top:2px solid var(--ink);border-bottom:0}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;padding:2px 7px;border-radius:99px;color:#fff}
+.tag.hi{background:var(--risk)}.tag.med{background:var(--warn)}.tag.lo{background:var(--safe)}
+.note{background:#F2EFE7;border-radius:3px;padding:13px 15px;font-size:.82rem;color:#5C5546;margin:14px 0}
+.note b{color:var(--ink)}
+.interp{border-left:4px solid var(--gold);padding:2px 0 2px 16px;margin:16px 0}
+.interp p{margin-bottom:9px;font-size:.95rem}
+.err{background:var(--risk);color:#fff;padding:11px 14px;border-radius:3px;font-size:.88rem;margin-top:12px}
+.ok{background:#EAF3ED;border:1px solid var(--safe);color:#215334;padding:13px 15px;border-radius:3px;font-size:.9rem;margin-top:12px}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+ul.ticks{list-style:none;margin:10px 0}
+ul.ticks li{padding-left:22px;position:relative;margin-bottom:7px;font-size:.93rem}
+ul.ticks li::before{content:"—";position:absolute;left:0;color:var(--gold);font-family:var(--font-mono)}
+.pricebar{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin:14px 0 4px}
+.pricebar .p{font-family:var(--font-mono);font-size:1.55rem;font-weight:600}
+.pricebar .c{font-size:.84rem;color:#8A7E66}
+footer{background:var(--ink);color:#9FB0C2;padding:30px 0 44px;font-size:.8rem}
+footer a{color:#C6D2DE}
+footer p{margin-bottom:8px;max-width:78ch}
+.hidden{display:none}
+@media(max-width:760px){
+  .grid2{grid-template-columns:1fr}
+  .frow{grid-template-columns:1fr;gap:6px;padding:12px 0}
+  .frow input[type=number]{text-align:left}
+  .customrow{grid-template-columns:1fr 1fr;gap:8px}
+  .customrow .rm{grid-column:2;justify-self:end;width:44px}
+  .readout{padding:20px 15px}
+  .card{padding:18px 15px}
+  .detail-body{padding:0 15px 18px}
+  details.detail>summary{padding:16px 15px}
+  th,td{font-size:.82rem}
+}
 </style>
 </head>
 <body>
-<header><div class="wrap">
-  <div class="brands">The Food Economist <span class="divider">·</span> MyProfit</div>
-  <h1>Your restaurant can be busy and still lose money.</h1>
-  <p>A free 90-second prime cost check. Rough weekly figures are fine. No card, no login.</p>
-</div></header>
+<a class="skip" href="#check">Skip to the profit check</a>
 
-<main><div class="wrap">
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/"><img src="/assets/the-food-economist-logo.svg" alt="The Food Economist"><span>MyProfit</span></a>
+    <a class="back" href="/">Back to MyProfit</a>
+  </div>
+</nav>
 
-  <form class="card" id="f" autocomplete="on">
-    <h2>Enter what you roughly know</h2>
-    <p class="hint">Use a typical week. Estimates are fine — this is a triage, not your accounts.</p>
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">UK restaurants, cafés, pubs and takeaways</span>
+    <h1>The Restaurant <em>Profit Check</em></h1>
+    <p class="lede">Start with four figures and get a reading in under a minute. When you are ready, build a fuller picture using the frequencies you actually pay your costs at — daily, weekly, monthly, quarterly or annual — and add any cost line your business carries. Nothing is stored unless you ask for a written breakdown.</p>
+  </div>
+</header>
 
-    <label for="period">These figures are per</label>
-    <select id="period"><option value="week" selected>Week</option><option value="month">Month</option></select>
+<main id="check">
+  <div class="wrap">
 
-    <label for="sales">Sales (total takings)</label>
-    <p class="hint">Everything through the till, including delivery apps.</p>
-    <input id="sales" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 9000">
+    <!-- ============ QUICK CHECK ============ -->
+    <section class="card" aria-labelledby="qc-h">
+      <h2 id="qc-h">Quick check</h2>
+      <p class="sub">Four figures, roughly right is fine. This gives you an immediate reading with no email required.</p>
+      <form id="quickform" novalidate>
+        <fieldset>
+          <legend class="hidden">Quick check figures</legend>
+          <div class="frow">
+            <label for="q_freq">These figures are per<small>Choose how you normally think about them</small></label>
+            <select id="q_freq" style="grid-column:span 2">
+              <option value="daily">Day</option>
+              <option value="weekly" selected>Week</option>
+              <option value="monthly">Month</option>
+              <option value="quarterly">Quarter</option>
+              <option value="annual">Year</option>
+            </select>
+          </div>
+          <div class="frow">
+            <label for="q_sales">Sales<small>Total takings excluding VAT, including delivery platforms</small></label>
+            <input id="q_sales" type="number" min="0" step="10" inputmode="decimal" placeholder="£" style="grid-column:span 2">
+          </div>
+          <div class="frow">
+            <label for="q_food">Food and drink suppliers<small>All supplier spend</small></label>
+            <input id="q_food" type="number" min="0" step="10" inputmode="decimal" placeholder="£" style="grid-column:span 2">
+          </div>
+          <div class="frow">
+            <label for="q_labour">Payroll and owner pay<small>Include your own pay if you take it</small></label>
+            <input id="q_labour" type="number" min="0" step="10" inputmode="decimal" placeholder="£" style="grid-column:span 2">
+          </div>
+          <div class="frow">
+            <label for="q_other">All other costs<small>Rent, rates, energy, platform fees, packaging, everything else</small></label>
+            <input id="q_other" type="number" min="0" step="10" inputmode="decimal" placeholder="£" style="grid-column:span 2">
+          </div>
+        </fieldset>
+        <button class="btn btn-navy btn-block" type="submit" style="margin-top:18px">Show my reading</button>
+        <div id="quickerr" class="err hidden" role="alert"></div>
+      </form>
+    </section>
 
-    <label for="food">Food and drink supplier spend</label>
-    <input id="food" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 3100">
-
-    <label for="labour">Wages, including your own pay if you take it</label>
-    <input id="labour" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 2900">
-
-    <label for="fixed">Rent, rates, energy and standing bills</label>
-    <input id="fixed" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 1300">
-
-    <label for="other">Delivery or platform fees, and other costs</label>
-    <p class="hint">Packaging, cleaning, card fees, repairs, licences, laundry.</p>
-    <input id="other" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 700">
-
-    <button class="btn btn-gold" type="submit">Show my verdict</button>
-    <p class="small" style="margin-top:10px">Nothing is sent anywhere when you press this. The verdict appears on your screen.</p>
-  </form>
-
-  <section id="out">
-    <div class="card">
-      <div class="verdict" id="vbox">
-        <p class="band" id="vband">—</p>
-        <p class="say" id="vsay"></p>
+    <!-- ============ DETAILED CHECK ============ -->
+    <details class="detail" id="detailwrap">
+      <summary>Build a fuller picture <span class="hint">optional · cost lines at your own frequencies</span></summary>
+      <div class="detail-body">
+        <div class="usingnote">Enter any lines you know. Each line can use its own frequency, so an annual insurance premium and a weekly supplier bill can sit side by side. Anything you complete here replaces the three summary cost figures in the quick check.</div>
+        <form id="detailform" novalidate>
+          <fieldset>
+            <legend class="hidden">Detailed cost lines</legend>
+            <div id="catrows"></div>
+          </fieldset>
+          <h3 style="margin-top:22px">Your own cost lines</h3>
+          <p class="sub" style="margin-bottom:10px">Add anything specific to your business — a franchise fee, a music licence, an equipment lease, a second site charge.</p>
+          <div id="customrows"></div>
+          <button class="btn btn-line" type="button" id="addcustom" style="margin-top:12px">+ Add a cost line</button>
+          <button class="btn btn-navy btn-block" type="submit" style="margin-top:18px">Update my reading</button>
+        </form>
       </div>
+    </details>
 
-      <table>
-        <thead><tr><th>Line</th><th style="text-align:right">Share of sales</th><th style="text-align:right">Reading</th></tr></thead>
-        <tbody>
-          <tr><td>Food and drink</td><td class="n" id="p_food">—</td><td class="n" id="b_food"></td></tr>
-          <tr><td>Wages</td><td class="n" id="p_lab">—</td><td class="n" id="b_lab"></td></tr>
-          <tr><td><strong>Prime cost</strong> (food + wages)</td><td class="n" id="p_prime">—</td><td class="n" id="b_prime"></td></tr>
-          <tr><td>Rent, rates and standing bills</td><td class="n" id="p_fixed">—</td><td class="n"></td></tr>
-          <tr><td>Delivery, platform and other</td><td class="n" id="p_other">—</td><td class="n"></td></tr>
-          <tr><td><strong>What is left</strong></td><td class="n" id="p_net">—</td><td class="n" id="m_net"></td></tr>
-        </tbody>
-      </table>
-
-      <div class="worst" id="worst"></div>
-
-      <div class="honest">
-        <strong>What this check can and cannot do.</strong> It shows you <em>whether</em> there is pressure and
-        <em>which two lines</em> carry it. It cannot tell you <em>why</em>, because that needs your supplier
-        invoices, your menu and a wage summary. Rough figures in means indicative answers out.
+    <!-- ============ SCENARIOS ============ -->
+    <details class="detail" id="scenwrap">
+      <summary>Planning scenarios <span class="hint">optional · test a supplier, labour or energy change</span></summary>
+      <div class="detail-body">
+        <div class="usingnote">These are your own planning assumptions, not forecasts from us. Enter the change you expect over the next twelve months. Labour starts at the April 2026 National Living Wage increase of 4.1% for workers aged 21 and over; adjust it for your own staffing mix.</div>
+        <form id="scenform" novalidate>
+          <fieldset>
+            <legend class="hidden">Planning scenarios</legend>
+            <div class="frow"><label for="s_food">Supplier costs change by<small>Your expected movement</small></label><input id="s_food" type="number" step="0.1" min="-100" max="200" inputmode="decimal" placeholder="%" style="grid-column:span 2"></div>
+            <div class="frow"><label for="s_labour">Payroll costs change by<small>Defaults to the 2026 National Living Wage increase</small></label><input id="s_labour" type="number" step="0.1" min="-100" max="200" inputmode="decimal" style="grid-column:span 2"></div>
+            <div class="frow"><label for="s_energy">Energy costs change by<small>Your contract, tariff or renewal view</small></label><input id="s_energy" type="number" step="0.1" min="-100" max="200" inputmode="decimal" placeholder="%" style="grid-column:span 2"></div>
+          </fieldset>
+          <button class="btn btn-navy btn-block" type="submit" style="margin-top:18px">Apply scenarios</button>
+        </form>
       </div>
+    </details>
 
-      <div class="gate">
-        <h3>Send me the written breakdown</h3>
-        <p>Your figures set out line by line, what each reading means, and the questions to ask before you change anything.</p>
-        <input id="email" type="email" placeholder="Your email" autocomplete="email" required>
-        <div class="row" style="margin-top:8px">
-          <input id="biz" type="text" placeholder="Business name" autocomplete="organization">
-          <input id="phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
-        </div>
-        <input id="website" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
-        <button class="btn btn-gold" id="send" type="button">Send my breakdown</button>
-        <p class="small" style="color:#9FAAC0;margin-top:9px">
-          One email with your breakdown, and occasional written notes on restaurant margins.
-          Reply "stop" any time. See the <a href="/privacy.html" style="color:#E2C900">privacy notice</a>.
-        </p>
-      </div>
-      <div class="ok" id="ok"></div>
-      <div class="err" id="err"></div>
-    </div>
+    <!-- ============ RESULT ============ -->
+    <section id="result" class="hidden" aria-live="polite" aria-atomic="false"></section>
 
-    <div class="card">
-      <h2>If you want to know why</h2>
-      <p>The <strong>48-Hour Profit Triage</strong> is a written report from your actual figures: what is
-      driving each reading, what is missing from the picture, and the first three things worth changing.
-      Delivered within 48 hours of receiving your figures.</p>
-      <p><strong>£95 + VAT</strong>, credited in full against the £395 + VAT Menu &amp; Margin Diagnostic
-      if you commission it within 30 days.</p>
-      <a class="btn" id="buy" href="#" rel="noopener">Commission the Triage — £95 + VAT</a>
-      <a class="btn" id="wa" href="#" style="background:#fff;color:var(--ink);border:1px solid var(--ink)" rel="noopener">Ask a question on WhatsApp</a>
-    </div>
-  </section>
+    <!-- ============ NEXT STEP ============ -->
+    <section class="card dark" id="nextstep">
+      <span class="eyebrow">The next step</span>
+      <h2>The 48-Hour Profit Triage</h2>
+      <p style="margin-bottom:6px">This check works from what you typed. The written Triage works from what your business actually did.</p>
+      <ul class="ticks">
+        <li>Checks your figures against supplier invoices, payroll records, till reports and other evidence you hold</li>
+        <li>Establishes why each pressure exists, rather than only where it sits</li>
+        <li>Separates what you can control from what is fixed for now</li>
+        <li>Ranks the first three actions by likely monthly value</li>
+        <li>Arrives as a written, decision-ready report within 48 hours of your figures</li>
+        <li>Is credited in full against the £395 + VAT Menu &amp; Margin Diagnostic within 30 days</li>
+      </ul>
+      <div class="pricebar"><span class="p">£95 + VAT</span><span class="c">delivered within 48 hours of receiving your figures</span></div>
+      <a class="btn btn-gold btn-block" id="buy" href="#" rel="noopener" style="margin-top:10px">Commission the 48-Hour Triage — £95 + VAT</a>
+      <p style="font-size:.82rem;margin-top:12px">Prefer to ask something first? <a id="wa" href="#" rel="noopener" style="color:var(--gold)">Message the desk</a> or email <a href="mailto:godfred@thefoodeconomist.co.uk" style="color:var(--gold)">godfred@thefoodeconomist.co.uk</a>.</p>
+    </section>
 
-</div></main>
+  </div>
+</main>
 
-<footer><div class="wrap">
-  <p><strong>The Food Economist · MyProfit</strong><br>
-  Godfred Frimpong — Trade &amp; Food Economist, MSc<br>
-  <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a> · 07939 823988</p>
-  <p>Godfred Frimpong trading as The Food Economist. VAT registration: <span data-vat>508927172</span>.
-  ICO registration: <span data-ico>ZC112776</span>.</p>
-  <p>This is an indicative economic triage from rough figures, not statutory filing, public-practice
-  services, legal, tax or regulated financial advice. All prices exclude VAT.</p>
-</div></footer>
+<footer>
+  <div class="wrap">
+    <p><strong style="color:var(--paper)">MyProfit — The Food Economist</strong><br>Godfred Frimpong · Trade &amp; Food Economist, MSc · <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a> · 07939 823988</p>
+    <p>This Restaurant Profit Check is an indicative planning tool. It works only from the figures you enter, it does not verify them against any record, and it does not produce an exact profit figure. It is not an accounts review, a statutory filing service, public-practice services, or legal, tax or regulated financial advice. Sector bands are indicative reference ranges, not targets. No saving or outcome is promised.</p>
+    <p>All prices exclude VAT. VAT registration: <span data-vat></span>. ICO registration: <span data-ico></span>. <a href="/privacy.html">Privacy notice</a> · <a href="/terms.html">Service terms</a></p>
+  </div>
+</footer>
 
 <script>
-/* ===== CONFIG — owner edits ONLY this block ===== */
+/* ================= CONFIG — owner edits ONLY this block ================= */
 const CONFIG = {
+  stripeTriage:     'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
+  stripeDiagnostic: 'https://buy.stripe.com/8x2fZg1LD05zcdLGcjS03',
+  whatsapp: '447939823988',
   apiBase: '/api',
-  stripeTriage: 'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
-  whatsapp: '447939823988'
+  vatRate: 0.20,
+  vatNumber: '508927172',
+  icoNumber: 'ZC112776'
 };
-/* ===== BANDS — mirrors 03-MYPROFIT-MACHINE-V2 STRESS.bands. Change in both or neither. ===== */
-const BANDS = {
-  food:  {pressure:32, high:38},
-  labour:{pressure:30, high:35},
-  prime: {pressure:65, high:72}
-};
+/* ===== Benchmark bands — mirror STRESS.bands in index.html. Change in both or neither. ===== */
+const BANDS = { food:{pressure:32,high:38}, labour:{pressure:30,high:35}, prime:{pressure:65,high:72} };
+const DEFAULT_LABOUR_SCENARIO = 4.1; /* NLW April 2026, +4.1% for workers aged 21 and over */
+
+/* ===== Frequency normalisation — the single helper used everywhere ===== */
+const FREQ = { daily:30.4375, weekly:52/12, monthly:1, quarterly:1/3, annual:1/12 };
+const FREQ_LABEL = { daily:'Daily', weekly:'Weekly', monthly:'Monthly', quarterly:'Quarterly', annual:'Annual' };
+function toMonthly(amount, freq){
+  const n = Number(amount);
+  if (!Number.isFinite(n)) return 0;
+  const f = FREQ[freq] !== undefined ? FREQ[freq] : 1;
+  return n * f;
+}
+
+/* ===== Default detailed categories ===== */
+const CATEGORIES = [
+  {id:'food',      name:'Food and drink suppliers',        group:'food'},
+  {id:'payroll',   name:'Payroll and owner pay',           group:'labour'},
+  {id:'rent',      name:'Rent',                            group:'other'},
+  {id:'rates',     name:'Business rates',                  group:'other'},
+  {id:'energy',    name:'Energy',                          group:'energy'},
+  {id:'water',     name:'Water',                           group:'other'},
+  {id:'insurance', name:'Insurance',                       group:'other'},
+  {id:'card',      name:'Card-processing fees',            group:'other'},
+  {id:'delivery',  name:'Delivery-platform commissions',   group:'other'},
+  {id:'packaging', name:'Packaging',                       group:'other'},
+  {id:'cleaning',  name:'Cleaning and laundry',            group:'other'},
+  {id:'repairs',   name:'Repairs and maintenance',         group:'other'},
+  {id:'marketing', name:'Marketing',                       group:'other'},
+  {id:'finance',   name:'Finance, leasing and subscriptions', group:'other'},
+  {id:'licences',  name:'Licences and professional services', group:'other'},
+  {id:'other',     name:'Other costs',                     group:'other'}
+];
 
 const $ = id => document.getElementById(id);
-const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
-const pc = n => (Math.round(n*10)/10).toFixed(1) + '%';
+const esc = s => String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const money = n => {
+  const r = Math.round(n);
+  return (r < 0 ? '−£' : '£') + Math.abs(r).toLocaleString('en-GB');
+};
+const pct = n => (Number.isFinite(n) ? (Math.round(n*10)/10).toFixed(1) : '0.0') + '%';
 const src = new URLSearchParams(location.search).get('src') || 'direct';
 
 $('buy').href = CONFIG.stripeTriage;
 $('wa').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' +
-  encodeURIComponent('Hello Godfred, I ran the prime cost check and would like to ask about the 48-hour Triage.');
+  encodeURIComponent('Hello, I have run the Restaurant Profit Check and would like to ask about the 48-Hour Triage.');
+document.querySelectorAll('[data-vat]').forEach(el => el.textContent = CONFIG.vatNumber);
+document.querySelectorAll('[data-ico]').forEach(el => el.textContent = CONFIG.icoNumber);
+$('s_labour').value = DEFAULT_LABOUR_SCENARIO;
 
-let RESULT = null;
+/* ================= Build the detailed rows ================= */
+const freqSelect = (name, sel) =>
+  '<select id="' + name + '" aria-label="Frequency for ' + esc(sel.label) + '">' +
+  Object.keys(FREQ).map(k => '<option value="' + k + '"' + (k === 'monthly' ? ' selected' : '') + '>' +
+    FREQ_LABEL[k] + '</option>').join('') + '</select>';
 
-function band(v, b){ return v >= b.high ? 'r' : v >= b.pressure ? 'a' : 'g'; }
-function chip(cls){
-  const t = {g:'OK', a:'WATCH', r:'HIGH'}[cls];
-  const c = {g:'#1B7A47', a:'#B57A00', r:'#A81D1D'}[cls];
-  return '<span class="flag" style="background:'+c+'">'+t+'</span>';
+$('catrows').innerHTML = CATEGORIES.map(c =>
+  '<div class="frow">' +
+    '<label for="d_' + c.id + '">' + esc(c.name) + '</label>' +
+    '<input id="d_' + c.id + '" type="number" min="0" step="1" inputmode="decimal" placeholder="£">' +
+    freqSelect('f_' + c.id, {label:c.name}) +
+  '</div>').join('');
+
+let customSeq = 0;
+function addCustomRow(){
+  customSeq++;
+  const i = customSeq;
+  const div = document.createElement('div');
+  div.className = 'customrow';
+  div.dataset.row = i;
+  div.innerHTML =
+    '<input id="cn_' + i + '" type="text" maxlength="60" placeholder="Cost name" aria-label="Custom cost name ' + i + '">' +
+    '<input id="ca_' + i + '" type="number" min="0" step="1" inputmode="decimal" placeholder="£" aria-label="Custom cost amount ' + i + '">' +
+    freqSelect('cf_' + i, {label:'custom line ' + i}) +
+    '<button type="button" class="rm" aria-label="Remove custom cost line ' + i + '">×</button>';
+  div.querySelector('.rm').addEventListener('click', () => { div.remove(); if (hasResult) compute(); });
+  $('customrows').appendChild(div);
+}
+$('addcustom').addEventListener('click', addCustomRow);
+addCustomRow();
+
+/* ================= Model ================= */
+let hasResult = false;
+let MODEL = null;
+
+const numOf = id => { const el = $(id); if(!el) return 0; const n = parseFloat(el.value); return Number.isFinite(n) && n > 0 ? n : 0; };
+const scenOf = (id, fallback) => {
+  const el = $(id); if(!el) return fallback;
+  if (el.value === '' || el.value === null) return fallback;
+  const n = parseFloat(el.value);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.max(-100, Math.min(200, n));
+};
+
+function collectDetailed(){
+  const lines = [];
+  CATEGORIES.forEach(c => {
+    const amt = numOf('d_' + c.id);
+    if (amt > 0) lines.push({name:c.name, group:c.group, freq:$('f_' + c.id).value, raw:amt, monthly:toMonthly(amt, $('f_' + c.id).value), custom:false});
+  });
+  document.querySelectorAll('#customrows .customrow').forEach(row => {
+    const i = row.dataset.row;
+    const amt = numOf('ca_' + i);
+    const nm = ($('cn_' + i).value || '').trim();
+    if (amt > 0) lines.push({name: nm !== '' ? nm : 'Unnamed cost line', group:'other', freq:$('cf_' + i).value, raw:amt, monthly:toMonthly(amt, $('cf_' + i).value), custom:true});
+  });
+  return lines;
 }
 
-$('f').addEventListener('submit', function(e){
+function compute(){
+  const qFreq = $('q_freq').value;
+  const sales = toMonthly(numOf('q_sales'), qFreq);
+
+  if (sales <= 0){
+    showError('Enter your sales figure to see a reading. Everything else is optional.');
+    return false;
+  }
+  hideError();
+
+  const detailed = collectDetailed();
+  const usingDetailed = detailed.length > 0;
+
+  let lines;
+  if (usingDetailed){
+    lines = detailed;
+  } else {
+    lines = [];
+    const qf = numOf('q_food'), ql = numOf('q_labour'), qo = numOf('q_other');
+    if (qf > 0) lines.push({name:'Food and drink suppliers', group:'food',   freq:qFreq, raw:qf, monthly:toMonthly(qf, qFreq), custom:false});
+    if (ql > 0) lines.push({name:'Payroll and owner pay',    group:'labour', freq:qFreq, raw:ql, monthly:toMonthly(ql, qFreq), custom:false});
+    if (qo > 0) lines.push({name:'All other costs',          group:'other',  freq:qFreq, raw:qo, monthly:toMonthly(qo, qFreq), custom:false});
+  }
+
+  const sum = g => lines.filter(l => l.group === g).reduce((a,b) => a + b.monthly, 0);
+  const foodM = sum('food'), labourM = sum('labour'), energyM = sum('energy');
+  const costsM = lines.reduce((a,b) => a + b.monthly, 0);
+  const remainM = sales - costsM;
+
+  const foodPct = sales > 0 ? foodM/sales*100 : 0;
+  const labPct  = sales > 0 ? labourM/sales*100 : 0;
+  const primePct = foodPct + labPct;
+  const remainPct = sales > 0 ? remainM/sales*100 : 0;
+
+  const sFood = scenOf('s_food', 0), sLab = scenOf('s_labour', DEFAULT_LABOUR_SCENARIO), sEn = scenOf('s_energy', 0);
+  const deltaFood = foodM * (sFood/100), deltaLab = labourM * (sLab/100), deltaEn = energyM * (sEn/100);
+  const deltaTotal = deltaFood + deltaLab + deltaEn;
+  const scCosts = costsM + deltaTotal;
+  const scRemain = sales - scCosts;
+  const scRemainPct = sales > 0 ? scRemain/sales*100 : 0;
+  const upliftNeeded = sales > 0 ? deltaTotal/sales*100 : 0;
+
+  const ranked = lines.slice().sort((a,b) => b.monthly - a.monthly)
+    .map(l => Object.assign({}, l, {share: sales > 0 ? l.monthly/sales*100 : 0}));
+
+  const mixedFreqs = Array.from(new Set(lines.map(l => l.freq).concat([qFreq])));
+
+  MODEL = {sales, lines, ranked, usingDetailed, qFreq, mixedFreqs,
+           foodM, labourM, energyM, costsM, remainM,
+           foodPct, labPct, primePct, remainPct,
+           sFood, sLab, sEn, deltaFood, deltaLab, deltaEn, deltaTotal,
+           scCosts, scRemain, scRemainPct, upliftNeeded};
+  hasResult = true;
+  render();
+  return true;
+}
+
+function bandOf(v, b){ return v >= b.high ? {c:'hi',t:'HIGH'} : v >= b.pressure ? {c:'med',t:'WATCH'} : {c:'lo',t:'OK'}; }
+function headline(m){
+  if (m.remainM < 0) return {c:'hi', t:'NOTHING LEFT AFTER THE COSTS ENTERED'};
+  if (m.primePct >= BANDS.prime.high) return {c:'hi', t:'PRIME COST AT A HIGH LEVEL'};
+  if (m.remainPct < 3 || m.primePct >= BANDS.prime.pressure) return {c:'med', t:'UNDER PRESSURE'};
+  return {c:'lo', t:'HOLDING, ON THESE FIGURES'};
+}
+
+function interpretation(m){
+  const out = [];
+  const hb = headline(m);
+  if (m.remainM < 0){
+    out.push('On the figures entered, the costs you listed are larger than your sales. That does not automatically mean the business is failing — a missing sales line or a cost entered at the wrong frequency will produce the same result — but it does mean the position needs checking against your actual records before any decision is taken.');
+  } else if (hb.c === 'hi'){
+    out.push('Food and payroll together take ' + pct(m.primePct) + ' of sales. Above roughly ' + BANDS.prime.high + '%, most independent kitchens find there is too little left to carry rent, energy and the standing costs, and profit is usually being lost week by week.');
+  } else if (hb.c === 'med'){
+    out.push('Food and payroll together take ' + pct(m.primePct) + ' of sales, and ' + pct(m.remainPct) + ' of sales is left after everything entered. That is a workable but narrow position: a supplier increase or a quiet fortnight moves it quickly.');
+  } else {
+    out.push('Food and payroll together take ' + pct(m.primePct) + ' of sales, which sits inside the range most independent operations can carry, and ' + pct(m.remainPct) + ' of sales is left after everything entered.');
+  }
+  const top = m.ranked[0];
+  if (top) out.push('Your largest single cost line is ' + top.name.toLowerCase() + ' at ' + money(top.monthly) + ' a month, or ' + pct(top.share) + ' of sales. Whether that is reasonable depends on your trading pattern, your menu and your contracts, which is the kind of question the written Triage answers rather than a calculator.');
+  if (Math.abs(m.deltaTotal) > 0){
+    if (m.deltaTotal > 0){
+      out.push('Under the planning assumptions you entered, those costs rise by ' + money(m.deltaTotal) + ' a month, or ' + money(m.deltaTotal*12) + ' a year. Standing still on the same sales would need roughly ' + pct(Math.abs(m.upliftNeeded)) + ' more from price or volume.');
+    } else {
+      out.push('Under the planning assumptions you entered, those costs fall by ' + money(Math.abs(m.deltaTotal)) + ' a month, or ' + money(Math.abs(m.deltaTotal*12)) + ' a year.');
+    }
+  }
+  if (!m.usingDetailed) out.push('This reading uses three summary cost figures. Building a fuller picture, with each line at the frequency you actually pay it, usually changes where the pressure appears to sit.');
+  return out;
+}
+
+function render(){
+  const m = MODEL, hb = headline(m);
+  const fB = bandOf(m.foodPct, BANDS.food), lB = bandOf(m.labPct, BANDS.labour), pB = bandOf(m.primePct, BANDS.prime);
+  const A = n => money(n*12);
+
+  const freqNote = m.mixedFreqs.length > 1
+    ? 'You entered figures at more than one frequency (' + m.mixedFreqs.map(f => FREQ_LABEL[f].toLowerCase()).join(', ') + '). Each has been converted to a monthly equivalent so they can be compared on the same basis.'
+    : 'Your figures were entered as ' + FREQ_LABEL[m.mixedFreqs[0]].toLowerCase() + ' amounts and converted to a monthly equivalent.';
+
+  const rankRows = m.ranked.slice(0,6).map(l =>
+    '<tr><td>' + esc(l.name) + (l.custom ? ' <span class="tag lo" style="background:#8A7E66">yours</span>' : '') +
+    '</td><td class="n">' + money(l.monthly) + '</td><td class="n">' + pct(l.share) + '</td></tr>').join('');
+
+  const allRows = m.ranked.map(l =>
+    '<tr><td>' + esc(l.name) + '<br><span style="font-size:.72rem;color:#8A7E66">' + money(l.raw) + ' ' + FREQ_LABEL[l.freq].toLowerCase() + '</span></td>' +
+    '<td class="n">' + money(l.monthly) + '</td><td class="n">' + A(l.monthly) + '</td></tr>').join('');
+
+  const scenRows = [
+    ['Food and drink suppliers', m.sFood, m.deltaFood],
+    ['Payroll and owner pay',    m.sLab,  m.deltaLab],
+    ['Energy',                   m.sEn,   m.deltaEn]
+  ].filter(r => r[2] !== 0 || r[1] !== 0).map(r =>
+    '<tr><td>' + r[0] + '</td><td class="n">' + (r[1] > 0 ? '+' : '') + pct(r[1]) + '</td><td class="n">' +
+    (r[2] > 0 ? '+' : '') + money(r[2]) + '</td><td class="n">' + (r[2] > 0 ? '+' : '') + money(r[2]*12) + '</td></tr>').join('');
+
+  $('result').innerHTML =
+  '<div class="readout">' +
+    '<div class="rhead"><b>RESTAURANT PROFIT CHECK</b>' +
+      '<div>The Food Economist · MyProfit</div>' +
+      '<div>' + new Date().toLocaleDateString('en-GB') + ' · ' + (m.usingDetailed ? 'detailed picture' : 'quick check') + '</div></div>' +
+
+    '<div class="band ' + hb.c + '">' + hb.t + '</div>' +
+
+    '<div class="grid2">' +
+      '<div class="stat"><div class="l">Sales</div><div class="n">' + money(m.sales) + '</div><div class="a">a month · ' + A(m.sales) + ' a year</div></div>' +
+      '<div class="stat"><div class="l">Costs entered</div><div class="n">' + money(m.costsM) + '</div><div class="a">a month · ' + A(m.costsM) + ' a year</div></div>' +
+      '<div class="stat' + (m.remainM < 0 ? ' neg' : '') + '"><div class="l">Left after these costs</div><div class="n">' + money(m.remainM) + '</div><div class="a">' + pct(m.remainPct) + ' of sales · ' + A(m.remainM) + ' a year</div></div>' +
+      '<div class="stat"><div class="l">Prime cost</div><div class="n">' + pct(m.primePct) + ' <span class="tag ' + pB.c + '">' + pB.t + '</span></div><div class="a">food and payroll combined</div></div>' +
+    '</div>' +
+
+    '<div class="note"><b>How this was standardised.</b> ' + freqNote +
+      ' Daily figures are multiplied by 30.4375, weekly by 52 ÷ 12, quarterly divided by 3 and annual divided by 12. Annual equivalents are the monthly figure × 12.</div>' +
+
+    '<div class="tscroll"><table><caption>Cost shares</caption><thead><tr><th>Measure</th><th class="n">Share of sales</th><th class="n">Reading</th></tr></thead><tbody>' +
+      '<tr><td>Food and drink</td><td class="n">' + pct(m.foodPct) + '</td><td class="n"><span class="tag ' + fB.c + '">' + fB.t + '</span></td></tr>' +
+      '<tr><td>Payroll and owner pay</td><td class="n">' + pct(m.labPct) + '</td><td class="n"><span class="tag ' + lB.c + '">' + lB.t + '</span></td></tr>' +
+      '<tr class="tot"><td>Prime cost</td><td class="n">' + pct(m.primePct) + '</td><td class="n"><span class="tag ' + pB.c + '">' + pB.t + '</span></td></tr>' +
+    '</tbody></table></div>' +
+
+    '<div class="tscroll"><table><caption>Largest cost pressures, from your own figures</caption><thead><tr><th>Cost line</th><th class="n">Monthly</th><th class="n">Share of sales</th></tr></thead><tbody>' +
+      (rankRows || '<tr><td colspan="3">No cost lines entered yet.</td></tr>') + '</tbody></table></div>' +
+
+    '<div class="tscroll"><table><caption>Full breakdown</caption><thead><tr><th>Cost line</th><th class="n">Monthly</th><th class="n">Annual</th></tr></thead><tbody>' +
+      (allRows || '<tr><td colspan="3">No cost lines entered yet.</td></tr>') +
+      '<tr class="tot"><td>Total costs entered</td><td class="n">' + money(m.costsM) + '</td><td class="n">' + A(m.costsM) + '</td></tr>' +
+    '</tbody></table></div>' +
+
+    (scenRows ?
+      '<div class="tscroll"><table><caption>Planning scenario — your own assumptions</caption><thead><tr><th>Line</th><th class="n">Change</th><th class="n">Monthly effect</th><th class="n">Annual effect</th></tr></thead><tbody>' +
+      scenRows +
+      '<tr class="tot"><td>Total</td><td class="n"></td><td class="n">' + (m.deltaTotal > 0 ? '+' : '') + money(m.deltaTotal) + '</td><td class="n">' + (m.deltaTotal > 0 ? '+' : '') + money(m.deltaTotal*12) + '</td></tr>' +
+      '</tbody></table></div>' +
+      '<div class="grid2">' +
+        '<div class="stat"><div class="l">Left today</div><div class="n">' + money(m.remainM) + '</div><div class="a">' + pct(m.remainPct) + ' of sales · ' + A(m.remainM) + ' a year</div></div>' +
+        '<div class="stat' + (m.scRemain < 0 ? ' neg' : '') + '"><div class="l">Left under your scenario</div><div class="n">' + money(m.scRemain) + '</div><div class="a">' + pct(m.scRemainPct) + ' of sales · ' + A(m.scRemain) + ' a year</div></div>' +
+      '</div>'
+      : '<div class="note">No planning scenario applied. Open <b>Planning scenarios</b> above to test a supplier, payroll or energy change.</div>') +
+
+    '<h3 style="margin-top:20px">What these figures indicate</h3>' +
+    '<div class="interp">' + interpretation(m).map(p => '<p>' + p + '</p>').join('') + '</div>' +
+
+    '<div class="note">This reading is built only from the figures you entered. Nothing has been verified against invoices, payroll records or till reports, and it is not an exact profit figure. It is an indicative planning tool, not an accounts review or regulated advice.</div>' +
+  '</div>' +
+
+  /* ---- explicit, optional written breakdown ---- */
+  '<div class="card" id="breakdown">' +
+    '<h2>Want this set out in writing?</h2>' +
+    '<p class="sub">We can send this reading as a written summary, with the questions worth asking before you change anything. Your figures are only sent if you ask for this.</p>' +
+    '<form id="leadform" novalidate>' +
+      '<input class="hp" type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<div class="frow"><label for="l_email">Your email</label><input id="l_email" type="email" autocomplete="email" required style="grid-column:span 2"></div>' +
+      '<div class="frow"><label for="l_company">Business name <small>optional</small></label><input id="l_company" type="text" autocomplete="organization" style="grid-column:span 2"></div>' +
+      '<div class="frow"><label for="l_phone">Phone <small>optional</small></label><input id="l_phone" type="tel" autocomplete="tel" style="grid-column:span 2"></div>' +
+      '<button class="btn btn-navy btn-block" type="submit" id="leadbtn" style="margin-top:16px">Send me the written summary</button>' +
+      '<p style="font-size:.76rem;color:#8A7E66;margin-top:10px">You will receive this summary and occasional written notes on restaurant margins. Reply "unsubscribe" at any time. See the <a href="/privacy.html" style="color:var(--navy)">privacy notice</a>.</p>' +
+    '</form>' +
+    '<div id="leaderr" class="err hidden" role="alert"></div>' +
+    '<div id="leadok" class="ok hidden" role="status"></div>' +
+  '</div>';
+
+  $('result').classList.remove('hidden');
+  bindLeadForm();
+}
+
+/* ================= Errors ================= */
+function showError(msg){
+  const e = $('quickerr'); e.textContent = msg; e.classList.remove('hidden');
+  $('q_sales').setAttribute('aria-invalid','true'); $('q_sales').focus();
+}
+function hideError(){ $('quickerr').classList.add('hidden'); $('q_sales').removeAttribute('aria-invalid'); }
+
+/* ================= Submit handlers ================= */
+$('quickform').addEventListener('submit', e => {
   e.preventDefault();
-  const mult = $('period').value === 'week' ? (52/12) : 1;
-  const sales = num('sales')*mult, food = num('food')*mult, labour = num('labour')*mult,
-        fixed = num('fixed')*mult, other = num('other')*mult;
-
-  if (sales <= 0){ $('err').textContent = 'Enter your sales figure to run the check.'; $('err').style.display='block'; return; }
-  $('err').style.display='none';
-
-  const foodPct = food/sales*100, labPct = labour/sales*100, primePct = foodPct + labPct,
-        fixedPct = fixed/sales*100, otherPct = other/sales*100;
-  const net = sales - food - labour - fixed - other, netPct = net/sales*100;
-
-  const pb = band(primePct, BANDS.prime);
-  const verdict = {
-    g:['HEALTHY','Prime cost is inside the workable range for an independent food business.'],
-    a:['UNDER PRESSURE','Prime cost is above the level most independent kitchens can carry comfortably.'],
-    r:['HIGH RISK','Prime cost is at a level where profit is usually being lost every week.']
-  }[pb];
-
-  $('vbox').className = 'verdict ' + pb;
-  $('vband').textContent = verdict[0];
-  $('vsay').textContent = verdict[1];
-
-  $('p_food').textContent = pc(foodPct);   $('b_food').innerHTML  = chip(band(foodPct, BANDS.food));
-  $('p_lab').textContent  = pc(labPct);    $('b_lab').innerHTML   = chip(band(labPct, BANDS.labour));
-  $('p_prime').textContent= pc(primePct);  $('b_prime').innerHTML = chip(pb);
-  $('p_fixed').textContent= pc(fixedPct);
-  $('p_other').textContent= pc(otherPct);
-  $('p_net').textContent  = pc(netPct);
-  $('m_net').innerHTML    = '<span class="flag" style="background:'+(netPct<0?'#A81D1D':netPct<5?'#B57A00':'#1B7A47')+'">'+
-                            (netPct<0?'LOSS':netPct<5?'THIN':'OK')+'</span>';
-
-  const lines = [
-    {n:'food and drink cost', v:foodPct, b:BANDS.food},
-    {n:'wages', v:labPct, b:BANDS.labour},
-    {n:'rent, rates and standing bills', v:fixedPct, b:{pressure:12, high:18}},
-    {n:'delivery, platform and other costs', v:otherPct, b:{pressure:8, high:14}}
-  ].map(x => ({...x, over: x.v - x.b.pressure})).sort((a,b) => b.over - a.over);
-
-  const worst = lines.filter(x => x.over > 0).slice(0,2);
-  $('worst').innerHTML = worst.length
-    ? '<strong>The two lines carrying the pressure:</strong> ' +
-      worst.map(x => x.n + ' at ' + pc(x.v)).join(', and ') +
-      '. Why they sit where they do is what the written triage establishes.'
-    : '<strong>No single line is above its usual range.</strong> The figures look workable. Keep checking monthly, because small costs move week to week.';
-
-  RESULT = {
-    sales:Math.round(sales), foodPct:+foodPct.toFixed(1), labPct:+labPct.toFixed(1),
-    primePct:+primePct.toFixed(1), fixedPct:+fixedPct.toFixed(1), otherPct:+otherPct.toFixed(1),
-    netPct:+netPct.toFixed(1), net:Math.round(net), band:verdict[0],
-    worst: worst.map(x => x.n + ' ' + pc(x.v)).join('; ') || 'none above range',
-    period: $('period').value
-  };
-
-  $('out').style.display='block';
-  $('out').scrollIntoView({behavior:'smooth', block:'start'});
+  if (compute()) $('result').scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('detailform').addEventListener('submit', e => {
+  e.preventDefault();
+  if (compute()) $('result').scrollIntoView({behavior:'smooth', block:'start'});
+});
+$('scenform').addEventListener('submit', e => {
+  e.preventDefault();
+  if (compute()) $('result').scrollIntoView({behavior:'smooth', block:'start'});
 });
 
-$('send').addEventListener('click', async function(){
-  const email = $('email').value.trim();
-  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
-    $('err').textContent = 'Enter a valid email address.'; $('err').style.display='block'; return;
-  }
-  if ($('website').value){ return; }
-  $('err').style.display='none';
-  const btn = $('send'); btn.disabled = true; btn.textContent = 'Sending…';
+/* ================= Lead capture — only on explicit request ================= */
+/* Column limits: myprofit_leads.est_revenue DECIMAL(12,2), est_margin_pp DECIMAL(6,2).
+   Out-of-range values would fail the INSERT, so clamp before sending. */
+function clampDec(n, max){
+  if (!Number.isFinite(n)) return null;
+  const v = Math.max(-max, Math.min(max, n));
+  return Math.round(v * 100) / 100;
+}
 
-  const r = RESULT || {};
-  const message =
-    'PRIME COST VERDICT (source: ' + src + ')\n' +
-    'Band: ' + (r.band||'') + '\n' +
-    'Est monthly sales: £' + (r.sales||0) + ' (entered per ' + (r.period||'') + ')\n' +
-    'Food ' + (r.foodPct||0) + '% | Wages ' + (r.labPct||0) + '% | Prime ' + (r.primePct||0) + '%\n' +
-    'Fixed ' + (r.fixedPct||0) + '% | Other ' + (r.otherPct||0) + '%\n' +
-    'What is left: ' + (r.netPct||0) + '% (£' + (r.net||0) + '/month)\n' +
-    'Pressure lines: ' + (r.worst||'') + '\n' +
-    'ACTION: send written breakdown, then offer £95 Triage.';
+function buildMessage(m){
+  const lines = m.ranked.slice(0,8).map(l =>
+    '- ' + l.name + ': ' + money(l.monthly) + '/mo (' + money(l.raw) + ' ' + FREQ_LABEL[l.freq].toLowerCase() + ', ' + pct(l.share) + ' of sales)').join('\n');
+  const msg =
+    'RESTAURANT PROFIT CHECK (source: ' + src + ', ' + (m.usingDetailed ? 'detailed' : 'quick') + ')\n' +
+    'Verdict: ' + headline(m).t + '\n' +
+    'Sales: ' + money(m.sales) + '/mo (' + money(m.sales*12) + '/yr)\n' +
+    'Costs entered: ' + money(m.costsM) + '/mo (' + money(m.costsM*12) + '/yr)\n' +
+    'Left after costs: ' + money(m.remainM) + '/mo = ' + pct(m.remainPct) + ' of sales\n' +
+    'Food ' + pct(m.foodPct) + ' | Payroll ' + pct(m.labPct) + ' | Prime ' + pct(m.primePct) + '\n' +
+    'Scenario: food ' + pct(m.sFood) + ', payroll ' + pct(m.sLab) + ', energy ' + pct(m.sEn) +
+      ' -> ' + (m.deltaTotal >= 0 ? '+' : '') + money(m.deltaTotal) + '/mo; left ' + money(m.scRemain) + '/mo (' + pct(m.scRemainPct) + ')\n' +
+    'Uplift to stand still: ' + pct(m.upliftNeeded) + '\n' +
+    'Top lines:\n' + lines + '\n' +
+    'ACTION: send written summary, then offer the £95 Triage.';
+  return msg.length > 1990 ? msg.slice(0,1987) + '...' : msg;
+}
 
-  try{
-    const resp = await fetch(CONFIG.apiBase + '/save-lead.php', {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({
-        source:'estimator', email:email,
-        company: $('biz').value.trim(), phone: $('phone').value.trim(), name:'',
-        est_revenue: r.sales || null, est_margin_pp: r.netPct != null ? r.netPct : null,
-        message: message, website:''
-      })
-    });
-    const j = await resp.json().catch(()=>({ok:false}));
-    if (!resp.ok || !j.ok) throw new Error(j.error || 'save failed');
-    $('ok').innerHTML = '<strong>Sent.</strong> Your written breakdown will arrive within one working day, from godfred@thefoodeconomist.co.uk.';
-    $('ok').style.display='block';
-    btn.textContent = 'Breakdown requested'; 
-  }catch(err){
-    btn.disabled = false; btn.textContent = 'Send my breakdown';
-    $('err').innerHTML = 'That did not save. Please email your figures to ' +
-      '<a href="mailto:godfred@thefoodeconomist.co.uk" style="color:#fff"><u>godfred@thefoodeconomist.co.uk</u></a> and you will get the same breakdown.';
-    $('err').style.display='block';
-  }
-});
+function bindLeadForm(){
+  const form = $('leadform');
+  if (!form || form.dataset.bound) return;
+  form.dataset.bound = '1';
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const err = $('leaderr'), ok = $('leadok'), btn = $('leadbtn');
+    err.classList.add('hidden'); ok.classList.add('hidden');
+    const email = $('l_email').value.trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      err.textContent = 'Enter a valid email address.'; err.classList.remove('hidden');
+      $('l_email').setAttribute('aria-invalid','true'); $('l_email').focus(); return;
+    }
+    $('l_email').removeAttribute('aria-invalid');
+    if ($('website').value) return; /* honeypot */
+    if (!MODEL){ err.textContent = 'Run the check first, then request the summary.'; err.classList.remove('hidden'); return; }
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try{
+      const resp = await fetch(CONFIG.apiBase + '/save-lead.php', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          source: 'estimator',
+          email: email,
+          name: '',
+          company: $('l_company').value.trim(),
+          phone: $('l_phone').value.trim(),
+          est_revenue: clampDec(MODEL.sales, 9999999999.99),
+          est_margin_pp: clampDec(MODEL.remainPct, 9999.99),
+          message: buildMessage(MODEL),
+          website: $('website').value
+        })
+      });
+      const j = await resp.json().catch(() => ({ok:false}));
+      if (!resp.ok || !j.ok) throw new Error(j.error || 'save failed');
+      form.classList.add('hidden');
+      ok.innerHTML = '<strong>Sent.</strong> Your written summary will arrive within one working day, from godfred@thefoodeconomist.co.uk.';
+      ok.classList.remove('hidden');
+    }catch(ex){
+      btn.disabled = false; btn.textContent = 'Send me the written summary';
+      err.innerHTML = 'That did not save just now. Please email your figures to <a href="mailto:godfred@thefoodeconomist.co.uk" style="color:#fff"><u>godfred@thefoodeconomist.co.uk</u></a> and you will receive the same summary.';
+      err.classList.remove('hidden');
+    }
+  });
+}
 </script>
 </body>
 </html>
