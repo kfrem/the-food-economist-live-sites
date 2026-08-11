@@ -12,7 +12,11 @@
 <meta property="og:url" content="https://myprofit.thefoodeconomist.co.uk/sample-report.html">
 <meta property="og:title" content="Sample 48-Hour Profit Triage Report">
 <meta property="og:description" content="A worked example of the written £95 + VAT report: where the margin goes, what it would take to stand still, and one dish costed line by line.">
-<meta name="twitter:card" content="summary">
+<meta property="og:image" content="https://myprofit.thefoodeconomist.co.uk/assets/og-sample-report.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="48-Hour Profit Triage Report — a worked example from The Food Economist">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -152,9 +156,9 @@ tr.tot td{font-weight:700;background:#FBF7EF}
   </div>
 
   <section class="meta">
-    <div class="box"><b>Monthly sales</b><span class="v">£38,000</span></div>
-    <div class="box"><b>Net result now</b><span class="v green">+£1,140</span>3.0% of sales</div>
-    <div class="box"><b>Under the stated scenario</b><span class="v red">−£885</span>−2.3% of sales</div>
+    <div class="box"><b>Monthly sales</b><span class="v">£38,000</span>£456,000 a year</div>
+    <div class="box"><b>Net result now</b><span class="v green">+£1,140</span>3.0% of sales · £13,680 a year</div>
+    <div class="box"><b>Under the stated scenario</b><span class="v red">−£885</span>−2.3% of sales · −£10,620 a year</div>
   </section>
 
   <h2>1. Verdict</h2>
@@ -185,7 +189,10 @@ tr.tot td{font-weight:700;background:#FBF7EF}
       <li><b>Suppliers +9%.</b> A planning assumption chosen for this example. In a live report this comes from
       your own invoice history, line by line, not from a sector average.</li>
       <li><b>Payroll +4.1%.</b> The National Living Wage rose to £12.71 an hour from April 2026 for workers aged
-      21 and over, an increase of 4.1%. This is a published, dated change, applied here to the whole payroll cost.</li>
+      21 and over, an increase of 4.1%. That is a published, dated change. Applying it to the <em>whole</em> payroll
+      line is a deliberately simple upper-bound treatment: a chef already on £16 an hour does not receive the uplift,
+      though pay differentials often get partly restored around it. A live report splits payroll by wage band instead
+      of assuming one rate, which usually moves this figure down.</li>
       <li><b>Energy +15%.</b> A renewal assumption chosen for this example. In a live report this comes from your
       actual contract end date and current quoted rates.</li>
     </ul>
@@ -197,12 +204,16 @@ tr.tot td{font-weight:700;background:#FBF7EF}
   <p>To absorb £2,025 a month without changing a single cost, this business would need
   <strong>+5.3% across the menu</strong>, and would need covers to hold at the higher prices. That is the real
   size of the problem, stated as the one number an owner can act on.</p>
+  <p>One distinction worth being exact about: +5.3% restores the <em>cash</em>, not the margin. Sales become
+  £40,025 against costs of £38,885, which returns the same £1,140 a month — but on a larger sales figure that is
+  2.85% rather than 3.0%. Standing still in pounds and standing still in percentage terms are not the same job,
+  and a report that blurs them is not worth commissioning.</p>
 
   <h2>5. Where the margin actually goes — one dish, costed</h2>
   <p>Generic advice is easy. The reason the written report is worth commissioning is that it names the line and
-  shows the arithmetic. This is one dish from the example menu, redacted for identity only:</p>
+  shows the arithmetic. This is one dish from the example menu:</p>
   <div class="dish">
-    <div class="h">Dish 3 — name redacted · 210 covers a month</div>
+    <div class="h">Dish 3 — example menu · 210 covers a month</div>
     <div class="b">
       <div class="dishgrid">
         <div><b>Plate cost</b><span>£4.85</span></div>
@@ -219,10 +230,16 @@ tr.tot td{font-weight:700;background:#FBF7EF}
     </div>
   </div>
 
+  <p style="font-size:.9rem;color:#5C5546">This example has no delivery platforms. Where a business uses them, the
+  report separates platform sales from counter sales and treats commission as its own cost line, because platform
+  volume can raise turnover while weakening the net result — which is the opposite of what the headline suggests.</p>
+
   <h2>6. The first three actions, ranked</h2>
   <div class="actions">
     <div class="action"><h3>1. Reprice two high-volume dishes</h3><span class="amt">£420 – £680 / month</span>
-      <p style="margin:0;font-size:.88rem">Correct the dishes doing the most damage, as costed in section 5. Do not raise the whole menu.</p></div>
+      <p style="margin:0;font-size:.88rem">Dish 3 above is £336 of this on its own. The second dish carries the
+      rest of the range, from £84 to £344 depending on its cover count and how far its price has slipped. Correct the
+      two doing the most damage; do not raise the whole menu.</p></div>
     <div class="action"><h3>2. Cut one low-yield labour block</h3><span class="amt">£300 – £500 / month</span>
       <p style="margin:0;font-size:.88rem">The Tuesday and Wednesday prep-and-close pattern is heavier than those days' revenue can carry.</p></div>
     <div class="action"><h3>3. Challenge supplier line drift</h3><span class="amt">£180 – £350 / month</span>
