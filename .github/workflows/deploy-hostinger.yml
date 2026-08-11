@@ -36,6 +36,8 @@ jobs:
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
             set ftp:ssl-auth TLS;
+            set ftp:passive-mode true;
+            set ftp:prefer-epsv false;
             set ssl:verify-certificate yes;
             open ftp://$FTP_HOST:21;
             mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* epr $FTP_ROOT/epr;
