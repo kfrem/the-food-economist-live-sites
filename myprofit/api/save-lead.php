@@ -44,7 +44,7 @@ tfe_automation_record_lead('myprofit', [
     'company' => $company,
     'phone' => $phone,
     'message' => $message,
-    'tier' => $source === 'contact' ? 'Scoped MyProfit enquiry' : 'MyProfit triage',
+    'tier' => $source === 'contact' ? 'Scoped MyProfit enquiry' : 'MyProfit Restaurant Profit Check',
 ], [
     'est_revenue' => $est_revenue,
     'est_margin_pp' => $est_margin_pp,
@@ -54,8 +54,10 @@ notify(
     'MYPROFIT LEAD (' . $source . '): ' . ($company !== '' ? $company : $email),
     "New MyProfit lead\n"
     . "Source: {$source}\nName: {$name}\nEmail: {$email}\nCompany: {$company}\nPhone: {$phone}\n"
-    . "Est monthly revenue: " . ($est_revenue ?? 'n/a') . "\n"
-    . "Margin erosion pp: " . ($est_margin_pp !== null ? number_format($est_margin_pp, 2) : 'n/a') . "\n"
+    . "Est monthly sales: " . ($est_revenue ?? 'n/a') . "\n"
+    // est_margin_pp carries the percentage of sales left after the costs the
+    // visitor entered. Negative means the costs entered exceeded sales.
+    . "Left after entered costs (% of sales): " . ($est_margin_pp !== null ? number_format($est_margin_pp, 2) : 'n/a') . "\n"
     . ($message !== '' ? "Message: {$message}\n" : '')
 );
 
