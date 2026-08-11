@@ -260,6 +260,7 @@ footer p{margin-bottom:8px;max-width:78ch}
         <li>Is credited in full against the £395 + VAT Menu &amp; Margin Diagnostic within 30 days</li>
       </ul>
       <div class="pricebar"><span class="p">£95 + VAT</span><span class="c">delivered within 48 hours of receiving your figures</span></div>
+      <p style="font-size:.9rem;margin-bottom:4px"><a href="/sample-report.html" style="color:var(--gold)">See a worked example of the report</a> before you commission it.</p>
       <a class="btn btn-gold btn-block" id="buy" href="#" rel="noopener" style="margin-top:10px">Commission the 48-Hour Triage — £95 + VAT</a>
       <p style="font-size:.82rem;margin-top:12px">Prefer to ask something first? <a id="wa" href="#" rel="noopener" style="color:var(--gold)">Message the desk</a> or email <a href="mailto:godfred@thefoodeconomist.co.uk" style="color:var(--gold)">godfred@thefoodeconomist.co.uk</a>.</p>
     </section>
@@ -557,6 +558,10 @@ function render(){
     '<div class="interp">' + interpretation(m).map(p => '<p>' + p + '</p>').join('') + '</div>' +
 
     '<div class="note">This reading is built only from the figures you entered. Nothing has been verified against invoices, payroll records or till reports, and it is not an exact profit figure. It is an indicative planning tool, not an accounts review or regulated advice.</div>' +
+
+    '<p style="margin-top:16px;font-size:.95rem"><strong>Want to see what the written report does with figures like these?</strong> ' +
+    '<a href="/sample-report.html" style="color:var(--navy)">Read the worked example</a> — it states its assumptions, ' +
+    'shows what it would take to stand still, and costs one dish line by line.</p>' +
   '</div>' +
 
   /* ---- explicit, optional written breakdown ---- */
