@@ -1,5 +1,9 @@
 # Hostinger runtime configuration must remain on the server.
+# The two files below are credential-free bridges to the existing Hostinger
+# runtime configuration. All other API configuration remains untracked.
 **/api/config.php
+!epr/api/config.php
+!myprofit/api/config.php
 **/.env
 **/.env.*
 
