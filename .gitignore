@@ -1,0 +1,13 @@
+# Hostinger runtime configuration must remain on the server.
+**/api/config.php
+**/.env
+**/.env.*
+
+# Runtime submissions are server data, not release source.
+**/api/booking-data/*
+!**/api/booking-data/.htaccess
+
+# Local/editor artefacts.
+.DS_Store
+Thumbs.db
+*.log

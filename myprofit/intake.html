@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send your figures | MyProfit</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#101F33;--navy:#1B3A5C;--gold:#C9A14E;--paper:#F7F4EE;--rule:#D8CFBE;--risk:#A8432D}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',system-ui,sans-serif;background:var(--ink);color:var(--paper);padding:40px 20px;line-height:1.6}
+.card{background:var(--paper);color:var(--ink);max-width:640px;margin:0 auto;border-radius:4px;padding:40px;border-top:5px solid var(--gold)}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:1.6rem;margin-bottom:8px}
+p.sub{color:#6B6250;font-size:.92rem;margin-bottom:24px}
+label{display:block;font-weight:600;font-size:.88rem;margin:16px 0 6px}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid var(--rule);border-radius:3px;font-family:inherit;font-size:.95rem;background:#FFFDF8}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none}
+textarea{min-height:140px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+.btn{margin-top:24px;width:100%;background:var(--navy);color:var(--paper);border:none;padding:15px;font-size:1rem;font-weight:600;border-radius:3px;cursor:pointer;font-family:inherit}
+.btn:hover{background:#23476E}
+.btn:disabled{opacity:.6;cursor:wait}
+.err{color:var(--risk);font-size:.86rem;margin-top:12px;display:none}
+.done{display:none;text-align:center;padding:30px 0}
+.done h2{font-family:'Playfair Display',Georgia,serif;margin-bottom:10px}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.filenote{font-size:.8rem;color:#6B6250;margin-top:6px}
+:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+</style>
+</head>
+<body>
+<main class="card">
+  <div id="formwrap">
+    <h1>Send your figures</h1>
+    <p class="sub">Rough data is acceptable — till summaries, supplier invoices, bank app screenshots, even a scribbled monthly summary. The engagement clock starts when this form arrives.</p>
+    <form id="intakeform" novalidate>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="row">
+        <div><label for="name">Your name *</label><input id="name" required maxlength="120"></div>
+        <div><label for="company">Company *</label><input id="company" required maxlength="160"></div>
+      </div>
+      <div class="row">
+        <div><label for="email">Email *</label><input id="email" type="email" required maxlength="190"></div>
+        <div><label for="phone">Phone / WhatsApp</label><input id="phone" maxlength="40"></div>
+      </div>
+      <label for="venue">Venue type</label>
+      <select id="venue">
+        <option value="">Select…</option>
+        <option>Restaurant (full service)</option><option>Café / coffee shop</option><option>Takeaway / QSR</option>
+        <option>Pub with food</option><option>Bakery / deli</option><option>Other food business</option>
+      </select>
+      <label for="concern">Main concern</label>
+      <select id="concern">
+        <option value="">Select…</option>
+        <option>Busy but the money isn't there at month-end</option>
+        <option>Food costs creeping up faster than prices</option>
+        <option>Wage bill since the April increases</option>
+        <option>Whether to raise menu prices, and by how much</option>
+        <option>Deciding whether to keep going</option>
+        <option>Other (explain below)</option>
+      </select>
+      <label for="notes">Your monthly figures and notes *</label>
+      <textarea id="notes" required maxlength="6000" placeholder="Example: current monthly takings, supplier costs, wage total, energy, rent and any delivery or platform fees. Note which days are busiest, quieter periods, and the decision you need to make."></textarea>
+      <p class="filenote">Have invoices or spreadsheets? After submitting, email them to <strong>godfred@thefoodeconomist.co.uk</strong> with your company name in the subject — the desk will match them to this form.</p>
+      <button class="btn" type="submit">Submit figures — start the clock</button>
+      <div class="err" id="formerr"></div>
+    </form>
+  </div>
+  <div class="done" id="done">
+    <h2>Figures received</h2>
+    <p>The desk has your submission and the engagement clock has started. You will receive written confirmation shortly, and your report within the stated turnaround.</p>
+  </div>
+</main>
+<script>
+const product = new URLSearchParams(location.search).get('p') === 'diagnostic' ? 'diagnostic' : 'triage';
+const form = document.getElementById('intakeform');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const err = document.getElementById('formerr');
+  err.style.display = 'none';
+  const get = id => document.getElementById(id).value.trim();
+  if (!get('name') || !get('company') || !get('notes') ||
+      !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(get('email'))) {
+    err.textContent = 'Name, company, a valid email and your figures are required.';
+    err.style.display = 'block'; return;
+  }
+  e.submitter.disabled = true; e.submitter.textContent = 'Sending…';
+  try {
+    const r = await fetch('api/save-intake.php', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        product, name:get('name'), company:get('company'), email:get('email'),
+        phone:get('phone'), venue_type:get('venue'),
+        main_concern:get('concern'), figures_notes:get('notes'),
+        website: form.querySelector('.hp').value
+      })
+    });
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || 'failed');
+    document.getElementById('formwrap').style.display = 'none';
+    document.getElementById('done').style.display = 'block';
+  } catch(ex) {
+    err.textContent = 'Could not send just now. Please email your figures directly to godfred@thefoodeconomist.co.uk.';
+    err.style.display = 'block';
+    e.submitter.disabled = false; e.submitter.textContent = 'Submit figures — start the clock';
+  }
+});
+</script>
+</body>
+</html>

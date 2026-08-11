@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyProfit — Will your restaurant survive the 2026 squeeze? | The Food Economist</title>
+<meta name="description" content="Free 60-second margin squeeze triage for UK restaurants, then a written 48-hour profit diagnostic from rough figures. No software setup, no site visit, no sales call.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101F33; --navy:#1B3A5C; --gold:#C9A14E; --paper:#F7F4EE;
+  --rule:#D8CFBE; --risk:#A8432D; --safe:#3E7A52;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'IBM Plex Sans',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{font-family:var(--font-body);background:var(--ink);color:var(--paper);line-height:1.6;font-size:16px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+a{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15}
+.eyebrow{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.btn{display:inline-block;padding:14px 28px;border-radius:3px;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;font-size:1rem;font-family:var(--font-body)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#D9B469}
+.btn-line{background:transparent;color:var(--paper);border-color:var(--gold)}
+.btn-line:hover{background:rgba(201,161,78,.12)}
+
+nav{border-bottom:1px solid rgba(201,161,78,.25);padding:18px 0;position:sticky;top:0;background:rgba(16,31,51,.96);backdrop-filter:blur(6px);z-index:50}
+nav .wrap{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:12px;color:var(--paper);text-decoration:none}
+.brand-logo{width:170px;height:auto;display:block}
+.brand small{display:block;font-family:var(--font-body);font-weight:400;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.navlinks{display:flex;gap:26px;align-items:center;list-style:none}
+.navlinks a{color:var(--paper);text-decoration:none;font-size:.92rem}
+.navlinks a:hover{color:var(--gold)}
+@media(max-width:760px){.navlinks{display:none}.brand-logo{width:150px}}
+
+.hero{padding:84px 0 60px;border-bottom:1px solid rgba(201,161,78,.2)}
+.hero h1{font-size:clamp(2.1rem,5vw,3.3rem);font-weight:800;max-width:18ch;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lede{font-size:1.12rem;max-width:58ch;color:#C8D2DD;margin-bottom:30px}
+.hero .facts{display:flex;gap:34px;flex-wrap:wrap;margin-top:38px}
+.hero .fact{border-left:2px solid var(--gold);padding-left:14px;max-width:250px}
+.hero .fact b{font-family:var(--font-mono);font-size:1.25rem;color:var(--paper);display:block}
+.hero .fact span{font-size:.85rem;color:#9FB0C2}
+
+/* ===== TRIAGE — signature: results print as a till receipt ===== */
+.triage{padding:70px 0;background:linear-gradient(180deg,var(--ink) 0%,#0C1828 100%)}
+.machine{display:grid;grid-template-columns:1.05fr .95fr;gap:34px;align-items:start}
+@media(max-width:880px){.machine{grid-template-columns:1fr}}
+.inputs-card{background:var(--paper);color:var(--ink);border-radius:4px;padding:30px 32px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.inputs-card h2{font-size:1.4rem;margin-bottom:6px}
+.inputs-card p.note{font-size:.86rem;color:#6B6250;margin-bottom:20px}
+.frow{display:grid;grid-template-columns:1fr 140px;gap:12px;align-items:center;padding:8px 0;border-bottom:1px dotted var(--rule)}
+.frow label{font-size:.93rem;font-weight:500}
+.frow label small{display:block;font-weight:400;color:#8A7E66;font-size:.74rem}
+.frow input{width:100%;padding:9px 10px;border:1px solid var(--rule);border-radius:3px;font-family:var(--font-mono);font-size:.95rem;background:#FFFDF8;text-align:right}
+.frow input:focus{border-color:var(--gold);outline:none}
+.calcbtn{margin-top:24px;width:100%;background:var(--navy);color:var(--paper);border:none;padding:15px;font-size:1.02rem;font-weight:600;border-radius:3px;cursor:pointer;font-family:var(--font-body)}
+.calcbtn:hover{background:#23476E}
+.smallprint{font-size:.74rem;color:#8A7E66;margin-top:14px}
+
+.receipt-slot{position:relative}
+.receipt{background:#FFFEF9;color:#1A1A18;font-family:var(--font-mono);font-size:.85rem;max-width:380px;margin:0 auto;padding:26px 22px 34px;box-shadow:0 24px 60px rgba(0,0,0,.5);
+  -webkit-mask:linear-gradient(180deg,#000 calc(100% - 14px),transparent 0),radial-gradient(circle at 7px 100%,transparent 7px,#000 7.5px) bottom/14px 14px repeat-x;
+  mask:linear-gradient(180deg,#000 calc(100% - 14px),transparent 0),radial-gradient(circle at 7px 100%,transparent 7px,#000 7.5px) bottom/14px 14px repeat-x}
+.receipt .shop{text-align:center;border-bottom:1px dashed #999;padding-bottom:12px;margin-bottom:12px}
+.receipt .shop b{font-size:.95rem;letter-spacing:.08em}
+.receipt .shop div{font-size:.72rem;color:#666}
+.receipt .rl{display:flex;justify-content:space-between;gap:8px;padding:2.5px 0}
+.receipt .rl span:last-child{white-space:nowrap}
+.receipt .sep{border-top:1px dashed #999;margin:10px 0}
+.receipt .tot{font-weight:600;font-size:.95rem}
+.receipt .idx{text-align:center;margin:14px 0 4px}
+.receipt .idx .n{font-size:2rem;font-weight:600;letter-spacing:-.02em}
+.receipt .idx .l{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#666}
+.receipt .band{text-align:center;font-weight:600;letter-spacing:.1em;padding:5px 0;margin:8px 0;border:1.5px solid currentColor}
+.receipt .band.hi{color:var(--risk)}
+.receipt .band.med{color:#8A6A1F}
+.receipt .band.lo{color:var(--safe)}
+.receipt .blur{filter:blur(5px);pointer-events:none;user-select:none}
+.receipt .foot{text-align:center;font-size:.68rem;color:#777;margin-top:14px}
+.receipt .placeholder{text-align:center;color:#888;padding:30px 6px}
+.flagline{font-size:.72rem;color:#555}
+.gate{margin-top:18px;background:var(--ink);color:var(--paper);border-radius:3px;padding:20px;max-width:380px;margin-left:auto;margin-right:auto}
+.gate h4{font-family:var(--font-display);font-size:1.05rem;margin-bottom:6px}
+.gate p{font-size:.85rem;color:#B9C6D4;margin-bottom:12px}
+.gate form{display:flex;gap:10px;flex-wrap:wrap}
+.gate input[type=email]{flex:1;min-width:180px;padding:12px 14px;border-radius:3px;border:1px solid #3A526B;background:#16283D;color:var(--paper);font-family:var(--font-body)}
+.gate input[type=email]::placeholder{color:#7E91A6}
+.gate .err{color:#E8A294;font-size:.82rem;margin-top:8px;display:none}
+.result-action{margin-top:18px;background:var(--paper);color:var(--ink);border-left:4px solid var(--gold);border-radius:3px;padding:18px;max-width:380px;margin-left:auto;margin-right:auto}
+.result-action h4{font-family:var(--font-display);font-size:1.08rem;margin-bottom:6px}
+.result-action p{font-size:.85rem;color:#514A3D;margin-bottom:12px}
+.result-action .btn{display:block;text-align:center}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+@media(max-width:520px){
+  .triage{padding:48px 0}
+  .inputs-card{padding:24px 18px}
+  .frow{grid-template-columns:1fr;gap:6px}
+  .frow input{text-align:left}
+  .receipt{font-size:.78rem;padding:22px 14px 30px}
+  .receipt .rl{align-items:flex-start;flex-wrap:wrap}
+  .receipt .rl span:first-child{max-width:62%}
+  .gate{padding:18px 14px}
+  .gate form{display:block}
+  .gate input[type=email],.gate form .btn{width:100%;min-width:0}
+  .gate form .btn{margin-top:10px}
+}
+
+/* ===== gap / comparison ===== */
+.gap{padding:76px 0}
+.gap h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:26ch;margin:14px 0 36px}
+.gap-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(201,161,78,.3);border:1px solid rgba(201,161,78,.3)}
+@media(max-width:820px){.gap-grid{grid-template-columns:1fr}}
+.gap-col{background:var(--ink);padding:28px}
+.gap-col.mid{background:#16283D}
+.gap-col h3{font-size:1rem;color:var(--gold);margin-bottom:4px}
+.gap-col .pr{font-family:var(--font-mono);font-size:.85rem;color:#9FB0C2;margin-bottom:14px}
+.gap-col ul{list-style:none}
+.gap-col li{padding:8px 0;font-size:.92rem;color:#C8D2DD;border-bottom:1px solid rgba(201,161,78,.12)}
+
+/* ===== products ===== */
+.products{padding:76px 0;background:#0C1828}
+.prod-grid{display:grid;grid-template-columns:1fr 1.25fr;gap:26px;margin-top:38px}
+@media(max-width:860px){.prod-grid{grid-template-columns:1fr}}
+.prod{background:var(--paper);color:var(--ink);border-radius:4px;padding:34px;display:flex;flex-direction:column}
+.prod.feature{border-top:5px solid var(--gold)}
+.prod .tier{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#8A6A1F}
+.prod h3{font-size:1.5rem;margin:8px 0 4px}
+.prod .price{font-family:var(--font-display);font-size:2.3rem;font-weight:800;margin:10px 0 2px}
+.prod .price small{font-family:var(--font-body);font-size:.85rem;font-weight:400;color:#6B6250}
+.vat-gross{display:block;font-family:var(--font-body);font-size:.82rem;font-weight:500;color:#6B6250;margin-top:2px}
+.prod ul{list-style:none;margin:18px 0 26px;flex:1}
+.prod li{padding:8px 0 8px 24px;position:relative;font-size:.93rem;border-bottom:1px dotted var(--rule)}
+.prod li::before{content:'·';position:absolute;left:6px;color:var(--gold);font-weight:800;font-size:1.4rem;line-height:1}
+.prod .btn{text-align:center}
+.prod .turn{font-size:.8rem;color:#6B6250;text-align:center;margin-top:10px}
+.credline{font-size:.82rem;color:#6B6250;border-top:1px dotted var(--rule);margin-top:14px;padding-top:12px;text-align:center}
+
+/* ===== prepared call booking ===== */
+.booking{padding:76px 0;background:linear-gradient(180deg,#08111D 0%,#0C1828 100%);border-top:1px solid rgba(201,161,78,.2)}
+.booking h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:27ch;margin:14px 0}
+.booking .lead{color:#C8D2DD;max-width:72ch;margin-bottom:26px}
+.booking-panel{display:grid;grid-template-columns:.92fr 1.08fr;gap:26px;align-items:start;background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:30px}
+@media(max-width:880px){.booking-panel{grid-template-columns:1fr;padding:22px}}
+.booking-note{background:var(--paper);color:var(--ink);border-radius:4px;padding:24px}
+.booking-note h3{font-size:1.28rem;margin-bottom:10px}
+.booking-note p{color:#514A3D;font-size:.94rem;margin-bottom:12px}
+.booking-note ol{margin-left:20px;color:#514A3D;font-size:.92rem}
+.booking-note li{padding:6px 0}
+.booking-form{background:#0C1828;border:1px solid rgba(201,161,78,.22);border-radius:4px;padding:24px}
+.booking-form h3{font-size:1.25rem;margin-bottom:12px}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.booking-grid{grid-template-columns:1fr}}
+.booking-form label{font-size:.84rem;font-weight:600;color:#DAD3C1}
+.booking-form input,.booking-form select,.booking-form textarea{width:100%;margin-top:5px;padding:11px 12px;border:1px solid rgba(201,161,78,.35);border-radius:3px;background:#FFFEF9;color:var(--ink);font-family:var(--font-body);font-size:.95rem}
+.booking-form textarea{min-height:94px;resize:vertical}
+.booking-form .full{grid-column:1 / -1}
+.booking-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.booking-step{display:none;margin-top:20px;border-top:1px solid rgba(201,161,78,.2);padding-top:18px}
+.booking-step.show{display:block}
+.slot-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+@media(max-width:560px){.slot-list{grid-template-columns:1fr}}
+.slot-btn{border:1px solid rgba(201,161,78,.38);background:#16283D;color:var(--paper);border-radius:3px;padding:11px 12px;text-align:left;font-family:var(--font-body);cursor:pointer}
+.slot-btn:hover,.slot-btn.selected{border-color:var(--gold);background:#203754}
+.booking-status{display:none;margin-top:12px;font-size:.88rem}
+.booking-status.ok{display:block;color:var(--safe)}.booking-status.err{display:block;color:var(--risk)}
+.booking-confirm{display:none;margin-top:16px;background:#FFF8E6;border:1px solid #E2C879;color:#4B3A07;border-radius:3px;padding:16px;font-size:.9rem}
+.booking-confirm.show{display:block}
+
+/* ===== proof ===== */
+.proof{padding:76px 0;background:var(--ink)}
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+@media(max-width:860px){.proof-grid{grid-template-columns:1fr}}
+.proof-card{background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:30px}
+.proof-card.light{background:var(--paper);color:var(--ink)}
+.proof-card h3{font-size:1.35rem;margin-bottom:12px}
+.proof-card p{color:#C8D2DD;margin-bottom:14px;font-size:.95rem}
+.proof-card.light p{color:#514A3D}
+.proof-card ul{list-style:none;margin:14px 0}
+.proof-card li{padding:9px 0 9px 22px;position:relative;border-bottom:1px solid rgba(201,161,78,.14);font-size:.92rem;color:#C8D2DD}
+.proof-card.light li{color:#514A3D;border-bottom:1px dotted var(--rule)}
+.proof-card li::before{content:'>';position:absolute;left:0;color:var(--gold);font-weight:700}
+.proof-note{font-size:.8rem;color:#9FB0C2;margin-top:10px}
+
+/* ===== partners ===== */
+.partners{padding:70px 0;border-top:1px solid rgba(201,161,78,.2)}
+.partners .inner{background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:34px;display:grid;grid-template-columns:1.4fr 1fr;gap:30px;align-items:center}
+@media(max-width:820px){.partners .inner{grid-template-columns:1fr}}
+.partners h2{font-size:1.5rem;margin-bottom:10px}
+.partners p{color:#C8D2DD;font-size:.95rem;margin-bottom:10px}
+
+/* ===== method / faq / contact / footer ===== */
+.method{padding:76px 0}
+.method-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:start;margin-top:30px}
+@media(max-width:860px){.method-grid{grid-template-columns:1fr}}
+.method h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:24ch;margin-top:14px}
+.method p{color:#C8D2DD;margin-bottom:16px;font-size:.98rem}
+.cred{background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:28px}
+.cred .nm{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
+.cred .rl{color:var(--gold);font-size:.88rem;margin-bottom:14px}
+.cred p{color:#C8D2DD;font-size:.94rem;margin-bottom:14px}
+.cred ul{list-style:none;margin-top:6px}
+.cred li{padding:7px 0;font-size:.9rem;color:#C8D2DD;border-bottom:1px solid rgba(201,161,78,.12)}
+.faq{padding:70px 0;background:#0C1828}
+.faq details{border-bottom:1px solid rgba(201,161,78,.2);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:'+ ';color:var(--gold)}
+.faq details[open] summary::before{content:'– '}
+.faq details p{margin-top:10px;color:#C8D2DD;font-size:.93rem;max-width:70ch}
+.contact{padding:70px 0;text-align:center}
+.contact h2{font-size:clamp(1.5rem,3vw,2rem)}
+.contact p{color:#C8D2DD;max-width:50ch;margin:14px auto 26px}
+footer{border-top:1px solid rgba(201,161,78,.2);padding:30px 0;font-size:.78rem;color:#8FA0B3}
+footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.footer-brand-block{max-width:320px}
+.footer-logo{width:190px;height:auto;display:block;margin-bottom:12px}
+.address-block{color:#B9C6D4;font-size:.82rem;line-height:1.55}
+.footer-address{display:block;margin-top:8px;color:#9FB0C2;font-size:.78rem}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="MyProfit by The Food Economist">
+      <img class="brand-logo" src="/assets/the-food-economist-logo.svg" alt="The Food Economist">
+      <small>MyProfit margin desk</small>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#triage">Free triage</a></li>
+      <li><a href="#products">Services</a></li>
+      <li><a href="#proof">Sample report</a></li>
+      <li><a href="#partners">For advisers</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#contact" class="btn btn-line" style="padding:9px 18px">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">UK restaurants · Margin decisions from your own numbers</span>
+    <h1>Busy every night. <em>Losing money</em> every month. Which one are you?</h1>
+    <p class="lede">Food invoices, labour and energy do not move at the same speed as menu prices. A restaurant can look busy while its margin slips month by month. Run the free 60-second triage on rough figures, use your own planning assumptions, and see the position in black and white.</p>
+    <a class="btn btn-gold" href="#triage">Run the free margin triage</a>
+    <div class="facts">
+      <div class="fact"><b>Your inputs</b><span>supplier and energy scenarios from your own invoices</span></div>
+      <div class="fact"><b>£12.71/hr</b><span>National Living Wage from April 2026 (+4.1%)</span></div>
+      <div class="fact"><b>48 hours</b><span>for the written Profit Triage Report after figures arrive</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="triage" id="triage">
+  <div class="wrap">
+    <div class="machine">
+      <div class="inputs-card">
+        <h2>The 60-second margin triage</h2>
+        <p class="note">Monthly figures, roughly right is fine. Nothing is stored until you choose to unlock the full read-out.</p>
+        <div class="frow"><label for="f_rev">Revenue (takings, ex-VAT)<small>average month</small></label><input id="f_rev" type="number" min="0" step="100" placeholder="£" inputmode="numeric"></div>
+        <div class="frow"><label for="f_food">Food &amp; drink suppliers<small>all supplier spend</small></label><input id="f_food" type="number" min="0" step="100" placeholder="£" inputmode="numeric"></div>
+        <div class="frow"><label for="f_lab">Labour<small>wages, incl. your own pay</small></label><input id="f_lab" type="number" min="0" step="100" placeholder="£" inputmode="numeric"></div>
+        <div class="frow"><label for="f_energy">Energy &amp; utilities<small>gas, electric, water</small></label><input id="f_energy" type="number" min="0" step="50" placeholder="£" inputmode="numeric"></div>
+        <div class="frow"><label for="f_rent">Rent, rates &amp; insurance<small>fixed property costs</small></label><input id="f_rent" type="number" min="0" step="50" placeholder="£" inputmode="numeric"></div>
+        <div class="frow"><label for="f_other">Everything else<small>delivery fees, packaging, marketing, repairs…</small></label><input id="f_other" type="number" min="0" step="50" placeholder="£" inputmode="numeric"></div>
+        <div class="frow"><label for="s_food">Supplier-cost scenario<small>your expected change over the next 12 months</small></label><input id="s_food" type="number" min="-100" max="100" step="0.1" placeholder="%" inputmode="decimal"></div>
+        <div class="frow"><label for="s_labour">Labour-cost scenario<small>defaults to the 2026 NLW increase; adjust for your staffing mix</small></label><input id="s_labour" type="number" min="-100" max="100" step="0.1" inputmode="decimal"></div>
+        <div class="frow"><label for="s_energy">Energy-cost scenario<small>your contract, tariff or renewal view</small></label><input id="s_energy" type="number" min="-100" max="100" step="0.1" placeholder="%" inputmode="decimal"></div>
+        <button class="calcbtn" id="calc" type="button">Print my planning read-out</button>
+        <p class="smallprint">Use current monthly costs and your own planning scenarios. The labour field starts at the verified +4.1% National Living Wage increase for workers aged 21 and over; supplier and energy changes are not assumed. Benchmarks are indicative sector bands, not targets.</p>
+      </div>
+      <div class="receipt-slot" aria-live="polite">
+        <div class="receipt" id="receipt">
+          <div class="shop"><b>MYPROFIT TRIAGE</b><div>The Food Economist · Margin Desk</div><div id="rdate"></div></div>
+          <p class="placeholder">Enter your figures and the read-out prints here — set out like the till receipt your margin actually lives on.</p>
+        </div>
+        <div id="gatewrap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gap">
+  <div class="wrap">
+    <span class="eyebrow">Where this sits</span>
+    <h2>Between the software you won't set up and the consultant you won't pay £2,000 for.</h2>
+    <div class="gap-grid">
+      <div class="gap-col">
+        <h3>Costing software</h3>
+        <div class="pr">~£129/month, per site</div>
+        <ul>
+          <li>Powerful — once every invoice and recipe is loaded</li>
+          <li>Weeks of setup and ongoing admin</li>
+          <li>Tells you the numbers; doesn't tell you what to do</li>
+        </ul>
+      </div>
+      <div class="gap-col mid">
+        <h3>MyProfit written diagnostic</h3>
+        <div class="pr">£95 + VAT fixed · 48 hours · from rough data</div>
+        <ul>
+          <li>Send what you have — bank app screenshots, supplier invoices, a scribbled summary</li>
+          <li>A written verdict: where the margin is leaking, in £ per month</li>
+          <li>The three changes to make first, and what each is worth</li>
+        </ul>
+      </div>
+      <div class="gap-col">
+        <h3>On-site consultant</h3>
+        <div class="pr">£75–£350/hour · ~£2,000 typical project</div>
+        <ul>
+          <li>Excellent for full turnarounds</li>
+          <li>Needs site visits, meetings, weeks of engagement</li>
+          <li>Ten times the price of a written diagnosis</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="wrap">
+    <span class="eyebrow">Engagements</span>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.2rem);margin-top:14px">Two ways to stop guessing</h2>
+    <div class="prod-grid">
+      <div class="prod">
+        <span class="tier">Tier 1 · Written triage</span>
+        <h3>48-Hour Profit Triage Report</h3>
+        <div class="price" data-net="95">£95 + VAT<span class="vat-gross"></span></div>
+        <ul>
+          <li>Send rough monthly figures — any format, no software, no call</li>
+          <li>Written report inside 48 hours: your true margin position</li>
+          <li>Where the leak is biggest, in £ per month</li>
+          <li>Your 12-month planning scenario using real figures</li>
+          <li>The first three fixes, ranked by what each is worth</li>
+          <li>Credited in full against the Diagnostic within 30 days</li>
+        </ul>
+        <a class="btn btn-gold" id="buy-triage" href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" rel="noopener">Commission the Triage — £95 + VAT</a>
+        <p class="turn"><strong>£95 + VAT is the paid first step, not a cut-down consultancy fee.</strong> It is credited in full against the £395 + VAT Diagnostic within 30 days.</p>
+        <p class="credline">Reviewed by the Food &amp; Trade Economist. Written economic analysis, not software output.</p>
+        <p class="turn">Delivered within 48 hours of receiving your figures</p>
+      </div>
+      <div class="prod feature">
+        <span class="tier">Tier 2 · Full engagement</span>
+        <h3>Menu &amp; Margin Diagnostic</h3>
+        <div class="price" data-net="395">£395 + VAT <small>fixed fee</small><span class="vat-gross"></span></div>
+        <ul>
+          <li>Everything in the Triage, plus your menu costed line by line</li>
+          <li>Dish-level margin map from your supplier invoices</li>
+          <li>Price pass-through plan: what to raise, by how much, and what to leave</li>
+          <li>Portion, waste and supplier negotiation points, costed</li>
+          <li>12-month margin forecast under agreed planning scenarios</li>
+          <li>Written, board-and-bank-ready; 30 minutes of written Q&amp;A after delivery</li>
+        </ul>
+        <a class="btn btn-gold" id="buy-diagnostic" href="https://buy.stripe.com/8x2fZg1LD05zcdLGcjS03" rel="noopener">Commission the Diagnostic — £395 + VAT</a>
+        <a class="btn btn-line booking-open" href="#prepared-call" data-service="MyProfit Diagnostic prepared call" style="margin-top:10px">Prefer to talk it through? Book a prepared call</a>
+        <p class="credline">Built from your figures, supplier lines and menu structure. No software, supplier or broker commission is taken.</p>
+        <p class="turn">Delivered within 7 working days of receiving your data</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="prepared-call">
+  <div class="wrap">
+    <span class="eyebrow">Prepared call booking</span>
+    <h2>A sharper conversation because the numbers are read first</h2>
+    <p class="lead">MyProfit stays written-first. If a call will help, send the facts before booking; the analyst reviews the pressure points and uses the 15-minute call to talk through the decision, not to collect basics.</p>
+    <div class="booking-panel">
+      <div class="booking-note">
+        <h3>How the call works</h3>
+        <p>The best result is still the written triage or diagnostic. The call is there when you want the prepared analysis talked through.</p>
+        <ol>
+          <li>Send the restaurant context and what you need decided.</li>
+          <li>Choose one available 15-minute UK-time slot.</li>
+          <li>You receive an email confirmation with a calendar file.</li>
+          <li>If paid work is needed, checkout stays through the VAT-enabled Stripe links already shown above.</li>
+        </ol>
+      </div>
+      <div class="booking-form">
+        <h3>Book a prepared MyProfit call</h3>
+        <form id="booking-form">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="booking-grid">
+            <label>Name<input name="name" required></label>
+            <label>Business<input name="business" required></label>
+            <label>Email<input name="email" type="email" required></label>
+            <label>Phone / WhatsApp<input name="phone"></label>
+            <label class="full">What should be prepared?<select name="service" id="booking-service">
+              <option>MyProfit Diagnostic prepared call</option>
+              <option>MyProfit Triage follow-up</option>
+              <option>Restaurant margin discussion</option>
+            </select></label>
+            <label class="full">Situation<textarea name="situation" required placeholder="Example: monthly revenue, food/labour pressure, supplier invoices available, and the decision you need to make."></textarea></label>
+          </div>
+          <div class="booking-actions">
+            <button class="btn btn-gold" type="button" id="booking-load">Show prepared-call times</button>
+          </div>
+          <div class="booking-status" id="booking-status"></div>
+          <div class="booking-step" id="booking-slots">
+            <h3>Choose a UK-time slot</h3>
+            <div class="slot-list" id="slot-list"></div>
+            <div class="booking-actions">
+              <button class="btn btn-gold" type="button" id="booking-submit">Book prepared call</button>
+            </div>
+          </div>
+          <div class="booking-confirm" id="booking-confirm"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof" id="proof">
+  <div class="wrap">
+    <span class="eyebrow">Proof of work</span>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.2rem);margin-top:14px;max-width:26ch">See what the £95 + VAT report actually looks for before you buy.</h2>
+    <div class="proof-grid">
+      <div class="proof-card light">
+        <h3>Redacted sample report</h3>
+        <p>The sample shows the exact structure of the 48-hour triage: margin position, worked planning scenario, leak ranking, and first three actions costed in pounds.</p>
+        <ul>
+          <li>Prime-cost pressure shown as food plus labour, not just headline profit.</li>
+          <li>Standstill price-rise estimate so the owner sees the real gap.</li>
+          <li>Three ranked fixes, each tied to monthly cash impact.</li>
+        </ul>
+        <a class="btn btn-gold" href="/sample-report.html">View the redacted sample</a>
+      </div>
+      <div class="proof-card">
+        <h3>What the report is designed to reveal</h3>
+        <p>Until live client case studies exist, the honest proof is the analysis method and the visible sample. These are the pressure points the written report tests.</p>
+        <ul>
+          <li>Supplier lines rising faster than menu prices.</li>
+          <li>Labour-heavy shifts that look busy but erase margin.</li>
+          <li>Delivery/platform sales that grow revenue while weakening net result.</li>
+          <li>One or two menu items carrying a hidden monthly leak.</li>
+        </ul>
+        <p class="proof-note">No invented testimonials are used. Named client outcomes should only be added after real reports have been delivered and permission is recorded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="partners" id="partners">
+  <div class="wrap">
+    <div class="inner">
+      <div>
+        <span class="eyebrow">For advisers, suppliers &amp; finance teams</span>
+        <h2>Your restaurant clients are in the squeeze. Hand them a lifeline with your name on it.</h2>
+        <p>Refer a client and earn £50 per paid Diagnostic — or white-label the report under your own letterhead at a trade rate. Everything is handled in writing; your client relationship stays yours.</p>
+        <p>Use the sample report as the opener: send it to restaurant clients who are busy but cash-tight, then refer the ones who need a written margin check before the next cost rise lands.</p>
+      </div>
+      <div style="text-align:center">
+        <a class="btn btn-gold" href="mailto:godfred@thefoodeconomist.co.uk?subject=MyProfit%20partner%20enquiry">Enquire as a partner</a>
+        <p style="font-size:.82rem;color:#9FB0C2;margin-top:12px">A dedicated partner page can be added after the EPR-first test path is complete.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="method" id="method">
+  <div class="wrap">
+    <span class="eyebrow">Method &amp; analyst</span>
+    <div class="method-grid">
+      <div>
+        <h2>Food economics, applied to one restaurant at a time: yours</h2>
+        <p>Every diagnosis starts from your actual figures — takings, supplier invoices, wage bills — however rough. The analysis uses cost incidence, margin mapping, scenario stress-testing from your own planning assumptions, and price pass-through that protects covers rather than scaring them off.</p>
+        <p>This desk sells no software subscription, no EPOS, no supplier contracts, and takes no commissions from anyone it might recommend. The only product is a written, independent answer.</p>
+        <p>Everything is handled in writing. No site visits, no sales calls — unless you ask.</p>
+      </div>
+      <div class="cred">
+        <div class="nm">Godfred Frimpong</div>
+        <div class="rl">Food &amp; Trade Economist</div>
+        <p>I apply the same cost discipline used to model statutory costs for food manufacturers to one restaurant at a time: yours. The goal is a clear written answer on where your margin leaks and what to fix first — not jargon, not software you'll never set up.</p>
+        <ul>
+          <li>MSc Food Economics &amp; Marketing, University of Reading</li>
+          <li>30+ years in financial management and cost analysis</li>
+          <li>Specialist in restaurant margin and statutory cost modelling</li>
+          <li>Independent — no software, scheme or supplier affiliations</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem);margin:14px 0 26px">Asked before commissioning</h2>
+    <details><summary>My books are a mess. Can you still help?</summary><p>Yes — that's the normal case, not the exception. Bank app screenshots, a folder of supplier invoices and your till summary are enough for the Triage. Part of the job is turning a mess into figures you can act on.</p></details>
+    <details><summary>Is this a filing or records service?</summary><p>No. This is independent economic analysis of your costs and margins. It works alongside your existing advisers — the report is written so you can hand it straight to them, or to your bank.</p></details>
+    <details><summary>How is £95 + VAT enough to be serious?</summary><p>Because it's a written triage, not a turnaround project. It finds the leak and prices the fixes. If your situation needs the deeper menu-level work, the £95 + VAT is credited in full against the £395 + VAT Diagnostic — so the triage costs nothing if you proceed.</p></details>
+    <details><summary>Will you try to sell me software or suppliers?</summary><p>No. The desk is independent by design: no subscriptions, no affiliate commissions, no supplier deals. If software would genuinely help you, the report says so and names neutral options — that's all.</p></details>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Prefer to start with a question?</h2>
+    <p>Everything is handled in writing. Send a message and you will get a written reply, usually within one working day.</p>
+    <a class="btn btn-gold" href="mailto:godfred@thefoodeconomist.co.uk?subject=MyProfit%20enquiry">Email the desk</a>
+    &nbsp;&nbsp;
+    <a class="btn btn-line" id="whatsapp" href="#" rel="noopener">WhatsApp (written)</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand-block">
+      <img class="footer-logo" src="/assets/the-food-economist-logo.svg" alt="The Food Economist">
+      <div class="address-block">
+        <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a><br>
+        Mobile: 07939 823988
+      </div>
+      <div style="margin-top:10px">© <span id="yr"></span> MyProfit · The Food Economist</div>
+    </div>
+    <div style="max-width:620px">All prices are exclusive of VAT unless a consumer-facing offer states otherwise. VAT is charged at the prevailing UK rate <span data-vat-rate></span> and shown on your invoice. VAT registration: <span data-vat-number></span>. ICO registration: <span data-ico-number></span>. Triage outputs and reports are independent economic analysis, not statutory filing, public-practice services, legal, tax or investment advice. <a href="/terms.html">Service terms</a> · <a href="/privacy.html">Privacy</a><span class="footer-address">84 Bridge Street, Kingston, HR5 3DJ</span></div>
+  </div>
+</footer>
+
+<script>
+/* ============ CONFIG (owner edits ONLY this block) ============ */
+const CONFIG = {
+  stripeTriage:     'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
+  stripeDiagnostic: 'https://buy.stripe.com/8x2fZg1LD05zcdLGcjS03',
+  whatsapp: '447939823988',
+  apiBase: '/api',   /* deployed at subdomain root; use '/myprofit/api' if under a path */
+  vatRate: 0.20,
+  vatNumber: '508927172',
+  icoNumber: 'ZC112776'
+};
+
+/* ====== STRESS: SINGLE SOURCE OF TRUTH (ARCHITECTURE.md §4) ======
+   Verified default plus benchmark bands. Food and energy scenarios are visitor inputs. */
+const STRESS = {
+  defaultLabour: 0.041, /* NLW April 2026 +4.1% for workers aged 21 and over */
+  bands: {
+    foodPct:  {pressure: 32, high: 38},
+    labourPct:{pressure: 30, high: 35},
+    primePct: {pressure: 65, high: 72}
+  }
+};
+
+const fmt = n => {
+  const rounded = Math.round(n);
+  return (rounded < 0 ? '−£' : '£') + Math.abs(rounded).toLocaleString('en-GB');
+};
+const vatPct = () => Math.round(CONFIG.vatRate * 100) + '%';
+const gross = n => n * (1 + CONFIG.vatRate);
+document.querySelectorAll('[data-vat-rate]').forEach(el => el.textContent = '(currently ' + vatPct() + ')');
+document.querySelectorAll('[data-vat-number]').forEach(el => el.textContent = CONFIG.vatNumber);
+document.querySelectorAll('[data-ico-number]').forEach(el => el.textContent = CONFIG.icoNumber);
+document.querySelectorAll('.price[data-net]').forEach(el => {
+  const net = Number(el.dataset.net);
+  el.querySelector('.vat-gross').textContent = '(' + fmt(gross(net)) + ' incl. VAT at ' + vatPct() + ')';
+});
+const pct = n => (Math.round(n * 10) / 10).toFixed(1) + '%';
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.getElementById('rdate').textContent = new Date().toLocaleDateString('en-GB');
+document.getElementById('buy-triage').href = CONFIG.stripeTriage;
+document.getElementById('buy-diagnostic').href = CONFIG.stripeDiagnostic;
+document.getElementById('whatsapp').href =
+  'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('MyProfit enquiry (written please)');
+document.getElementById('s_labour').value = (STRESS.defaultLabour * 100).toFixed(1);
+
+function setupBooking(){
+  const form = document.getElementById('booking-form');
+  if (!form) return;
+  const status = document.getElementById('booking-status');
+  const slotWrap = document.getElementById('booking-slots');
+  const slotList = document.getElementById('slot-list');
+  const confirmBox = document.getElementById('booking-confirm');
+  const service = document.getElementById('booking-service');
+  let selectedSlot = '';
+
+  const setStatus = (msg, type='') => {
+    status.textContent = msg;
+    status.className = 'booking-status' + (type ? ' ' + type : '');
+    status.style.display = msg ? 'block' : 'none';
+  };
+  const payload = () => Object.fromEntries(new FormData(form).entries());
+  const valid = () => {
+    const data = payload();
+    if (data.website) return false;
+    if (!data.name || !data.business || !data.situation) {
+      setStatus('Add your name, business and the issue to prepare for.', 'err');
+      return false;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((data.email || '').trim())) {
+      setStatus('Enter a valid email address.', 'err');
+      return false;
+    }
+    return true;
+  };
+  const renderSlots = (slots) => {
+    selectedSlot = '';
+    slotList.innerHTML = slots.length ? '' : '<p style="color:#C8D2DD">No slots are open right now. Email godfred@thefoodeconomist.co.uk and the desk will offer times manually.</p>';
+    slots.forEach(slot => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'slot-btn';
+      btn.textContent = slot.label;
+      btn.addEventListener('click', () => {
+        selectedSlot = slot.value;
+        slotList.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+      slotList.appendChild(btn);
+    });
+  };
+
+  document.querySelectorAll('.booking-open').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (link.dataset.service) service.value = link.dataset.service;
+      document.getElementById('prepared-call').scrollIntoView({block:'start'});
+    });
+  });
+
+  document.getElementById('booking-load').addEventListener('click', async () => {
+    if (!valid()) return;
+    setStatus('Loading available prepared-call times...');
+    confirmBox.classList.remove('show');
+    try {
+      const r = await fetch(CONFIG.apiBase + '/booking.php?action=slots', {cache:'no-store'});
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'Could not load slots');
+      renderSlots(j.slots || []);
+      slotWrap.classList.add('show');
+      setStatus('Choose one available UK-time slot.', 'ok');
+    } catch(ex) {
+      setStatus('Could not load slots just now. Email godfred@thefoodeconomist.co.uk and include your preferred times.', 'err');
+    }
+  });
+
+  document.getElementById('booking-submit').addEventListener('click', async () => {
+    if (!valid()) return;
+    if (!selectedSlot) {
+      setStatus('Choose a slot first.', 'err');
+      return;
+    }
+    const btn = document.getElementById('booking-submit');
+    btn.disabled = true;
+    btn.textContent = 'Booking...';
+    setStatus('Booking the prepared call...');
+    try {
+      const data = payload();
+      const r = await fetch(CONFIG.apiBase + '/booking.php', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({...data, slot:selectedSlot})
+      });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'Booking failed');
+      confirmBox.innerHTML = '<strong>Booked.</strong> The analyst will review what you sent before the call. A confirmation email with a calendar file has been sent. <br><br><a class="btn btn-line" href="' + j.whatsappUrl + '" rel="noopener">Open free WhatsApp alert</a>';
+      confirmBox.classList.add('show');
+      setStatus('Prepared call booked for ' + j.slotLabel + '.', 'ok');
+      form.reset();
+      slotWrap.classList.remove('show');
+    } catch(ex) {
+      setStatus(ex.message || 'That slot could not be booked. Choose another time.', 'err');
+      btn.disabled = false;
+      btn.textContent = 'Book prepared call';
+    }
+  });
+}
+setupBooking();
+
+let lastCalc = null;
+let unlocked = false;
+
+document.getElementById('calc').addEventListener('click', () => {
+  const v = id => Math.max(0, Number(document.getElementById(id).value || 0));
+  const scenario = (id, fallback=0) => {
+    const raw = document.getElementById(id).value;
+    const value = raw === '' ? fallback : Number(raw) / 100;
+    return Number.isFinite(value) ? Math.max(-1, Math.min(1, value)) : fallback;
+  };
+  const rev = v('f_rev'), food = v('f_food'), lab = v('f_lab'),
+        energy = v('f_energy'), rent = v('f_rent'), other = v('f_other');
+  const foodScenario = scenario('s_food'), labourScenario = scenario('s_labour', STRESS.defaultLabour), energyScenario = scenario('s_energy');
+  if (rev <= 0) {
+    document.getElementById('receipt').innerHTML =
+      '<div class="shop"><b>MYPROFIT TRIAGE</b><div>The Food Economist · Margin Desk</div></div><p class="placeholder">Enter at least your monthly revenue, then print the read-out.</p>';
+    return;
+  }
+  const costs = food + lab + energy + rent + other;
+  const profit = rev - costs;
+  const margin = profit / rev * 100;
+  const sFood = food * (1 + foodScenario);
+  const sLab  = lab  * (1 + labourScenario);
+  const sEn   = energy * (1 + energyScenario);
+  const sCosts = sFood + sLab + sEn + rent + other;
+  const sProfit = rev - sCosts;
+  const sMargin = sProfit / rev * 100;
+  const erosion = margin - sMargin;
+  const upliftNeeded = rev > 0 ? (sCosts - costs) / rev * 100 : 0;
+  const foodPct = food / rev * 100, labPct = lab / rev * 100, primePct = foodPct + labPct;
+  lastCalc = {rev, food, lab, energy, rent, other, costs, profit, margin,
+              sProfit, sMargin, erosion, upliftNeeded, foodPct, labPct, primePct,
+              foodScenario, labourScenario, energyScenario};
+  render();
+});
+
+function bandOf(val, bands){
+  if (val >= bands.high) return {cls:'hi', txt:'HIGH'};
+  if (val >= bands.pressure) return {cls:'med', txt:'PRESSURE'};
+  return {cls:'lo', txt:'OK'};
+}
+function overallBand(c){
+  if (c.sMargin <= 0) return {cls:'hi', txt:'** RED — LOSS UNDER YOUR SCENARIO **'};
+  if (c.sMargin < 3)  return {cls:'med', txt:'* AMBER — SQUEEZED TO THE EDGE *'};
+  return {cls:'lo', txt:'GREEN — HOLDING, FOR NOW'};
+}
+
+function render(){
+  const c = lastCalc;
+  const r = document.getElementById('receipt');
+  const gw = document.getElementById('gatewrap');
+  const fB = bandOf(c.foodPct, STRESS.bands.foodPct);
+  const lB = bandOf(c.labPct, STRESS.bands.labourPct);
+  const pB = bandOf(c.primePct, STRESS.bands.primePct);
+  const oB = overallBand(c);
+
+  const head = `<div class="shop"><b>MYPROFIT TRIAGE</b><div>The Food Economist · Margin Desk</div><div>${new Date().toLocaleDateString('en-GB')}</div></div>`;
+  const free = `
+    <div class="rl"><span>REVENUE / month</span><span>${fmt(c.rev)}</span></div>
+    <div class="rl"><span>TOTAL COSTS</span><span>${fmt(c.costs)}</span></div>
+    <div class="sep"></div>
+    <div class="rl tot"><span>NET TODAY</span><span>${fmt(c.profit)} (${pct(c.margin)})</span></div>
+    <div class="idx"><div class="n">−${pct(c.erosion)}</div><div class="l">planning-scenario margin movement</div></div>
+    <div class="band ${oB.cls}">${oB.txt}</div>
+    <div class="sep"></div>
+    <div class="rl tot"><span>NET UNDER YOUR SCENARIO</span><span>${fmt(c.sProfit)} (${pct(c.sMargin)})</span></div>
+    <div class="rl tot"><span>PRICE / SALES RISE TO STAND STILL</span><span>+${pct(c.upliftNeeded)}</span></div>`;
+
+  const detail = `
+    <div class="sep"></div>
+    <div class="rl"><span>FOOD ${pct(c.foodPct)} of rev</span><span>[${fB.txt}]</span></div>
+    <div class="rl"><span>LABOUR ${pct(c.labPct)} of rev</span><span>[${lB.txt}]</span></div>
+    <div class="rl"><span>PRIME COST ${pct(c.primePct)}</span><span>[${pB.txt}]</span></div>
+    <div class="sep"></div>
+    <div class="rl"><span>SUPPLIER ${pct(c.foodScenario * 100)}</span><span>${fmt(c.food * c.foodScenario)}/mo</span></div>
+    <div class="rl"><span>LABOUR ${pct(c.labourScenario * 100)}</span><span>${fmt(c.lab * c.labourScenario)}/mo</span></div>
+    <div class="rl"><span>ENERGY ${pct(c.energyScenario * 100)}</span><span>${fmt(c.energy * c.energyScenario)}/mo</span></div>
+    <div class="foot">INDICATIVE TRIAGE — NOT ADVICE.<br>THE £95 + VAT WRITTEN REPORT VERIFIES THIS<br>AGAINST YOUR REAL FIGURES IN 48H.</div>`;
+
+  const blurredDetail = `<div class="blur" aria-hidden="true">${detail}</div>`;
+  const gateCopy = oB.cls === 'hi'
+    ? {
+        heading: `${fmt(Math.abs(c.sProfit))} projected monthly loss needs a ranked response`,
+        body: `Unlock the cost-pressure map. The £95 + VAT report then verifies the figures and ranks the three fastest actions to stop the loss within 48 hours.`,
+        action: `Your model projects ${fmt(Math.abs(c.sProfit))} lost per month under the planning assumptions you entered. The written Triage Report identifies where the leak is largest and ranks the first three fixes by monthly value.`
+      }
+    : oB.cls === 'med'
+      ? {
+          heading: 'You are close to the break-even line',
+          body: `Unlock the cost-pressure map. Small moves now decide which side of break-even your planning scenario lands; the £95 + VAT report identifies those moves in pounds.`,
+          action: `Your margin is under pressure. The written Triage Report verifies the position and ranks the first three changes most likely to protect break-even.`
+        }
+      : {
+          heading: 'Your margin is holding — for now',
+          body: `Unlock the cost-pressure map to see what could weaken it. The £95 + VAT report verifies the position and shows which controls protect the margin before costs move again.`,
+          action: `Your model remains positive under the planning assumptions you entered. The written Triage Report tests that resilience against your real figures and identifies the controls worth protecting first.`
+        };
+
+  if (unlocked) {
+    r.innerHTML = head + free + detail;
+    gw.innerHTML = `
+      <div class="result-action">
+        <h4>${gateCopy.heading}</h4>
+        <p>${gateCopy.action}</p>
+        <p><strong>The £95 + VAT fee is credited in full against the £395 + VAT Diagnostic within 30 days.</strong></p>
+        <a class="btn btn-gold" href="${CONFIG.stripeTriage}" rel="noopener">Commission the 48-Hour Triage — £95 + VAT</a>
+      </div>`;
+  } else {
+    r.innerHTML = head + free + blurredDetail;
+    gw.innerHTML = `
+      <div class="gate">
+        <h4>${gateCopy.heading}</h4>
+        <p>${gateCopy.body}</p>
+        <form id="gateform" novalidate>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" id="gateemail" placeholder="Email" required aria-label="Email">
+          <button class="btn btn-gold" type="submit">Unlock the cost map</button>
+        </form>
+        <div class="err" id="gateerr"></div>
+        <p style="font-size:.74rem;color:#7E91A6;margin-top:10px">By unlocking, you will receive a short written MyProfit follow-up series. You can reply "unsubscribe" at any time. <a href="/privacy.html">Privacy</a></p>
+      </div>`;
+    const form = document.getElementById('gateform');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('gateemail').value.trim();
+      const err = document.getElementById('gateerr');
+      err.style.display = 'none';
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+        err.textContent = 'Enter a valid email address.'; err.style.display = 'block'; return;
+      }
+      e.submitter.disabled = true; e.submitter.textContent = '…';
+      try {
+        const resp = await fetch(CONFIG.apiBase + '/save-lead.php', {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({
+            source:'estimator', email,
+            est_revenue: lastCalc.rev, est_margin_pp: lastCalc.erosion,
+            website: form.querySelector('.hp').value
+          })
+        });
+        const j = await resp.json();
+        if (!j.ok) throw new Error(j.error || 'failed');
+        unlocked = true; render();
+      } catch(ex) {
+        err.textContent = 'Could not save just now — email the desk and we will send the read-out.';
+        err.style.display = 'block';
+        e.submitter.disabled = false; e.submitter.textContent = 'Unlock';
+      }
+    });
+  }
+}
+</script>
+</body>
+</html>

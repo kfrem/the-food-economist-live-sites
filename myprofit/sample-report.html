@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sample 48-Hour Profit Triage Report | MyProfit</title>
+<meta name="description" content="Redacted sample of the MyProfit 48-hour restaurant margin triage report.">
+<style>
+:root{--ink:#101F33;--gold:#C9A14E;--paper:#F7F4EE;--rule:#D8CFBE;--risk:#A8432D;--safe:#3E7A52}
+*{box-sizing:border-box}
+body{margin:0;background:#E9E3D7;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
+.page{max-width:900px;margin:32px auto;background:var(--paper);padding:48px;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.top{border-bottom:3px solid var(--gold);padding-bottom:20px;margin-bottom:28px}
+.eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#7A612E;font-weight:700}
+h1,h2,h3{line-height:1.15;margin:0 0 12px}
+h1{font-size:2rem;margin-top:10px}
+h2{font-size:1.25rem;margin-top:30px;border-bottom:1px solid var(--rule);padding-bottom:8px}
+p{margin:0 0 12px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.box{border:1px solid var(--rule);padding:14px;background:#fff}
+.box b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#6B6250;margin-bottom:4px}
+.red{color:var(--risk);font-weight:700}
+.green{color:var(--safe);font-weight:700}
+table{width:100%;border-collapse:collapse;margin:14px 0 22px;background:#fff}
+th,td{border:1px solid var(--rule);padding:10px;text-align:left;vertical-align:top}
+th{background:#EFE7D8;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
+.action{border-left:4px solid var(--gold);background:#fff;padding:14px}
+.note{background:#16283D;color:#fff;padding:18px;margin-top:24px}
+.note a{color:#F0D58A}
+.footer{font-size:.82rem;color:#6B6250;border-top:1px solid var(--rule);margin-top:30px;padding-top:16px}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:700;padding:12px 18px;margin-top:8px}
+@media(max-width:760px){.page{margin:0;padding:28px 18px}.meta,.actions{grid-template-columns:1fr}h1{font-size:1.65rem}}
+@media print{body{background:#fff}.page{box-shadow:none;margin:0;max-width:none}.btn{display:none}}
+</style>
+</head>
+<body>
+<main class="page">
+  <div class="top">
+    <div class="eyebrow">Redacted sample - illustrative structure</div>
+    <h1>48-Hour Profit Triage Report</h1>
+    <p><strong>Client:</strong> Sample Restaurant Ltd &nbsp; <strong>Month reviewed:</strong> Redacted &nbsp; <strong>Prepared by:</strong> The Food Economist - MyProfit</p>
+    <p>This sample shows the format and level of practical output. It is not a live client testimonial and should not be read as advice for your business.</p>
+    <a class="btn" href="javascript:window.print()">Print or save as PDF</a>
+  </div>
+
+  <section class="meta">
+    <div class="box"><b>Current monthly revenue</b>£38,000</div>
+    <div class="box"><b>Current net result</b>£1,140 profit</div>
+    <div class="box"><b>Worked-example scenario result</b><span class="red">£860 loss</span></div>
+  </section>
+
+  <h2>1. Verdict</h2>
+  <p>The business is not failing because sales are too low. It is failing because prime cost has moved faster than price, and the busiest menu lines no longer carry enough gross margin to absorb labour and energy.</p>
+  <p class="red">Risk band: RED - profit becomes loss under the planning assumptions selected for this worked example.</p>
+
+  <h2>2. Margin Snapshot</h2>
+  <table>
+    <tr><th>Line</th><th>Current month</th><th>Stress view</th><th>Comment</th></tr>
+    <tr><td>Food and drink suppliers</td><td>35.8% of revenue</td><td>39.0%</td><td>Above the workable band for the menu style.</td></tr>
+    <tr><td>Labour</td><td>34.2% of revenue</td><td>35.6%</td><td>Quiet weekday shifts are carrying too many paid hours.</td></tr>
+    <tr><td>Energy and utilities</td><td>4.7% of revenue</td><td>5.4%</td><td>Likely out-of-contract or no shutdown discipline.</td></tr>
+    <tr><td>Net result</td><td class="green">+3.0%</td><td class="red">-2.3%</td><td>The business crosses below break-even under the stress case.</td></tr>
+  </table>
+
+  <h2>3. First Three Fixes</h2>
+  <div class="actions">
+    <div class="action"><h3>1. Reprice two high-volume dishes</h3><p>Target impact: £420-£680/month. Do not raise the whole menu; protect covers by correcting the dishes doing the most damage.</p></div>
+    <div class="action"><h3>2. Cut one low-yield labour block</h3><p>Target impact: £300-£500/month. The Tuesday/Wednesday prep and close pattern is heavier than the revenue can carry.</p></div>
+    <div class="action"><h3>3. Challenge supplier line drift</h3><p>Target impact: £180-£350/month. Three regular lines have moved faster than the menu price since the last review.</p></div>
+  </div>
+
+  <h2>4. What To Send For The Full Diagnostic</h2>
+  <p>For the £395 + VAT Menu &amp; Margin Diagnostic, send the current menu, last four supplier invoices, a typical wage summary, and one month of takings split by day if available. Screenshots are acceptable.</p>
+
+  <div class="note">
+    <strong>Paid trial framing:</strong> The £95 + VAT triage is credited in full against the £395 + VAT Diagnostic within 30 days. If you proceed, this first written read-out becomes the starting brief rather than wasted spend.
+  </div>
+
+  <p class="footer">MyProfit reports are independent economic analysis, not statutory filing, public-practice services, legal, tax or investment advice. Service prices are exclusive of VAT unless a consumer-facing offer states otherwise. VAT registration: 508927172. ICO registration: ZC112776. This sample is illustrative and redacted for public viewing.</p>
+</main>
+</body>
+</html>

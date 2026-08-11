@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Independent EPR Liability Forecasting for Food Businesses | The Food Economist</title>
+<meta name="description" content="Independent EPR planning and forecasting for UK food businesses. Establish your confirmed base-fee exposure and prepare written analysis for finance and board discussion ahead of the confirmed 2026-27 producer-fee table.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS (RULES.md §6 — do not improvise colors) ============ */
+:root{
+  --ink:#101F33; --navy:#1B3A5C; --gold:#C9A14E; --paper:#F7F4EE;
+  --rule:#D8CFBE; --risk:#A8432D; --safe:#3E7A52;
+  --ink-soft:#2C4258; --paper-dim:#EFEAE0;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'IBM Plex Sans',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{font-family:var(--font-body);background:var(--ink);color:var(--paper);line-height:1.6;font-size:16px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 22px}
+a{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.15}
+.eyebrow{font-family:var(--font-body);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.btn{display:inline-block;padding:14px 28px;border-radius:3px;font-weight:600;text-decoration:none;border:1px solid transparent;cursor:pointer;font-size:1rem;font-family:var(--font-body)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-gold:hover{background:#D9B469}
+.btn-line{background:transparent;color:var(--paper);border-color:var(--gold)}
+.btn-line:hover{background:rgba(201,161,78,.12)}
+
+/* ============ NAV ============ */
+nav{border-bottom:1px solid rgba(201,161,78,.25);padding:18px 0;position:sticky;top:0;background:rgba(16,31,51,.96);backdrop-filter:blur(6px);z-index:50}
+nav .wrap{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:12px;color:var(--paper);text-decoration:none}
+.brand-logo{width:170px;height:auto;display:block}
+.brand small{display:block;font-family:var(--font-body);font-weight:400;font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.navlinks{display:flex;gap:26px;align-items:center;list-style:none}
+.navlinks a{color:var(--paper);text-decoration:none;font-size:.92rem}
+.navlinks a:hover{color:var(--gold)}
+@media(max-width:760px){.navlinks{display:none}.brand-logo{width:150px}}
+
+/* ============ HERO ============ */
+.hero{padding:84px 0 60px;border-bottom:1px solid rgba(201,161,78,.2)}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:800;max-width:17ch;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p.lede{font-size:1.12rem;max-width:56ch;color:#C8D2DD;margin-bottom:30px}
+.hero .facts{display:flex;gap:34px;flex-wrap:wrap;margin-top:38px}
+.hero .fact{border-left:2px solid var(--gold);padding-left:14px;max-width:240px}
+.hero .fact b{font-family:var(--font-mono);font-size:1.25rem;color:var(--paper);display:block}
+.hero .fact span{font-size:.85rem;color:#9FB0C2}
+
+/* ============ ESTIMATOR / LEDGER (signature element) ============ */
+.estimator{padding:70px 0;background:linear-gradient(180deg,var(--ink) 0%,#0C1828 100%)}
+.ledger{background:var(--paper);color:var(--ink);border-radius:4px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:hidden}
+.ledger-head{padding:26px 34px;border-bottom:3px double var(--rule);display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px}
+.ledger-head h2{font-size:1.45rem}
+.ledger-head .ref{font-family:var(--font-mono);font-size:.78rem;color:#7A6F58}
+.ledger-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
+@media(max-width:860px){.ledger-body{grid-template-columns:1fr}}
+.ledger-inputs{padding:30px 34px;border-right:1px solid var(--rule)}
+@media(max-width:860px){.ledger-inputs{border-right:none;border-bottom:1px solid var(--rule)}}
+.ledger-inputs h3{font-size:1.02rem;margin-bottom:6px}
+.ledger-inputs p.note{font-size:.85rem;color:#6B6250;margin-bottom:18px}
+.matrow{display:grid;grid-template-columns:1fr 110px;gap:12px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--rule)}
+.matrow label{font-size:.92rem;font-weight:500}
+.matrow label small{display:block;font-weight:400;color:#8A7E66;font-family:var(--font-mono);font-size:.72rem}
+.matrow input{width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:3px;font-family:var(--font-mono);font-size:.95rem;background:#FFFDF8;text-align:right}
+.matrow input:focus{border-color:var(--gold)}
+.hhrow{margin-top:18px}
+.hhrow label{font-size:.9rem;font-weight:600;display:flex;justify-content:space-between}
+.hhrow input[type=range]{width:100%;accent-color:var(--navy);margin-top:8px}
+.calcbtn{margin-top:24px;width:100%;background:var(--navy);color:var(--paper);border:none;padding:15px;font-size:1.02rem;font-weight:600;border-radius:3px;cursor:pointer;font-family:var(--font-body)}
+.calcbtn:hover{background:#23476E}
+.ledger-result{padding:30px 34px;background:#FBF9F4;position:relative}
+.ledger-result .placeholder{color:#8A7E66;font-size:.95rem;padding:30px 0;text-align:center}
+.headline-figure{text-align:center;padding:14px 0 8px}
+.headline-figure .lbl{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#7A6F58;font-weight:600}
+.headline-figure .amt{font-family:var(--font-display);font-size:clamp(2.2rem,5vw,3.1rem);font-weight:800;color:var(--ink)}
+.headline-figure .sub{font-size:.85rem;color:#6B6250}
+.ledger-lines{margin-top:18px;border-top:3px double var(--rule)}
+.lline{display:grid;grid-template-columns:1fr auto auto;gap:10px;padding:8px 0;border-bottom:1px dotted var(--rule);font-size:.9rem;align-items:baseline}
+.lline .m{font-weight:500}
+.lline .t{font-family:var(--font-mono);color:#6B6250;font-size:.8rem}
+.lline .v{font-family:var(--font-mono);font-weight:500;text-align:right;min-width:92px}
+.flag{display:inline-block;font-size:.62rem;font-weight:600;letter-spacing:.08em;padding:2px 7px;border-radius:2px;margin-left:8px;vertical-align:middle}
+.flag.hi{background:rgba(168,67,45,.14);color:var(--risk)}
+.flag.med{background:rgba(201,161,78,.2);color:#8A6A1F}
+.flag.lo{background:rgba(62,122,82,.15);color:var(--safe)}
+.stress{margin-top:20px;border:1.5px solid var(--risk);border-radius:3px;padding:16px 18px;position:relative}
+.stress .stamp{position:absolute;top:-11px;left:14px;background:#FBF9F4;padding:0 8px;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--risk)}
+.stress .range{font-family:var(--font-mono);font-size:1.15rem;font-weight:500;color:var(--ink)}
+.stress p{font-size:.8rem;color:#6B6250;margin-top:6px}
+.gate{margin-top:20px;background:var(--ink);color:var(--paper);border-radius:3px;padding:22px}
+.gate h4{font-family:var(--font-display);font-size:1.08rem;margin-bottom:6px}
+.gate p{font-size:.86rem;color:#B9C6D4;margin-bottom:14px}
+.gate form{display:flex;gap:10px;flex-wrap:wrap}
+.gate input[type=email]{flex:1;min-width:200px;padding:12px 14px;border-radius:3px;border:1px solid #3A526B;background:#16283D;color:var(--paper);font-family:var(--font-body)}
+.gate input[type=email]::placeholder{color:#7E91A6}
+.gate .err{color:#E8A294;font-size:.82rem;margin-top:8px;display:none}
+.locked-note{font-size:.8rem;color:#8A7E66;margin-top:12px;text-align:center}
+.ledger-foot{padding:16px 34px;border-top:1px solid var(--rule);font-size:.74rem;color:#8A7E66;background:var(--paper-dim)}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
+.independence-strip{margin-bottom:22px;background:#16283D;border:1px solid rgba(201,161,78,.35);border-left:5px solid var(--gold);border-radius:4px;padding:20px 24px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+.independence-strip p{color:#C8D2DD;font-size:.95rem;max-width:72ch}
+.independence-strip b{color:var(--paper)}
+.trust-tags{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.trust-tags span{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(201,161,78,.45);color:var(--gold);padding:5px 8px;border-radius:2px;white-space:nowrap}
+.drs-note{margin:16px 0 0;background:#FFF8E6;border:1px solid #E2C879;color:#5F4B12;border-radius:3px;padding:12px 14px;font-size:.82rem}
+@media(max-width:760px){.independence-strip{grid-template-columns:1fr}.trust-tags{justify-content:flex-start}}
+
+/* ============ COMPARISON ============ */
+.compare{padding:76px 0}
+.compare h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:24ch;margin:14px 0 36px}
+.comp-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(201,161,78,.3);border:1px solid rgba(201,161,78,.3)}
+@media(max-width:900px){.comp-grid{grid-template-columns:1fr}}
+.comp-col{background:var(--ink);padding:30px}
+.comp-col.us{background:#16283D}
+.comp-col h3{font-size:1.05rem;margin-bottom:18px;color:var(--gold)}
+.comp-col ul{list-style:none}
+.comp-col li{padding:9px 0 9px 26px;position:relative;font-size:.95rem;color:#C8D2DD;border-bottom:1px solid rgba(201,161,78,.12)}
+.comp-col li::before{content:'—';position:absolute;left:0;color:#5C7490}
+.comp-col.us li::before{content:'✓';color:var(--gold)}
+
+/* ============ PROOF / SAMPLE FORECAST ============ */
+.proof{padding:76px 0;background:var(--ink);border-top:1px solid rgba(201,161,78,.18)}
+.proof h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:28ch;margin:14px 0 18px}
+.proof .lead{color:#C8D2DD;max-width:70ch;margin-bottom:30px}
+.sample-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:start}
+@media(max-width:900px){.sample-grid{grid-template-columns:1fr}}
+.sample-preview{background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:560px){.sample-preview{grid-template-columns:1fr}}
+.page-thumb{background:#FFFEF9;color:var(--ink);border-radius:3px;min-height:220px;padding:18px;box-shadow:0 12px 30px rgba(0,0,0,.28);position:relative;overflow:hidden}
+.page-thumb.cover{background:linear-gradient(145deg,#FFFEF9 0%,#F1E7D1 100%);border-top:5px solid var(--gold)}
+.page-thumb.wide{grid-column:1 / -1}
+.page-thumb.blurred .mini-lines{filter:blur(2.5px)}
+.page-thumb .label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#8A6A1F;font-weight:600;margin-bottom:10px}
+.page-thumb h3{font-size:1.15rem;margin-bottom:10px}
+.mini-lines div{height:7px;background:#D8CFBE;margin:8px 0;border-radius:2px}
+.mini-lines div:nth-child(2n){width:78%}.mini-lines div:nth-child(3n){width:56%}
+.waterfall{display:flex;align-items:end;gap:10px;height:120px;border-bottom:1px solid var(--rule);margin-top:12px}
+.waterfall span{display:block;width:32px;background:var(--navy);position:relative}
+.waterfall span:nth-child(2){height:55px;background:var(--risk)}
+.waterfall span:nth-child(3){height:35px;background:var(--gold)}
+.waterfall span:nth-child(4){height:88px;background:var(--safe)}
+.sample-card{background:var(--paper);color:var(--ink);border-radius:4px;padding:30px}
+.sample-card h3{font-size:1.35rem;margin-bottom:12px}
+.sample-card p{color:#514A3D;font-size:.95rem;margin-bottom:14px}
+.sample-card ul{list-style:none;margin:14px 0 22px}
+.sample-card li{padding:8px 0 8px 22px;border-bottom:1px dotted var(--rule);position:relative;font-size:.92rem;color:#514A3D}
+.sample-card li::before{content:'>';position:absolute;left:0;color:var(--gold);font-weight:700}
+.sample-card form{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.sample-card input[type=email]{flex:1;min-width:210px;padding:12px 14px;border:1px solid var(--rule);border-radius:3px;font-family:var(--font-body)}
+.sample-card .err{display:none;color:var(--risk);font-size:.82rem;margin-top:8px}
+.sample-download{display:none;margin-top:16px}
+.sample-download.show{display:block}
+.sample-note{font-size:.78rem;color:#7A6F58;margin-top:12px}
+.snapshot-brief{margin-top:24px;background:#F7F4EE;color:var(--ink);border:1px solid rgba(201,161,78,.35);border-radius:4px;padding:24px;display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}
+.snapshot-brief h3{font-size:1.35rem;margin-bottom:8px}
+.snapshot-brief p{color:#514A3D;font-size:.95rem;margin-bottom:0}
+.snapshot-brief ul{list-style:none;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.snapshot-brief li{padding-left:18px;position:relative;color:#2A2A2A;font-size:.92rem}
+.snapshot-brief li::before{content:'>';position:absolute;left:0;color:var(--gold);font-weight:700}
+@media(max-width:760px){.snapshot-brief{grid-template-columns:1fr}.snapshot-brief ul{grid-template-columns:1fr}}
+
+/* ============ TRUST / PROOF / UPDATE ============ */
+.evidence{padding:76px 0;background:#0C1828;border-top:1px solid rgba(201,161,78,.18)}
+.evidence h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:27ch;margin:14px 0 26px}
+.evidence-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:860px){.evidence-grid{grid-template-columns:1fr}}
+.evidence-card{background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:28px}
+.evidence-card.light{background:var(--paper);color:var(--ink)}
+.evidence-card h3{font-size:1.28rem;margin-bottom:12px}
+.evidence-card p{color:#C8D2DD;margin-bottom:12px;font-size:.94rem}
+.evidence-card.light p{color:#514A3D}
+.evidence-card ul{list-style:none;margin-top:12px}
+.evidence-card li{padding:8px 0 8px 22px;border-bottom:1px solid rgba(201,161,78,.14);position:relative;font-size:.9rem;color:#C8D2DD}
+.evidence-card.light li{color:#514A3D;border-bottom:1px dotted var(--rule)}
+.evidence-card li::before{content:'>';position:absolute;left:0;color:var(--gold);font-weight:700}
+.case-number{font-family:var(--font-display);font-size:2.1rem;font-weight:800;color:var(--gold);line-height:1}
+.update-note{margin-top:24px;background:#FFF8E6;border:1px solid #E2C879;color:#5F4B12;border-radius:3px;padding:16px 18px;font-size:.9rem}
+.update-note b{color:#3A2D06}
+
+/* ============ PRODUCTS ============ */
+.products{padding:76px 0;background:#0C1828}
+.prod-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px;margin-top:38px}
+@media(max-width:860px){.prod-grid{grid-template-columns:1fr}}
+.prod{background:var(--paper);color:var(--ink);border-radius:4px;padding:34px;display:flex;flex-direction:column}
+.prod.feature{border-top:5px solid var(--gold)}
+.prod .tier{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#8A6A1F}
+.prod h3{font-size:1.5rem;margin:8px 0 4px}
+.prod .price{font-family:var(--font-display);font-size:2.3rem;font-weight:800;margin:10px 0 2px}
+.prod .price small{font-family:var(--font-body);font-size:.85rem;font-weight:400;color:#6B6250}
+.vat-gross{display:block;font-family:var(--font-body);font-size:.82rem;font-weight:500;color:#6B6250;margin-top:2px}
+.prod ul{list-style:none;margin:18px 0 26px;flex:1}
+.prod li{padding:8px 0 8px 24px;position:relative;font-size:.93rem;border-bottom:1px dotted var(--rule)}
+.prod li::before{content:'·';position:absolute;left:6px;color:var(--gold);font-weight:800;font-size:1.4rem;line-height:1}
+.prod .btn{text-align:center}
+.prod .turn{font-size:.8rem;color:#6B6250;text-align:center;margin-top:10px}
+.service-note{margin-top:28px;background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:22px;color:#C8D2DD;font-size:.92rem}
+.service-note strong{color:var(--paper)}
+.subtiers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0 18px}
+@media(max-width:620px){.subtiers{grid-template-columns:1fr}}
+.subtier{border:1px solid var(--rule);background:#FFFEF9;border-radius:4px;padding:16px}
+.subtier h4{font-family:var(--font-display);font-size:1.08rem;margin-bottom:4px}
+.subtier .price{font-size:1.35rem;margin:6px 0}
+.scope-form{display:none;margin-top:26px;background:var(--paper);color:var(--ink);border-radius:4px;padding:28px;border-top:5px solid var(--gold)}
+.scope-form.show{display:block}
+.scope-form h3{font-size:1.35rem;margin-bottom:8px}
+.scope-form p{color:#514A3D;font-size:.92rem;margin-bottom:16px}
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:720px){.scope-grid{grid-template-columns:1fr}}
+.scope-form label{font-size:.84rem;font-weight:600;color:#514A3D}
+.scope-form input,.scope-form select,.scope-form textarea{width:100%;margin-top:5px;padding:11px 12px;border:1px solid var(--rule);border-radius:3px;background:#FFFDF8;font-family:var(--font-body);font-size:.95rem}
+.scope-form textarea{min-height:92px;resize:vertical}
+.scope-form .full{grid-column:1 / -1}
+.scope-status{display:none;margin-top:12px;font-size:.88rem}
+.scope-status.ok{color:var(--safe)}.scope-status.err{color:var(--risk)}
+
+/* ============ PREPARED CALL BOOKING ============ */
+.booking{padding:76px 0;background:linear-gradient(180deg,#08111D 0%,#0C1828 100%);border-top:1px solid rgba(201,161,78,.2)}
+.booking h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:26ch;margin:14px 0}
+.booking .lead{color:#C8D2DD;max-width:72ch;margin-bottom:26px}
+.booking-panel{display:grid;grid-template-columns:.92fr 1.08fr;gap:26px;align-items:start;background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:30px}
+@media(max-width:880px){.booking-panel{grid-template-columns:1fr;padding:22px}}
+.booking-note{background:var(--paper);color:var(--ink);border-radius:4px;padding:24px}
+.booking-note h3{font-size:1.28rem;margin-bottom:10px}
+.booking-note p{color:#514A3D;font-size:.94rem;margin-bottom:12px}
+.booking-note ol{margin-left:20px;color:#514A3D;font-size:.92rem}
+.booking-note li{padding:6px 0}
+.booking-form{background:#0C1828;border:1px solid rgba(201,161,78,.22);border-radius:4px;padding:24px}
+.booking-form h3{font-size:1.25rem;margin-bottom:12px}
+.booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:680px){.booking-grid{grid-template-columns:1fr}}
+.booking-form label{font-size:.84rem;font-weight:600;color:#DAD3C1}
+.booking-form input,.booking-form select,.booking-form textarea{width:100%;margin-top:5px;padding:11px 12px;border:1px solid rgba(201,161,78,.35);border-radius:3px;background:#FFFEF9;color:var(--ink);font-family:var(--font-body);font-size:.95rem}
+.booking-form textarea{min-height:94px;resize:vertical}
+.booking-form .full{grid-column:1 / -1}
+.booking-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.booking-step{display:none;margin-top:20px;border-top:1px solid rgba(201,161,78,.2);padding-top:18px}
+.booking-step.show{display:block}
+.slot-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
+@media(max-width:560px){.slot-list{grid-template-columns:1fr}}
+.slot-btn{border:1px solid rgba(201,161,78,.38);background:#16283D;color:var(--paper);border-radius:3px;padding:11px 12px;text-align:left;font-family:var(--font-body);cursor:pointer}
+.slot-btn:hover,.slot-btn.selected{border-color:var(--gold);background:#203754}
+.booking-status{display:none;margin-top:12px;font-size:.88rem}
+.booking-status.ok{display:block;color:var(--safe)}.booking-status.err{display:block;color:var(--risk)}
+.booking-confirm{display:none;margin-top:16px;background:#FFF8E6;border:1px solid #E2C879;color:#4B3A07;border-radius:3px;padding:16px;font-size:.9rem}
+.booking-confirm.show{display:block}
+
+/* ============ METHOD / ABOUT ============ */
+.method{padding:76px 0;border-top:1px solid rgba(201,161,78,.2)}
+.method-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:start;margin-top:30px}
+@media(max-width:860px){.method-grid{grid-template-columns:1fr}}
+.method h2{font-size:clamp(1.6rem,3.4vw,2.2rem);max-width:22ch;margin-top:14px}
+.method p{color:#C8D2DD;margin-bottom:16px;font-size:.98rem}
+.cred{background:#16283D;border:1px solid rgba(201,161,78,.3);border-radius:4px;padding:28px}
+.cred .nm{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
+.cred .rl{color:var(--gold);font-size:.88rem;margin-bottom:14px}
+.cred p{color:#C8D2DD;font-size:.94rem;margin-bottom:14px}
+.cred ul{list-style:none;margin-top:6px}
+.cred li{padding:7px 0;font-size:.9rem;color:#C8D2DD;border-bottom:1px solid rgba(201,161,78,.12)}
+.photo-needed{border:1px dashed rgba(201,161,78,.45);border-radius:4px;padding:14px;margin-bottom:16px;color:#C8D2DD;font-size:.88rem}
+
+/* ============ FAQ ============ */
+.faq{padding:70px 0;background:#0C1828}
+.faq details{border-bottom:1px solid rgba(201,161,78,.2);padding:16px 0}
+.faq summary{cursor:pointer;font-weight:600;font-size:1rem;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:'+ ';color:var(--gold)}
+.faq details[open] summary::before{content:'– '}
+.faq details p{margin-top:10px;color:#C8D2DD;font-size:.93rem;max-width:70ch}
+
+/* ============ CONTACT / FOOTER ============ */
+.contact{padding:70px 0;text-align:center}
+.contact h2{font-size:clamp(1.5rem,3vw,2rem)}
+.contact p{color:#C8D2DD;max-width:50ch;margin:14px auto 26px}
+footer{border-top:1px solid rgba(201,161,78,.2);padding:30px 0;font-size:.78rem;color:#8FA0B3}
+footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.footer-brand-block{max-width:320px}
+.footer-logo{width:190px;height:auto;display:block;margin-bottom:12px}
+.address-block{color:#B9C6D4;font-size:.82rem;line-height:1.55}
+.footer-address{display:block;margin-top:8px;color:#9FB0C2;font-size:.78rem}
+.section-pad .eyebrow{display:block}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="The Food Economist">
+      <img class="brand-logo" src="/assets/the-food-economist-logo.svg?v=logo-reference-mark-20260720" alt="The Food Economist">
+      <small>Statutory Cost Intelligence</small>
+    </a>
+    <ul class="navlinks">
+      <li><a href="#estimator">Estimator</a></li>
+      <li><a href="#compare">Why this desk</a></li>
+      <li><a href="#sample">Sample forecast</a></li>
+      <li><a href="#products">Services</a></li>
+      <li><a href="#method">Method</a></li>
+      <li><a href="#contact" class="btn btn-line" style="padding:9px 18px">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">UK Packaging EPR · 2026–27 planning</span>
+    <h1>Prepare for your first <em>modulated</em> EPR invoice. Do you know the exposure?</h1>
+    <p class="lede">The October 2025 Notices of Liability were calculated on flat base fees. The 2026–27 producer-fee table has not yet been confirmed in the official sources checked. This desk turns that uncertainty into a disciplined data and forecasting plan your finance team and board can use.</p>
+    <a class="btn btn-gold" href="#estimator">Estimate my exposure — free, 60 seconds</a>
+    <div class="facts">
+      <div class="fact"><b>£423 / tonne</b><span>2025–26 base fee on plastic packaging (GOV.UK confirmed)</span></div>
+      <div class="fact"><b>2026–27</b><span>Modulated disposal-fee position to be confirmed by the published fee table</span></div>
+      <div class="fact"><b>Written first</b><span>Board-ready estimate before you commit to a full forecast</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="estimator" id="estimator">
+  <div class="wrap">
+    <div class="independence-strip">
+      <p><b>Independent forecast desk:</b> no packaging to sell, no compliance-scheme membership to recruit, and no software subscription behind the calculator. The paid output is the forecast itself.</p>
+      <div class="trust-tags"><span>No packaging sales</span><span>No scheme commission</span><span>No software upsell</span></div>
+    </div>
+    <div class="ledger" role="region" aria-label="EPR exposure estimator">
+      <div class="ledger-head">
+        <h2>Pro-forma Exposure Estimate</h2>
+        <span class="ref">REF: PEPR/EST/<span id="refdate"></span> · DISPOSAL FEES ONLY</span>
+      </div>
+      <div class="ledger-body">
+        <div class="ledger-inputs">
+          <h3>Annual household packaging placed on market</h3>
+          <p class="note">Tonnes per material, to the nearest whole tonne. Rough figures are fine — this is a triage, not a return.</p>
+          <p class="drs-note"><strong>DRS exclusion note:</strong> drinks containers expected to fall within the UK Deposit Return Scheme from the 2027 launch should not be included in this disposal-fee triage where they leave the EPR disposal-fee scope.</p>
+          <div id="matinputs"></div>
+          <div class="hhrow">
+            <label for="hhshare">Household share of packaging <span id="hhval">100%</span></label>
+            <input type="range" id="hhshare" min="10" max="100" step="5" value="100" aria-label="Household share percentage">
+          </div>
+          <button class="calcbtn" id="calc" type="button">Calculate exposure</button>
+        </div>
+        <div class="ledger-result" id="resultpane" aria-live="polite">
+          <p class="placeholder">Your estimate will appear here, set out like the invoice you will actually receive.</p>
+        </div>
+      </div>
+      <div class="ledger-foot">
+        This triage uses PackUK's confirmed 2025-26 base fees (GOV.UK, June 2025) as a reference point only. No confirmed 2026-27 producer-fee table has been published in the official sources checked, so the calculator does not predict a 2026-27 invoice or apply assumed modulation rates. Excludes DRS-scope drinks containers, PRN/PERN costs, regulator registration and compliance-scheme charges. This is an indicative economic estimate, not a statutory calculation, invoice prediction, legal, tax or regulated financial advice.
+      </div>
+    </div>
+    <div class="snapshot-brief">
+      <div>
+        <span class="eyebrow">If the estimate is material</span>
+        <h3>What the £295 + VAT Snapshot gives you</h3>
+        <p>A two-page written review within 48 hours of receiving your figures, credited in full against the full Forecast if commissioned within 30 days.</p>
+      </div>
+      <ul>
+        <li>Likely disposal-fee liability range</li>
+        <li>Material-level red / amber / green risk flags</li>
+        <li>Data gaps that could distort the number</li>
+        <li>Three figures the 2026-27 budget should hold</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="compare" id="compare">
+  <div class="wrap">
+    <span class="eyebrow">How this differs from free calculators</span>
+    <h2>Free calculators are usually attached to something else being sold.</h2>
+    <div class="comp-grid">
+      <div class="comp-col">
+        <h3>Scheme &amp; SaaS calculators</h3>
+        <ul>
+          <li>Useful instant number for a first pass</li>
+          <li>Often tied to membership or subscription conversion</li>
+          <li>Limited view of budget phasing and board exposure</li>
+          <li>Output rarely explains what to do with the number</li>
+        </ul>
+      </div>
+      <div class="comp-col">
+        <h3>Packaging-maker calculators</h3>
+        <ul>
+          <li>Good at showing material comparisons</li>
+          <li>Commercially exposed when the answer is "switch material"</li>
+          <li>May optimise packaging choice before cash-flow risk</li>
+          <li>Not written as financial analysis for leadership discussion</li>
+        </ul>
+      </div>
+      <div class="comp-col us">
+        <h3>This desk's forecast</h3>
+        <ul>
+          <li>Independent analysis with no product to upsell</li>
+          <li>Red / amber / green stress-testing per material</li>
+          <li>Quarterly cash-flow phasing for budget owners</li>
+          <li>Written analysis for leadership and advisers</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof" id="sample">
+  <div class="wrap">
+    <span class="eyebrow">Sample forecast</span>
+    <h2>See exactly what the full forecast delivers before you pay.</h2>
+    <p class="lead">The sample is a clearly labelled worked example. It shows the structure of the paid forecast: executive summary, modulation exposure, cash-flow phasing, and the first decisions to take when the confirmed producer-fee table is published.</p>
+    <div class="sample-grid">
+      <div class="sample-preview" aria-label="Sample forecast preview">
+        <div class="page-thumb cover">
+          <div class="label">Worked example</div>
+          <h3>Statutory Liability Forecast</h3>
+          <p style="font-size:.82rem;color:#514A3D">Illustrative food business group, not a client result.</p>
+          <div class="mini-lines"><div></div><div></div><div></div></div>
+        </div>
+        <div class="page-thumb">
+          <div class="label">Executive summary</div>
+          <h3>Exposure bridge</h3>
+          <div class="waterfall"><span style="height:92px"></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="page-thumb wide blurred">
+          <div class="label">Interior pages</div>
+          <h3>Material risk, invoice phasing, decision points</h3>
+          <div class="mini-lines"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+        </div>
+      </div>
+      <div class="sample-card">
+        <h3>Download the full sample forecast - free</h3>
+        <p>Leave an email to unlock the sample and the same breakdown from the calculator. One capture, two payoffs: your number and the shape of the paid analysis.</p>
+        <ul>
+          <li>Shows what the 18-page forecast contains.</li>
+          <li>Clearly marked as an illustrative worked example.</li>
+          <li>Built so the file can be swapped when a real anonymised report is approved.</li>
+        </ul>
+        <form id="sampleform" novalidate>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" id="sampleemail" placeholder="Work email" required aria-label="Work email for sample forecast">
+          <button class="btn btn-gold" type="submit">Download sample forecast</button>
+        </form>
+        <div class="err" id="sampleerr"></div>
+        <div class="sample-download" id="sampledownload">
+          <a class="btn btn-gold" href="/sample-forecast.html">Open the sample forecast</a>
+        </div>
+        <p class="sample-note">Submitting this form uses the existing lead endpoint and does not change the database schema.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="evidence" id="evidence">
+  <div class="wrap">
+    <span class="eyebrow">Current proof</span>
+    <h2>Current rules, defensible data, and no pressure to buy anything else.</h2>
+    <div class="evidence-grid">
+      <div class="evidence-card light">
+        <h3>Illustrative recovery-review example</h3>
+        <p><span class="case-number">£84k → £37k</span></p>
+        <p>A drinks-producer scenario originally modelled at about £84k can fall materially once exports, reusable/B2B packaging and DRS-scope units are separated correctly. This is an illustrative worked example only: results vary and no saving is promised before your data is reviewed.</p>
+        <ul>
+          <li>Looks for over-declaration risk in filed or draft returns.</li>
+          <li>Separates household, non-household, export and DRS-scope lines.</li>
+          <li>Quantifies the issue before any correction route is discussed.</li>
+        </ul>
+      </div>
+      <div class="evidence-card">
+        <h3>How your data is handled</h3>
+        <p>You deal directly with the analyst who builds the forecast. The working style is written-first: no junior handoff and no pressure conversation. If you would find a short call helpful, you can request one.</p>
+        <ul>
+          <li>Supplier invoices, BOM files and tonnage notes are used only for the commissioned analysis.</li>
+          <li>Payment card details are handled by Stripe and are not stored on this website.</li>
+          <li>Lead and intake data may be processed by the site host, email provider, Brevo and Stripe as set out in the <a href="/privacy.html">privacy notice</a>.</li>
+          <li>ICO registration: ZC112776.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="update-note"><b>Official position checked: 27 July 2026.</b> No confirmed Year-2 producer-fee table has been published in the official sources checked. The calculator therefore uses confirmed 2025-26 base fees only and does not apply assumed 2026-27 modulation rates. This page will be updated when the confirmed fee publication is available. The DRS exclusion wording, sample forecast, Discovery/BOM rebuild option and ongoing ledger-management route remain available here.</div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="wrap">
+    <span class="eyebrow">Engagements</span>
+    <h2 style="font-size:clamp(1.6rem,3.4vw,2.2rem);margin-top:14px">A service ladder from free estimate to ongoing data control</h2>
+    <div class="prod-grid">
+      <div class="prod">
+        <span class="tier">Tier 1 · Desk review</span>
+        <h3>EPR Exposure Snapshot</h3>
+        <div class="price" data-net="295">£295 + VAT<span class="vat-gross"></span></div>
+        <ul>
+          <li>2-page written exposure review in 48 hours</li>
+          <li>Your 2026–27 planning scenarios, checked against the figures supplied and updated when official producer fees are confirmed</li>
+          <li>Material-by-material red / amber / green modulation risk flags</li>
+          <li>Data-quality triage: what is missing, weak or risky</li>
+          <li>Short finance summary for the finance lead or owner</li>
+          <li>The three figures your budget must hold for 2026–27</li>
+          <li>Credited in full against a full forecast within 30 days</li>
+        </ul>
+        <a class="btn btn-gold" id="buy-snapshot" href="https://buy.stripe.com/dRm28qcqh05abXAePKcjS00" rel="noopener">Commission the Snapshot — £295 + VAT</a>
+        <p class="turn">Delivered within 48 hours of receiving your figures</p>
+      </div>
+      <div class="prod">
+        <span class="tier">Tier 2 · Data rebuild</span>
+        <h3>EPR Data Discovery &amp; BOM Rebuild</h3>
+        <div class="subtiers">
+          <div class="subtier">
+            <h4>Discovery: Standard</h4>
+            <div class="price" data-net="1500">£1,500 + VAT<span class="vat-gross"></span></div>
+            <p class="turn">Up to ~50 SKUs, single site, remote</p>
+          </div>
+          <div class="subtier">
+            <h4>Discovery: Extended</h4>
+            <div class="price" data-net="2500">£2,500 + VAT<span class="vat-gross"></span></div>
+            <p class="turn">50+ SKUs, multi-channel/import, 2+ sites, site visit included where required</p>
+          </div>
+        </div>
+        <ul>
+          <li>Everything in the Snapshot</li>
+          <li>For messy records, weak supplier weights or unclear SKU structure</li>
+          <li>Data-readiness checklist before the rebuild starts</li>
+          <li>Rebuilds the packaging data trail by SKU, supplier and material</li>
+          <li>Separates household, B2B, export, reusable and DRS-scope lines</li>
+          <li>Submission-ready data model for your team or scheme provider</li>
+          <li>30-minute written findings walkthrough</li>
+          <li>Credited against the full Forecast when commissioned within 30 days</li>
+        </ul>
+        <a class="btn btn-line scope-open" href="#discovery-intake" data-target="discovery-intake">Scope a Discovery project</a>
+        <a class="btn btn-line booking-open" href="#prepared-call" data-service="EPR Discovery prepared call" style="margin-top:10px">Prefer to talk it through? Book a prepared call</a>
+        <p class="turn">Final tier confirmed in a short written triage (included in your Snapshot) before any work or payment begins. Site visits scoped in writing first. Credited against your Forecast when commissioned within 30 days.</p>
+      </div>
+      <div class="prod feature">
+        <span class="tier">Tier 3 · Full engagement</span>
+        <h3>Statutory Liability Forecast</h3>
+        <div class="price" data-net="1250">£1,250 + VAT <small>fixed fee</small><span class="vat-gross"></span></div>
+        <ul>
+          <li>Everything in Snapshot and, where needed, Discovery</li>
+          <li>18-page forecast built from your invoice and tonnage data</li>
+          <li>One-page board summary</li>
+          <li>Modulation scenario analysis per material using the official rates available at the time of the forecast</li>
+          <li>Quarterly cash-flow phasing aligned to PackUK instalments</li>
+          <li>Material-switch and lightweighting savings analysis</li>
+          <li>Confidence rating and decision note</li>
+          <li>Output formatted for your finance lead, FD and board pack</li>
+          <li>Two hours of written advisory within 90 days, scoped to EPR matters</li>
+          <li>Free factual correction round</li>
+          <li>EPR change-alert emails while the forecast is current</li>
+        </ul>
+        <a class="btn btn-gold" id="buy-forecast" href="https://buy.stripe.com/6oUeVc61T6tygdQ5facjS01" rel="noopener">Commission the Forecast — £1,250 + VAT</a>
+        <a class="btn btn-line booking-open" href="#prepared-call" data-service="EPR Forecast prepared call" style="margin-top:10px">Prefer to talk it through? Book a prepared call</a>
+        <p class="turn">Delivered within 7 working days of receiving your data</p>
+      </div>
+      <div class="prod">
+        <span class="tier">Ongoing · Quarterly billed</span>
+        <h3>Statutory Packaging Ledger Management</h3>
+        <div class="price" data-net-min="295" data-net-max="495">£295-£495 + VAT <small>/ month</small><span class="vat-gross"></span></div>
+        <ul>
+          <li>Everything in the Forecast kept current</li>
+          <li>Monthly packaging classification and reconciliation support</li>
+          <li>Maintains the evidence trail for your internal team or scheme provider</li>
+          <li>Flags changes in material mix, suppliers, DRS scope and over-declaration risk</li>
+          <li>Priority written response for EPR data questions</li>
+          <li>Annual re-forecast included</li>
+          <li>Billed quarterly, with annual prepay available on request</li>
+          <li>Does not submit statutory returns; it prepares the data model behind them</li>
+        </ul>
+        <a class="btn btn-line scope-open" href="#retainer-intake" data-target="retainer-intake">Discuss ledger management</a>
+        <p class="turn">Best after a Snapshot, Discovery project or full Forecast</p>
+      </div>
+    </div>
+    <div class="service-note"><strong>Engagement footing:</strong> all prices exclude VAT. VAT is charged at the prevailing UK rate <span data-vat-rate></span> and shown on your invoice. The £295 + VAT Snapshot is credited in full against the Forecast, so the full analysis costs £955 + VAT more. Fixed-price products use standard Stripe checkout. Scoped products route through intake, written quote, then a Stripe payment link or invoice. Discovery payment or deposit is taken before work starts under written terms; retainer work is billed quarterly or by annual prepay.</div>
+    <div class="scope-form" id="discovery-intake">
+      <h3>Scope a Discovery project</h3>
+      <p>Send the minimum scoping details. The analyst confirms Standard or Extended in writing before payment or work begins.</p>
+      <form class="scoped-lead-form" data-kind="Discovery">
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="scope-grid">
+          <label>Business name<input name="company" required></label>
+          <label>Contact name<input name="name"></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Phone / WhatsApp<input name="phone"></label>
+          <label>Rough SKU count<select name="sku"><option value="">Select</option><option>Under 50</option><option>50-150</option><option>150+</option><option>Not sure</option></select></label>
+          <label>Number of sites<select name="sites"><option value="">Select</option><option>1</option><option>2-3</option><option>4+</option></select></label>
+          <label>Packaging records exist?<select name="records"><option value="">Select</option><option>Yes, mostly complete</option><option>Some supplier records</option><option>Messy or incomplete</option><option>Not sure</option></select></label>
+          <label>Site visit likely?<select name="visit"><option value="">Select</option><option>No, remote should work</option><option>Possibly</option><option>Likely needed</option></select></label>
+          <label class="full">Notes<textarea name="notes" placeholder="Tell us what records you have and what feels messy."></textarea></label>
+        </div>
+        <button class="btn btn-gold" type="submit" style="margin-top:16px">Send Discovery scoping note</button>
+        <div class="scope-status"></div>
+      </form>
+    </div>
+    <div class="scope-form" id="retainer-intake">
+      <h3>Discuss ledger management</h3>
+      <p>Ledger management is scoped from your current EPR data position, then billed quarterly by subscription or invoice.</p>
+      <form class="scoped-lead-form" data-kind="Ledger retainer">
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="scope-grid">
+          <label>Business name<input name="company" required></label>
+          <label>Contact name<input name="name"></label>
+          <label>Email<input name="email" type="email" required></label>
+          <label>Phone / WhatsApp<input name="phone"></label>
+          <label>Rough SKU count<select name="sku"><option value="">Select</option><option>Under 50</option><option>50-150</option><option>150+</option><option>Not sure</option></select></label>
+          <label>Number of sites<select name="sites"><option value="">Select</option><option>1</option><option>2-3</option><option>4+</option></select></label>
+          <label>Records already maintained?<select name="records"><option value="">Select</option><option>Yes, monthly</option><option>Quarterly or ad hoc</option><option>Not yet</option></select></label>
+          <label>Preferred billing<select name="billing"><option value="">Select</option><option>Quarterly invoice</option><option>Stripe subscription</option><option>Annual prepay</option></select></label>
+          <label class="full">Notes<textarea name="notes" placeholder="Tell us what ongoing EPR data work you need covered."></textarea></label>
+        </div>
+        <button class="btn btn-gold" type="submit" style="margin-top:16px">Send ledger-management enquiry</button>
+        <div class="scope-status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="booking" id="prepared-call">
+  <div class="wrap">
+    <span class="eyebrow">Prepared call booking</span>
+    <h2>A short prepared call is available on request</h2>
+    <p class="lead">The desk remains written-first. If you would find a call helpful, send the facts first; the analyst reviews the position, prepares the discussion, then uses the 15-minute slot to answer the real question instead of gathering basics.</p>
+    <div class="booking-panel">
+      <div class="booking-note">
+        <h3>How the call works</h3>
+        <p>No blind sales call. No payment is taken for scoped work until the written scope or quote is confirmed.</p>
+        <ol>
+          <li>Send your business details and the issue to prepare for.</li>
+          <li>Choose one available 15-minute UK-time slot.</li>
+          <li>You receive an email confirmation with a calendar file.</li>
+          <li>If the slot is for Discovery or retainer work, the next step is a written scope and Stripe link or invoice.</li>
+        </ol>
+      </div>
+      <div class="booking-form">
+        <h3>Book a prepared EPR call</h3>
+        <form id="booking-form">
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <div class="booking-grid">
+            <label>Name<input name="name" required></label>
+            <label>Business<input name="business" required></label>
+            <label>Email<input name="email" type="email" required></label>
+            <label>Phone / WhatsApp<input name="phone"></label>
+            <label class="full">What should be prepared?<select name="service" id="booking-service">
+              <option>EPR Forecast prepared call</option>
+              <option>EPR Discovery prepared call</option>
+              <option>EPR ledger-management prepared call</option>
+              <option>EPR Snapshot follow-up</option>
+            </select></label>
+            <label class="full">Situation<textarea name="situation" required placeholder="Example: SKU count, sites, packaging records, deadline, and the decision you need to make."></textarea></label>
+          </div>
+          <div class="booking-actions">
+            <button class="btn btn-gold" type="button" id="booking-load">Show prepared-call times</button>
+          </div>
+          <div class="booking-status" id="booking-status"></div>
+          <div class="booking-step" id="booking-slots">
+            <h3>Choose a UK-time slot</h3>
+            <div class="slot-list" id="slot-list"></div>
+            <div class="booking-actions">
+              <button class="btn btn-gold" type="button" id="booking-submit">Book prepared call</button>
+            </div>
+          </div>
+          <div class="booking-confirm" id="booking-confirm"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="method" id="method">
+  <div class="wrap">
+    <span class="eyebrow">Method &amp; analyst</span>
+    <div class="method-grid">
+      <div>
+        <h2>Tracked from the first DEFRA consultation, modelled like an economist</h2>
+        <p>Since January 2023 this desk has followed every DEFRA announcement, PackUK fee publication and modulation consultation. The forecasting model is rebuilt against each official revision — so your numbers reflect the scheme as it is, not as it was reported last year.</p>
+        <p>The work is economic analysis: cost incidence, scenario modelling, cash-flow phasing and price pass-through. It is deliberately independent — this desk sells no compliance-scheme membership, no packaging, and no waste services. The only product is clarity.</p>
+        <p>Everything is handled in writing: you send data, you receive a forecast. A short call is available on request.</p>
+      </div>
+      <div class="cred">
+        <div class="nm">Godfred Frimpong</div>
+        <div class="rl">Food &amp; Trade Economist</div>
+        <p>I model EPR the way a finance team actually needs it: as cost, cash flow and decisions, not compliance jargon. That focus comes from a long career in cost analysis applied specifically to food and trade.</p>
+        <ul>
+          <li>MSc Food Economics &amp; Marketing, University of Reading</li>
+          <li>30+ years in financial management and cost analysis</li>
+          <li>Specialist in statutory cost modelling for food businesses</li>
+          <li>DEFRA / PackUK publications tracked since January 2023</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <span class="eyebrow">Questions</span>
+    <h2 style="font-size:clamp(1.5rem,3vw,2rem);margin:14px 0 26px">Asked before commissioning</h2>
+    <details><summary>Is this a compliance scheme?</summary><p>No. Compliance schemes register you and submit your data. This desk does the piece they don't: forecasting what the liability does to your cash flow and budget, independently of anyone selling you membership.</p></details>
+    <details><summary>My data is messy. Is that a problem?</summary><p>No. Rough tonnages, supplier invoices, screenshots and spreadsheets are all workable. Part of the engagement is organising what you have into figures you can defend.</p></details>
+    <details><summary>Do you provide tax or legal services?</summary><p>No. This is independent economic forecasting and cost analysis. The output is designed to hand to your finance adviser and board, and works alongside whatever compliance scheme you use.</p></details>
+    <details><summary>What if I'm under the £2m / 50-tonne threshold?</summary><p>You may only have reporting duties for now — but the Snapshot will tell you how close you are to the threshold and what crossing it would cost, so the liability never arrives as a surprise.</p></details>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Prefer to start with a question?</h2>
+    <p>Everything is handled in writing. Send a message and you will receive a written reply, usually within one working day. A short call is available on request.</p>
+    <a class="btn btn-gold" id="mailto" href="mailto:godfred@thefoodeconomist.co.uk?subject=EPR%20forecast%20enquiry">Email the desk</a>
+    &nbsp;&nbsp;
+    <a class="btn btn-line" id="whatsapp" href="https://wa.me/447939823988?text=EPR%20forecast%20enquiry%20(written%20please)" rel="noopener">WhatsApp (written)</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-brand-block">
+      <img class="footer-logo" src="/assets/the-food-economist-logo.svg?v=logo-reference-mark-20260720" alt="The Food Economist">
+      <div class="address-block">
+        <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a><br>
+        Mobile: 07939 823988
+      </div>
+      <div style="margin-top:10px">© 2026 The Food Economist · Statutory Cost Intelligence</div>
+    </div>
+    <div style="max-width:620px">All prices exclude VAT. VAT is charged at the prevailing UK rate <span data-vat-rate></span> and shown on your invoice. VAT registration: GB 508927172. ICO registration: ZC112776. Estimates and forecasts are independent economic and regulatory-data analysis, not statutory calculations, public-practice services, assurance work, legal, tax or regulated financial advice. <a href="/terms.html">Service terms</a> · <a href="/privacy.html">Privacy</a><span class="footer-address">84 Bridge Street, Kingston, HR5 3DJ</span></div>
+  </div>
+</footer>
+
+<script>
+/* ================= CONFIG (owner edits ONLY this block) ================= */
+const CONFIG = {
+  stripeSnapshot: 'https://buy.stripe.com/dRm28qcqh05abXAePKcjS00',
+  stripeForecast: 'https://buy.stripe.com/6oUeVc61T6tygdQ5facjS01',
+  sampleForecast: '/sample-forecast.html',
+  whatsapp: '447939823988',
+  apiBase: '/api',
+  vatRate: 0.20,
+  vatNumber: '508927172',
+  icoNumber: 'ZC112776'
+};
+
+/* ====== FEES: SINGLE SOURCE OF TRUTH (ARCHITECTURE.md §6) ======
+   base = PackUK confirmed 2025–26 base fees, £/tonne (GOV.UK, 27 Jun 2025).
+   Do not infer 2026–27 fees until the confirmed producer-fee table is published. */
+const FEES = {
+  plastic:{label:'Plastic',             base:423},
+  fibre:  {label:'Fibre-based composite',base:461},
+  paper:  {label:'Paper and card',      base:196},
+  glass:  {label:'Glass',               base:192},
+  alu:    {label:'Aluminium',           base:266},
+  steel:  {label:'Steel',               base:259},
+  wood:   {label:'Wood',                base:280},
+  other:  {label:'Other materials',     base:259}
+};
+
+/* ================= UI wiring ================= */
+const fmt = n => '£' + Math.round(n).toLocaleString('en-GB');
+const vatPct = () => Math.round(CONFIG.vatRate * 100) + '%';
+const gross = n => n * (1 + CONFIG.vatRate);
+document.querySelectorAll('[data-vat-rate]').forEach(el => el.textContent = '(currently ' + vatPct() + ')');
+document.querySelectorAll('[data-vat-number]').forEach(el => el.textContent = CONFIG.vatNumber);
+document.querySelectorAll('[data-ico-number]').forEach(el => el.textContent = CONFIG.icoNumber);
+document.querySelectorAll('.price[data-net]').forEach(el => {
+  const net = Number(el.dataset.net);
+  el.querySelector('.vat-gross').textContent = '(' + fmt(gross(net)) + ' incl. VAT at ' + vatPct() + ')';
+});
+document.querySelectorAll('.price[data-net-min]').forEach(el => {
+  const min = Number(el.dataset.netMin);
+  const max = Number(el.dataset.netMax);
+  el.querySelector('.vat-gross').textContent = '(' + fmt(gross(min)) + '-' + fmt(gross(max)) + ' incl. VAT at ' + vatPct() + ')';
+});
+const yearElement = document.getElementById('yr');
+if (yearElement) yearElement.textContent = new Date().getFullYear();
+const refDateElement = document.getElementById('refdate');
+if (refDateElement) refDateElement.textContent =
+  new Date().toISOString().slice(0,10).replace(/-/g,'');
+const snapshotLink = document.getElementById('buy-snapshot');
+if (snapshotLink) snapshotLink.href = CONFIG.stripeSnapshot;
+const forecastLink = document.getElementById('buy-forecast');
+if (forecastLink) forecastLink.href = CONFIG.stripeForecast;
+const ownerTestLink = document.getElementById('buy-owner-test');
+if (ownerTestLink) ownerTestLink.href = CONFIG.stripeOwnerTest;
+const whatsappLink = document.getElementById('whatsapp');
+if (whatsappLink) whatsappLink.href =
+  'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('EPR forecast enquiry (written please)');
+
+document.querySelectorAll('.scope-open').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const panel = document.getElementById(link.dataset.target);
+    if (!panel) return;
+    panel.classList.add('show');
+    panel.scrollIntoView({block:'start'});
+  });
+});
+
+document.querySelectorAll('.scoped-lead-form').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const status = form.querySelector('.scope-status');
+    const data = Object.fromEntries(new FormData(form).entries());
+    status.className = 'scope-status';
+    status.style.display = 'none';
+    if (data.website) return;
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((data.email || '').trim())) {
+      status.textContent = 'Enter a valid email address.';
+      status.classList.add('err');
+      status.style.display = 'block';
+      return;
+    }
+    const message = [
+      form.dataset.kind + ' scoped-product enquiry',
+      'Rough SKU count: ' + (data.sku || 'not supplied'),
+      'Number of sites: ' + (data.sites || 'not supplied'),
+      'Records: ' + (data.records || 'not supplied'),
+      data.visit ? 'Site visit likely: ' + data.visit : '',
+      data.billing ? 'Preferred billing: ' + data.billing : '',
+      data.notes ? 'Notes: ' + data.notes : ''
+    ].filter(Boolean).join('\n');
+    const btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+    try {
+      const r = await fetch(CONFIG.apiBase + '/save-lead.php', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          source:'contact',
+          name:data.name || '',
+          email:data.email || '',
+          company:data.company || '',
+          phone:data.phone || '',
+          message
+        })
+      });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'failed');
+      status.textContent = 'Received. A written scoping reply will follow.';
+      status.classList.add('ok');
+      status.style.display = 'block';
+      form.reset();
+      btn.textContent = 'Sent';
+    } catch(ex) {
+      status.textContent = 'Could not save just now. Email godfred@thefoodeconomist.co.uk and include these details.';
+      status.classList.add('err');
+      status.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = form.dataset.kind === 'Discovery' ? 'Send Discovery scoping note' : 'Send ledger-management enquiry';
+    }
+  });
+});
+
+function setupBooking(){
+  const form = document.getElementById('booking-form');
+  if (!form) return;
+  const status = document.getElementById('booking-status');
+  const slotWrap = document.getElementById('booking-slots');
+  const slotList = document.getElementById('slot-list');
+  const confirmBox = document.getElementById('booking-confirm');
+  const service = document.getElementById('booking-service');
+  let selectedSlot = '';
+
+  const setStatus = (msg, type='') => {
+    status.textContent = msg;
+    status.className = 'booking-status' + (type ? ' ' + type : '');
+    status.style.display = msg ? 'block' : 'none';
+  };
+  const payload = () => Object.fromEntries(new FormData(form).entries());
+  const valid = () => {
+    const data = payload();
+    if (data.website) return false;
+    if (!data.name || !data.business || !data.situation) {
+      setStatus('Add your name, business and the issue to prepare for.', 'err');
+      return false;
+    }
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test((data.email || '').trim())) {
+      setStatus('Enter a valid email address.', 'err');
+      return false;
+    }
+    return true;
+  };
+  const renderSlots = (slots) => {
+    selectedSlot = '';
+    slotList.innerHTML = slots.length ? '' : '<p style="color:#C8D2DD">No slots are open right now. Email godfred@thefoodeconomist.co.uk and the desk will offer times manually.</p>';
+    slots.forEach(slot => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'slot-btn';
+      btn.textContent = slot.label;
+      btn.addEventListener('click', () => {
+        selectedSlot = slot.value;
+        slotList.querySelectorAll('.slot-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+      });
+      slotList.appendChild(btn);
+    });
+  };
+
+  document.querySelectorAll('.booking-open').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (link.dataset.service) service.value = link.dataset.service;
+      document.getElementById('prepared-call').scrollIntoView({block:'start'});
+    });
+  });
+
+  document.getElementById('booking-load').addEventListener('click', async () => {
+    if (!valid()) return;
+    setStatus('Loading available prepared-call times...');
+    confirmBox.classList.remove('show');
+    try {
+      const r = await fetch(CONFIG.apiBase + '/booking.php?action=slots', {cache:'no-store'});
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'Could not load slots');
+      renderSlots(j.slots || []);
+      slotWrap.classList.add('show');
+      setStatus('Choose one available UK-time slot.', 'ok');
+    } catch(ex) {
+      setStatus('Could not load slots just now. Email godfred@thefoodeconomist.co.uk and include your preferred times.', 'err');
+    }
+  });
+
+  document.getElementById('booking-submit').addEventListener('click', async () => {
+    if (!valid()) return;
+    if (!selectedSlot) {
+      setStatus('Choose a slot first.', 'err');
+      return;
+    }
+    const btn = document.getElementById('booking-submit');
+    btn.disabled = true;
+    btn.textContent = 'Booking...';
+    setStatus('Booking the prepared call...');
+    try {
+      const data = payload();
+      const r = await fetch(CONFIG.apiBase + '/booking.php', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({...data, slot:selectedSlot})
+      });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'Booking failed');
+      confirmBox.innerHTML = '<strong>Booked.</strong> The analyst will review what you sent before the call. A confirmation email with a calendar file has been sent. <br><br><a class="btn btn-line" href="' + j.whatsappUrl + '" rel="noopener">Open free WhatsApp alert</a>';
+      confirmBox.classList.add('show');
+      setStatus('Prepared call booked for ' + j.slotLabel + '.', 'ok');
+      form.reset();
+      slotWrap.classList.remove('show');
+    } catch(ex) {
+      setStatus(ex.message || 'That slot could not be booked. Choose another time.', 'err');
+      btn.disabled = false;
+      btn.textContent = 'Book prepared call';
+    }
+  });
+}
+setupBooking();
+
+const matwrap = document.getElementById('matinputs');
+for (const [k,f] of Object.entries(FEES)) {
+  matwrap.insertAdjacentHTML('beforeend',
+    `<div class="matrow">
+       <label for="t_${k}">${f.label}<small>base £${f.base}/t</small></label>
+       <input type="number" id="t_${k}" min="0" step="1" placeholder="0" inputmode="numeric">
+     </div>`);
+}
+const hh = document.getElementById('hhshare');
+hh.addEventListener('input', () => document.getElementById('hhval').textContent = hh.value + '%');
+
+let lastCalc = null;
+let unlocked = false;
+
+document.getElementById('calc').addEventListener('click', () => {
+  const share = Number(hh.value) / 100;
+  let totalT = 0, base = 0;
+  const lines = [];
+  for (const [k,f] of Object.entries(FEES)) {
+    const t = Math.max(0, Number(document.getElementById('t_'+k).value || 0)) * share;
+    if (t <= 0) continue;
+    totalT += t;
+    const cost = t * f.base;
+    base += cost;
+    lines.push({k, label:f.label, t, cost});
+  }
+  if (totalT === 0) {
+    document.getElementById('resultpane').innerHTML =
+      '<p class="placeholder">Enter at least one tonnage figure above, then calculate.</p>';
+    return;
+  }
+  lastCalc = {totalT, base, lines};
+  render();
+});
+
+function render(){
+  const c = lastCalc;
+  const pane = document.getElementById('resultpane');
+  let html = `
+    <div class="headline-figure">
+      <div class="lbl">2025–26 base-fee reference point</div>
+      <div class="amt">${fmt(c.base)}</div>
+      <div class="sub">${c.totalT.toLocaleString('en-GB',{maximumFractionDigits:1})} tonnes household packaging · confirmed base fees, before any 2026–27 fee confirmation</div>
+    </div>`;
+
+  if (unlocked) {
+    html += `<div class="ledger-lines">` + c.lines.map(l =>
+      `<div class="lline">
+         <span class="m">${l.label}</span>
+         <span class="t">${l.t.toLocaleString('en-GB',{maximumFractionDigits:1})} t · 2025–26 base-fee reference</span>
+         <span class="v">${fmt(l.cost)}</span>
+       </div>`).join('') + `</div>
+    <div class="stress">
+      <span class="stamp">2026–27 forecast status</span>
+      <div class="range">Awaiting confirmed fee table</div>
+      <p>The published 2026–27 producer-fee table is required before a numerical forecast can be finalised. The Snapshot identifies the packaging data, scope questions and material evidence that will make that forecast decision-ready when the official rates are available.</p>
+    </div>
+    <div class="gate" style="background:transparent;border:1px solid var(--rule);color:var(--ink);padding:18px">
+      <p style="color:#6B6250;margin:0;font-size:.86rem">Your full breakdown has also been noted at the desk. The same email value exchange gives you the breakdown and the sample forecast. The Snapshot (£295 + VAT) checks these figures against the data you supply within 48 hours — and is credited in full against the £1,250 + VAT forecast.</p>
+    </div>`;
+  } else {
+    html += `
+    <div class="ledger-lines" style="filter:blur(5px);pointer-events:none" aria-hidden="true">` +
+      c.lines.map(l =>
+      `<div class="lline"><span class="m">${l.label}</span><span class="t">${l.t.toFixed(1)} t</span><span class="v">${fmt(l.cost)}</span></div>`).join('') +
+    `</div>
+    <div class="gate">
+      <h4>Unlock the full ledger</h4>
+      <p>Material-by-material 2025–26 base-fee reference, the data required for a 2026–27 forecast, and the sample forecast - one email, two useful outputs.</p>
+      <form id="gateform" novalidate>
+        <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="email" id="gateemail" placeholder="Work email" required aria-label="Work email">
+        <button class="btn btn-gold" type="submit">Unlock breakdown</button>
+      </form>
+      <div class="err" id="gateerr"></div>
+    </div>
+    <p class="locked-note">No newsletter spam — a short series on reading your EPR position, then nothing unless you ask.</p>`;
+  }
+  pane.innerHTML = html;
+
+  const form = document.getElementById('gateform');
+  if (form) form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('gateemail').value.trim();
+    const err = document.getElementById('gateerr');
+    err.style.display = 'none';
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      err.textContent = 'Enter a valid email address.'; err.style.display = 'block'; return;
+    }
+    e.submitter.disabled = true; e.submitter.textContent = 'Unlocking…';
+    try {
+      const r = await fetch(CONFIG.apiBase + '/save-lead.php', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          source:'estimator', email,
+          est_tonnes: lastCalc.totalT, est_liability: lastCalc.base,
+          website: form.querySelector('.hp').value
+        })
+      });
+      const j = await r.json();
+      if (!j.ok) throw new Error(j.error || 'failed');
+      unlocked = true; render();
+    } catch(ex) {
+      err.textContent = 'Could not save just now — email the desk directly and we will send the breakdown.';
+      err.style.display = 'block';
+      e.submitter.disabled = false; e.submitter.textContent = 'Unlock breakdown';
+    }
+  });
+}
+document.getElementById('sampleform').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('sampleemail').value.trim();
+  const err = document.getElementById('sampleerr');
+  const dl = document.getElementById('sampledownload');
+  err.style.display = 'none';
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+    err.textContent = 'Enter a valid email address.'; err.style.display = 'block'; return;
+  }
+  e.submitter.disabled = true; e.submitter.textContent = 'Preparing sample...';
+  try {
+    const r = await fetch(CONFIG.apiBase + '/save-lead.php', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        source:'estimator', email,
+        est_tonnes: lastCalc ? lastCalc.totalT : 0,
+        est_liability: lastCalc ? lastCalc.base : 0,
+        website: e.currentTarget.querySelector('.hp').value
+      })
+    });
+    const j = await r.json();
+    if (!j.ok) throw new Error(j.error || 'failed');
+    dl.classList.add('show');
+    e.submitter.textContent = 'Sample ready';
+    document.getElementById('sampledownload').querySelector('a').href = CONFIG.sampleForecast;
+  } catch(ex) {
+    err.textContent = 'Could not save just now - open the sample and email the desk if you want the breakdown.';
+    err.style.display = 'block';
+    dl.classList.add('show');
+    e.submitter.disabled = false; e.submitter.textContent = 'Download sample forecast';
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Prime Cost Verdict | The Food Economist · MyProfit</title>
+<meta name="description" content="A free 90-second prime cost check for independent UK restaurants, cafes, takeaways and pubs. Rough weekly figures are fine.">
+<meta name="robots" content="index,follow">
+<style>
+:root{--ink:#101A36;--gold:#C9AD00;--paper:#FBFAF5;--line:#D9D9D0;--muted:#5B6375;
+--green:#1B7A47;--amber:#B57A00;--red:#A81D1D;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);line-height:1.55;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,Helvetica,sans-serif}
+.wrap{width:min(680px,calc(100% - 32px));margin:0 auto}
+header{background:var(--ink);color:#fff;padding:26px 0 24px;border-bottom:5px solid var(--gold)}
+.brands{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;letter-spacing:.10em;
+text-transform:uppercase;color:#E2C900;font-weight:700;margin-bottom:12px}
+.divider{color:#7C86A0;font-weight:400;letter-spacing:0}
+h1{margin:0 0 10px;font-size:clamp(25px,5.6vw,36px);line-height:1.14;font-weight:700}
+header p{margin:0;color:#DFE4F1;font-size:16px}
+main{padding:22px 0 60px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:20px;margin:18px 0}
+h2{font-size:19px;margin:0 0 6px}
+label{display:block;font-weight:700;font-size:14px;margin:14px 0 5px}
+.hint{font-weight:400;color:var(--muted);font-size:13px;margin:0 0 5px}
+input,select{width:100%;padding:12px;font-size:16px;border:1px solid #C3C7D2;border-radius:6px;
+background:#fff;color:var(--ink);font-family:inherit}
+input:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px}
+.row{display:flex;gap:10px}.row>*{flex:1}
+.btn{display:block;width:100%;padding:15px;margin-top:18px;font-size:17px;font-weight:700;
+border:0;border-radius:6px;background:var(--ink);color:#fff;cursor:pointer;font-family:inherit;text-align:center;
+text-decoration:none}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+#out{display:none}
+.verdict{padding:18px;border-radius:8px;color:#fff;text-align:center;margin-bottom:16px}
+.verdict .band{font-size:31px;font-weight:800;letter-spacing:.04em;margin:0}
+.verdict .say{margin:6px 0 0;font-size:15px;opacity:.95}
+.g{background:var(--green)}.a{background:var(--amber)}.r{background:var(--red)}
+table{width:100%;border-collapse:collapse;margin:6px 0 0}
+th,td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:700}
+.flag{font-size:12px;font-weight:700;padding:2px 7px;border-radius:99px;color:#fff}
+.worst{background:#FFF6D6;border-left:4px solid var(--gold);padding:13px 15px;margin:16px 0;font-size:15px}
+.gate{background:var(--ink);color:#fff;padding:18px;border-radius:8px;margin-top:18px}
+.gate h3{margin:0 0 6px;font-size:17px}
+.gate p{margin:0 0 4px;color:#C8D2DD;font-size:14px}
+.gate input{margin-top:8px}
+.ok{background:#E8F5EC;border:1px solid var(--green);color:#14532d;padding:14px;border-radius:6px;
+margin-top:12px;font-size:15px;display:none}
+.err{color:#fff;background:var(--red);padding:11px;border-radius:6px;margin-top:10px;font-size:14px;display:none}
+.small{font-size:13px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:20px 0 40px;font-size:12px;color:var(--muted)}
+footer a{color:var(--muted)}
+.honest{background:#fff;border:1px dashed var(--line);border-radius:8px;padding:15px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brands">The Food Economist <span class="divider">·</span> MyProfit</div>
+  <h1>Your restaurant can be busy and still lose money.</h1>
+  <p>A free 90-second prime cost check. Rough weekly figures are fine. No card, no login.</p>
+</div></header>
+
+<main><div class="wrap">
+
+  <form class="card" id="f" autocomplete="on">
+    <h2>Enter what you roughly know</h2>
+    <p class="hint">Use a typical week. Estimates are fine — this is a triage, not your accounts.</p>
+
+    <label for="period">These figures are per</label>
+    <select id="period"><option value="week" selected>Week</option><option value="month">Month</option></select>
+
+    <label for="sales">Sales (total takings)</label>
+    <p class="hint">Everything through the till, including delivery apps.</p>
+    <input id="sales" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 9000">
+
+    <label for="food">Food and drink supplier spend</label>
+    <input id="food" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 3100">
+
+    <label for="labour">Wages, including your own pay if you take it</label>
+    <input id="labour" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 2900">
+
+    <label for="fixed">Rent, rates, energy and standing bills</label>
+    <input id="fixed" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 1300">
+
+    <label for="other">Delivery or platform fees, and other costs</label>
+    <p class="hint">Packaging, cleaning, card fees, repairs, licences, laundry.</p>
+    <input id="other" type="number" inputmode="decimal" min="0" step="1" placeholder="e.g. 700">
+
+    <button class="btn btn-gold" type="submit">Show my verdict</button>
+    <p class="small" style="margin-top:10px">Nothing is sent anywhere when you press this. The verdict appears on your screen.</p>
+  </form>
+
+  <section id="out">
+    <div class="card">
+      <div class="verdict" id="vbox">
+        <p class="band" id="vband">—</p>
+        <p class="say" id="vsay"></p>
+      </div>
+
+      <table>
+        <thead><tr><th>Line</th><th style="text-align:right">Share of sales</th><th style="text-align:right">Reading</th></tr></thead>
+        <tbody>
+          <tr><td>Food and drink</td><td class="n" id="p_food">—</td><td class="n" id="b_food"></td></tr>
+          <tr><td>Wages</td><td class="n" id="p_lab">—</td><td class="n" id="b_lab"></td></tr>
+          <tr><td><strong>Prime cost</strong> (food + wages)</td><td class="n" id="p_prime">—</td><td class="n" id="b_prime"></td></tr>
+          <tr><td>Rent, rates and standing bills</td><td class="n" id="p_fixed">—</td><td class="n"></td></tr>
+          <tr><td>Delivery, platform and other</td><td class="n" id="p_other">—</td><td class="n"></td></tr>
+          <tr><td><strong>What is left</strong></td><td class="n" id="p_net">—</td><td class="n" id="m_net"></td></tr>
+        </tbody>
+      </table>
+
+      <div class="worst" id="worst"></div>
+
+      <div class="honest">
+        <strong>What this check can and cannot do.</strong> It shows you <em>whether</em> there is pressure and
+        <em>which two lines</em> carry it. It cannot tell you <em>why</em>, because that needs your supplier
+        invoices, your menu and a wage summary. Rough figures in means indicative answers out.
+      </div>
+
+      <div class="gate">
+        <h3>Send me the written breakdown</h3>
+        <p>Your figures set out line by line, what each reading means, and the questions to ask before you change anything.</p>
+        <input id="email" type="email" placeholder="Your email" autocomplete="email" required>
+        <div class="row" style="margin-top:8px">
+          <input id="biz" type="text" placeholder="Business name" autocomplete="organization">
+          <input id="phone" type="tel" placeholder="Phone (optional)" autocomplete="tel">
+        </div>
+        <input id="website" type="text" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <button class="btn btn-gold" id="send" type="button">Send my breakdown</button>
+        <p class="small" style="color:#9FAAC0;margin-top:9px">
+          One email with your breakdown, and occasional written notes on restaurant margins.
+          Reply "stop" any time. See the <a href="/privacy.html" style="color:#E2C900">privacy notice</a>.
+        </p>
+      </div>
+      <div class="ok" id="ok"></div>
+      <div class="err" id="err"></div>
+    </div>
+
+    <div class="card">
+      <h2>If you want to know why</h2>
+      <p>The <strong>48-Hour Profit Triage</strong> is a written report from your actual figures: what is
+      driving each reading, what is missing from the picture, and the first three things worth changing.
+      Delivered within 48 hours of receiving your figures.</p>
+      <p><strong>£95 + VAT</strong>, credited in full against the £395 + VAT Menu &amp; Margin Diagnostic
+      if you commission it within 30 days.</p>
+      <a class="btn" id="buy" href="#" rel="noopener">Commission the Triage — £95 + VAT</a>
+      <a class="btn" id="wa" href="#" style="background:#fff;color:var(--ink);border:1px solid var(--ink)" rel="noopener">Ask a question on WhatsApp</a>
+    </div>
+  </section>
+
+</div></main>
+
+<footer><div class="wrap">
+  <p><strong>The Food Economist · MyProfit</strong><br>
+  Godfred Frimpong — Trade &amp; Food Economist, MSc<br>
+  <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a> · 07939 823988</p>
+  <p>Godfred Frimpong trading as The Food Economist. VAT registration: <span data-vat>508927172</span>.
+  ICO registration: <span data-ico>ZC112776</span>.</p>
+  <p>This is an indicative economic triage from rough figures, not statutory filing, public-practice
+  services, legal, tax or regulated financial advice. All prices exclude VAT.</p>
+</div></footer>
+
+<script>
+/* ===== CONFIG — owner edits ONLY this block ===== */
+const CONFIG = {
+  apiBase: '/api',
+  stripeTriage: 'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
+  whatsapp: '447939823988'
+};
+/* ===== BANDS — mirrors 03-MYPROFIT-MACHINE-V2 STRESS.bands. Change in both or neither. ===== */
+const BANDS = {
+  food:  {pressure:32, high:38},
+  labour:{pressure:30, high:35},
+  prime: {pressure:65, high:72}
+};
+
+const $ = id => document.getElementById(id);
+const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
+const pc = n => (Math.round(n*10)/10).toFixed(1) + '%';
+const src = new URLSearchParams(location.search).get('src') || 'direct';
+
+$('buy').href = CONFIG.stripeTriage;
+$('wa').href = 'https://wa.me/' + CONFIG.whatsapp + '?text=' +
+  encodeURIComponent('Hello Godfred, I ran the prime cost check and would like to ask about the 48-hour Triage.');
+
+let RESULT = null;
+
+function band(v, b){ return v >= b.high ? 'r' : v >= b.pressure ? 'a' : 'g'; }
+function chip(cls){
+  const t = {g:'OK', a:'WATCH', r:'HIGH'}[cls];
+  const c = {g:'#1B7A47', a:'#B57A00', r:'#A81D1D'}[cls];
+  return '<span class="flag" style="background:'+c+'">'+t+'</span>';
+}
+
+$('f').addEventListener('submit', function(e){
+  e.preventDefault();
+  const mult = $('period').value === 'week' ? (52/12) : 1;
+  const sales = num('sales')*mult, food = num('food')*mult, labour = num('labour')*mult,
+        fixed = num('fixed')*mult, other = num('other')*mult;
+
+  if (sales <= 0){ $('err').textContent = 'Enter your sales figure to run the check.'; $('err').style.display='block'; return; }
+  $('err').style.display='none';
+
+  const foodPct = food/sales*100, labPct = labour/sales*100, primePct = foodPct + labPct,
+        fixedPct = fixed/sales*100, otherPct = other/sales*100;
+  const net = sales - food - labour - fixed - other, netPct = net/sales*100;
+
+  const pb = band(primePct, BANDS.prime);
+  const verdict = {
+    g:['HEALTHY','Prime cost is inside the workable range for an independent food business.'],
+    a:['UNDER PRESSURE','Prime cost is above the level most independent kitchens can carry comfortably.'],
+    r:['HIGH RISK','Prime cost is at a level where profit is usually being lost every week.']
+  }[pb];
+
+  $('vbox').className = 'verdict ' + pb;
+  $('vband').textContent = verdict[0];
+  $('vsay').textContent = verdict[1];
+
+  $('p_food').textContent = pc(foodPct);   $('b_food').innerHTML  = chip(band(foodPct, BANDS.food));
+  $('p_lab').textContent  = pc(labPct);    $('b_lab').innerHTML   = chip(band(labPct, BANDS.labour));
+  $('p_prime').textContent= pc(primePct);  $('b_prime').innerHTML = chip(pb);
+  $('p_fixed').textContent= pc(fixedPct);
+  $('p_other').textContent= pc(otherPct);
+  $('p_net').textContent  = pc(netPct);
+  $('m_net').innerHTML    = '<span class="flag" style="background:'+(netPct<0?'#A81D1D':netPct<5?'#B57A00':'#1B7A47')+'">'+
+                            (netPct<0?'LOSS':netPct<5?'THIN':'OK')+'</span>';
+
+  const lines = [
+    {n:'food and drink cost', v:foodPct, b:BANDS.food},
+    {n:'wages', v:labPct, b:BANDS.labour},
+    {n:'rent, rates and standing bills', v:fixedPct, b:{pressure:12, high:18}},
+    {n:'delivery, platform and other costs', v:otherPct, b:{pressure:8, high:14}}
+  ].map(x => ({...x, over: x.v - x.b.pressure})).sort((a,b) => b.over - a.over);
+
+  const worst = lines.filter(x => x.over > 0).slice(0,2);
+  $('worst').innerHTML = worst.length
+    ? '<strong>The two lines carrying the pressure:</strong> ' +
+      worst.map(x => x.n + ' at ' + pc(x.v)).join(', and ') +
+      '. Why they sit where they do is what the written triage establishes.'
+    : '<strong>No single line is above its usual range.</strong> The figures look workable. Keep checking monthly, because small costs move week to week.';
+
+  RESULT = {
+    sales:Math.round(sales), foodPct:+foodPct.toFixed(1), labPct:+labPct.toFixed(1),
+    primePct:+primePct.toFixed(1), fixedPct:+fixedPct.toFixed(1), otherPct:+otherPct.toFixed(1),
+    netPct:+netPct.toFixed(1), net:Math.round(net), band:verdict[0],
+    worst: worst.map(x => x.n + ' ' + pc(x.v)).join('; ') || 'none above range',
+    period: $('period').value
+  };
+
+  $('out').style.display='block';
+  $('out').scrollIntoView({behavior:'smooth', block:'start'});
+});
+
+$('send').addEventListener('click', async function(){
+  const email = $('email').value.trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+    $('err').textContent = 'Enter a valid email address.'; $('err').style.display='block'; return;
+  }
+  if ($('website').value){ return; }
+  $('err').style.display='none';
+  const btn = $('send'); btn.disabled = true; btn.textContent = 'Sending…';
+
+  const r = RESULT || {};
+  const message =
+    'PRIME COST VERDICT (source: ' + src + ')\n' +
+    'Band: ' + (r.band||'') + '\n' +
+    'Est monthly sales: £' + (r.sales||0) + ' (entered per ' + (r.period||'') + ')\n' +
+    'Food ' + (r.foodPct||0) + '% | Wages ' + (r.labPct||0) + '% | Prime ' + (r.primePct||0) + '%\n' +
+    'Fixed ' + (r.fixedPct||0) + '% | Other ' + (r.otherPct||0) + '%\n' +
+    'What is left: ' + (r.netPct||0) + '% (£' + (r.net||0) + '/month)\n' +
+    'Pressure lines: ' + (r.worst||'') + '\n' +
+    'ACTION: send written breakdown, then offer £95 Triage.';
+
+  try{
+    const resp = await fetch(CONFIG.apiBase + '/save-lead.php', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        source:'estimator', email:email,
+        company: $('biz').value.trim(), phone: $('phone').value.trim(), name:'',
+        est_revenue: r.sales || null, est_margin_pp: r.netPct != null ? r.netPct : null,
+        message: message, website:''
+      })
+    });
+    const j = await resp.json().catch(()=>({ok:false}));
+    if (!resp.ok || !j.ok) throw new Error(j.error || 'save failed');
+    $('ok').innerHTML = '<strong>Sent.</strong> Your written breakdown will arrive within one working day, from godfred@thefoodeconomist.co.uk.';
+    $('ok').style.display='block';
+    btn.textContent = 'Breakdown requested'; 
+  }catch(err){
+    btn.disabled = false; btn.textContent = 'Send my breakdown';
+    $('err').innerHTML = 'That did not save. Please email your figures to ' +
+      '<a href="mailto:godfred@thefoodeconomist.co.uk" style="color:#fff"><u>godfred@thefoodeconomist.co.uk</u></a> and you will get the same breakdown.';
+    $('err').style.display='block';
+  }
+});
+</script>
+</body>
+</html>

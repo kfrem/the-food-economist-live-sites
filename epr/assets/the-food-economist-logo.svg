@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 118" role="img" aria-labelledby="title desc">
+  <title id="title">The Food Economist</title>
+  <desc id="desc">Rising bar chart and upward arrow logo for The Food Economist.</desc>
+  <style>
+    .mark{fill:#D1B800}
+    .mark-line{fill:none;stroke:#D1B800;stroke-width:14;stroke-linecap:butt;stroke-linejoin:miter}
+    .word{fill:#F7F4EE;font-family:Arial, Helvetica, sans-serif;font-weight:800}
+  </style>
+  <g transform="translate(8 10)">
+    <path class="mark" d="M0 94 L16 94 L16 62 L0 76 Z"/>
+    <path class="mark" d="M23 94 L39 94 L39 42 L23 58 Z"/>
+    <path class="mark" d="M46 94 L62 94 L62 58 L46 42 Z"/>
+    <path class="mark" d="M69 94 L85 94 L85 22 L69 38 Z"/>
+    <polyline class="mark-line" points="3,52 36,17 56,37 89,6"/>
+    <path class="mark" d="M77 3 L108 0 L97 31 Z"/>
+  </g>
+  <text class="word" x="126" y="50" font-size="36">The Food</text>
+  <text class="word" x="126" y="89" font-size="36">Economist</text>
+</svg>
