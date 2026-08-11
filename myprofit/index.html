@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MyProfit — Will your restaurant survive the 2026 squeeze? | The Food Economist</title>
-<meta name="description" content="Free 60-second margin squeeze triage for UK restaurants, then a written 48-hour profit diagnostic from rough figures. No software setup, no site visit, no sales call.">
+<meta name="description" content="Free Restaurant Profit Check for UK restaurants, then a written 48-hour Profit Triage from rough figures. No software setup, no site visit, no sales call.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -65,6 +65,10 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center}
 .calcbtn{margin-top:24px;width:100%;background:var(--navy);color:var(--paper);border:none;padding:15px;font-size:1.02rem;font-weight:600;border-radius:3px;cursor:pointer;font-family:var(--font-body)}
 .calcbtn:hover{background:#23476E}
 .smallprint{font-size:.74rem;color:#8A7E66;margin-top:14px}
+.checklist{list-style:none;margin:18px 0 22px}
+.checklist li{position:relative;padding-left:20px;margin-bottom:12px;font-size:.9rem;line-height:1.55}
+.checklist li::before{content:"";position:absolute;left:0;top:.55em;width:8px;height:8px;background:var(--gold);border-radius:50%}
+.checklist li b{font-weight:600}
 
 .receipt-slot{position:relative}
 .receipt{background:#FFFEF9;color:#1A1A18;font-family:var(--font-mono);font-size:.85rem;max-width:380px;margin:0 auto;padding:26px 22px 34px;box-shadow:0 24px 60px rgba(0,0,0,.5);
@@ -236,7 +240,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
       <small>MyProfit margin desk</small>
     </a>
     <ul class="navlinks">
-      <li><a href="#triage">Free triage</a></li>
+      <li><a href="/verdict.html">Free profit check</a></li>
       <li><a href="#products">Services</a></li>
       <li><a href="#proof">Sample report</a></li>
       <li><a href="#partners">For advisers</a></li>
@@ -250,8 +254,8 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
   <div class="wrap">
     <span class="eyebrow">UK restaurants · Margin decisions from your own numbers</span>
     <h1>Busy every night. <em>Losing money</em> every month. Which one are you?</h1>
-    <p class="lede">Food invoices, labour and energy do not move at the same speed as menu prices. A restaurant can look busy while its margin slips month by month. Run the free 60-second triage on rough figures, use your own planning assumptions, and see the position in black and white.</p>
-    <a class="btn btn-gold" href="#triage">Run the free margin triage</a>
+    <p class="lede">Food invoices, labour and energy do not move at the same speed as menu prices. A restaurant can look busy while its margin slips month by month. Run the free Restaurant Profit Check on rough figures, use your own planning assumptions, and see the position in black and white.</p>
+    <a class="btn btn-gold" href="/verdict.html">Run the free Restaurant Profit Check</a>
     <div class="facts">
       <div class="fact"><b>Your inputs</b><span>supplier and energy scenarios from your own invoices</span></div>
       <div class="fact"><b>£12.71/hr</b><span>National Living Wage from April 2026 (+4.1%)</span></div>
@@ -264,26 +268,33 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
   <div class="wrap">
     <div class="machine">
       <div class="inputs-card">
-        <h2>The 60-second margin triage</h2>
-        <p class="note">Monthly figures, roughly right is fine. Nothing is stored until you choose to unlock the full read-out.</p>
-        <div class="frow"><label for="f_rev">Revenue (takings, ex-VAT)<small>average month</small></label><input id="f_rev" type="number" min="0" step="100" placeholder="£" inputmode="numeric"></div>
-        <div class="frow"><label for="f_food">Food &amp; drink suppliers<small>all supplier spend</small></label><input id="f_food" type="number" min="0" step="100" placeholder="£" inputmode="numeric"></div>
-        <div class="frow"><label for="f_lab">Labour<small>wages, incl. your own pay</small></label><input id="f_lab" type="number" min="0" step="100" placeholder="£" inputmode="numeric"></div>
-        <div class="frow"><label for="f_energy">Energy &amp; utilities<small>gas, electric, water</small></label><input id="f_energy" type="number" min="0" step="50" placeholder="£" inputmode="numeric"></div>
-        <div class="frow"><label for="f_rent">Rent, rates &amp; insurance<small>fixed property costs</small></label><input id="f_rent" type="number" min="0" step="50" placeholder="£" inputmode="numeric"></div>
-        <div class="frow"><label for="f_other">Everything else<small>delivery fees, packaging, marketing, repairs…</small></label><input id="f_other" type="number" min="0" step="50" placeholder="£" inputmode="numeric"></div>
-        <div class="frow"><label for="s_food">Supplier-cost scenario<small>your expected change over the next 12 months</small></label><input id="s_food" type="number" min="-100" max="100" step="0.1" placeholder="%" inputmode="decimal"></div>
-        <div class="frow"><label for="s_labour">Labour-cost scenario<small>defaults to the 2026 NLW increase; adjust for your staffing mix</small></label><input id="s_labour" type="number" min="-100" max="100" step="0.1" inputmode="decimal"></div>
-        <div class="frow"><label for="s_energy">Energy-cost scenario<small>your contract, tariff or renewal view</small></label><input id="s_energy" type="number" min="-100" max="100" step="0.1" placeholder="%" inputmode="decimal"></div>
-        <button class="calcbtn" id="calc" type="button">Print my planning read-out</button>
-        <p class="smallprint">Use current monthly costs and your own planning scenarios. The labour field starts at the verified +4.1% National Living Wage increase for workers aged 21 and over; supplier and energy changes are not assumed. Benchmarks are indicative sector bands, not targets.</p>
+        <h2>The Restaurant Profit Check</h2>
+        <p class="note">One check, at two levels of detail. Free, and you get the full reading without leaving an email.</p>
+        <ul class="checklist">
+          <li><b>Quick check.</b> Four figures — sales, suppliers, payroll and everything else. Under a minute, and roughly right is fine.</li>
+          <li><b>A fuller picture, when you want one.</b> Enter each cost line at the frequency you actually pay it: daily, weekly, monthly, quarterly or annual. Add any cost line your business carries.</li>
+          <li><b>What you get back.</b> Monthly and annual figures, food, payroll and prime-cost shares, your largest cost pressures ranked from your own numbers, and a planning scenario for supplier, payroll and energy changes.</li>
+        </ul>
+        <a class="calcbtn" href="/verdict.html" style="display:block;text-decoration:none;text-align:center">Run the free Restaurant Profit Check</a>
+        <p class="smallprint">An indicative planning tool that works from the figures you enter. It does not verify them against any record and does not produce an exact profit figure. Sector bands are indicative reference ranges, not targets.</p>
       </div>
-      <div class="receipt-slot" aria-live="polite">
-        <div class="receipt" id="receipt">
-          <div class="shop"><b>MYPROFIT TRIAGE</b><div>The Food Economist · Margin Desk</div><div id="rdate"></div></div>
-          <p class="placeholder">Enter your figures and the read-out prints here — set out like the till receipt your margin actually lives on.</p>
+      <div class="receipt-slot">
+        <div class="receipt" aria-hidden="true">
+          <div class="shop"><b>RESTAURANT PROFIT CHECK</b><div>The Food Economist · MyProfit</div><div>Illustrative example</div></div>
+          <div class="rl"><span>SALES / month</span><span>£39,000</span></div>
+          <div class="rl"><span>COSTS ENTERED</span><span>£30,560</span></div>
+          <div class="sep"></div>
+          <div class="rl tot"><span>LEFT AFTER COSTS</span><span>£8,440 (21.6%)</span></div>
+          <div class="sep"></div>
+          <div class="rl"><span>FOOD 34.4% of sales</span><span>[WATCH]</span></div>
+          <div class="rl"><span>PAYROLL 30.8% of sales</span><span>[WATCH]</span></div>
+          <div class="rl tot"><span>PRIME COST 65.2%</span><span>[WATCH]</span></div>
+          <div class="sep"></div>
+          <div class="rl"><span>LARGEST PRESSURE</span><span>FOOD</span></div>
+          <div class="rl"><span>ANNUAL EQUIVALENT</span><span>£101,280</span></div>
+          <div class="foot">ILLUSTRATIVE EXAMPLE — NOT A CLIENT RESULT.<br>RUN THE CHECK WITH YOUR OWN FIGURES.</div>
         </div>
-        <div id="gatewrap"></div>
+        <p class="smallprint" style="text-align:center;max-width:380px;margin:12px auto 0">An example of the reading the check produces. Your own figures will differ.</p>
       </div>
     </div>
   </div>
@@ -539,6 +550,8 @@ const CONFIG = {
 
 /* ====== STRESS: SINGLE SOURCE OF TRUTH (ARCHITECTURE.md §4) ======
    Verified default plus benchmark bands. Food and energy scenarios are visitor inputs. */
+/* Canonical benchmark bands. verdict.html mirrors these in its BANDS constant.
+   If you change a band here, change it there too. */
 const STRESS = {
   defaultLabour: 0.041, /* NLW April 2026 +4.1% for workers aged 21 and over */
   bands: {
@@ -561,14 +574,11 @@ document.querySelectorAll('.price[data-net]').forEach(el => {
   const net = Number(el.dataset.net);
   el.querySelector('.vat-gross').textContent = '(' + fmt(gross(net)) + ' incl. VAT at ' + vatPct() + ')';
 });
-const pct = n => (Math.round(n * 10) / 10).toFixed(1) + '%';
 document.getElementById('yr').textContent = new Date().getFullYear();
-document.getElementById('rdate').textContent = new Date().toLocaleDateString('en-GB');
 document.getElementById('buy-triage').href = CONFIG.stripeTriage;
 document.getElementById('buy-diagnostic').href = CONFIG.stripeDiagnostic;
 document.getElementById('whatsapp').href =
   'https://wa.me/' + CONFIG.whatsapp + '?text=' + encodeURIComponent('MyProfit enquiry (written please)');
-document.getElementById('s_labour').value = (STRESS.defaultLabour * 100).toFixed(1);
 
 function setupBooking(){
   const form = document.getElementById('booking-form');
@@ -673,157 +683,6 @@ function setupBooking(){
 }
 setupBooking();
 
-let lastCalc = null;
-let unlocked = false;
-
-document.getElementById('calc').addEventListener('click', () => {
-  const v = id => Math.max(0, Number(document.getElementById(id).value || 0));
-  const scenario = (id, fallback=0) => {
-    const raw = document.getElementById(id).value;
-    const value = raw === '' ? fallback : Number(raw) / 100;
-    return Number.isFinite(value) ? Math.max(-1, Math.min(1, value)) : fallback;
-  };
-  const rev = v('f_rev'), food = v('f_food'), lab = v('f_lab'),
-        energy = v('f_energy'), rent = v('f_rent'), other = v('f_other');
-  const foodScenario = scenario('s_food'), labourScenario = scenario('s_labour', STRESS.defaultLabour), energyScenario = scenario('s_energy');
-  if (rev <= 0) {
-    document.getElementById('receipt').innerHTML =
-      '<div class="shop"><b>MYPROFIT TRIAGE</b><div>The Food Economist · Margin Desk</div></div><p class="placeholder">Enter at least your monthly revenue, then print the read-out.</p>';
-    return;
-  }
-  const costs = food + lab + energy + rent + other;
-  const profit = rev - costs;
-  const margin = profit / rev * 100;
-  const sFood = food * (1 + foodScenario);
-  const sLab  = lab  * (1 + labourScenario);
-  const sEn   = energy * (1 + energyScenario);
-  const sCosts = sFood + sLab + sEn + rent + other;
-  const sProfit = rev - sCosts;
-  const sMargin = sProfit / rev * 100;
-  const erosion = margin - sMargin;
-  const upliftNeeded = rev > 0 ? (sCosts - costs) / rev * 100 : 0;
-  const foodPct = food / rev * 100, labPct = lab / rev * 100, primePct = foodPct + labPct;
-  lastCalc = {rev, food, lab, energy, rent, other, costs, profit, margin,
-              sProfit, sMargin, erosion, upliftNeeded, foodPct, labPct, primePct,
-              foodScenario, labourScenario, energyScenario};
-  render();
-});
-
-function bandOf(val, bands){
-  if (val >= bands.high) return {cls:'hi', txt:'HIGH'};
-  if (val >= bands.pressure) return {cls:'med', txt:'PRESSURE'};
-  return {cls:'lo', txt:'OK'};
-}
-function overallBand(c){
-  if (c.sMargin <= 0) return {cls:'hi', txt:'** RED — LOSS UNDER YOUR SCENARIO **'};
-  if (c.sMargin < 3)  return {cls:'med', txt:'* AMBER — SQUEEZED TO THE EDGE *'};
-  return {cls:'lo', txt:'GREEN — HOLDING, FOR NOW'};
-}
-
-function render(){
-  const c = lastCalc;
-  const r = document.getElementById('receipt');
-  const gw = document.getElementById('gatewrap');
-  const fB = bandOf(c.foodPct, STRESS.bands.foodPct);
-  const lB = bandOf(c.labPct, STRESS.bands.labourPct);
-  const pB = bandOf(c.primePct, STRESS.bands.primePct);
-  const oB = overallBand(c);
-
-  const head = `<div class="shop"><b>MYPROFIT TRIAGE</b><div>The Food Economist · Margin Desk</div><div>${new Date().toLocaleDateString('en-GB')}</div></div>`;
-  const free = `
-    <div class="rl"><span>REVENUE / month</span><span>${fmt(c.rev)}</span></div>
-    <div class="rl"><span>TOTAL COSTS</span><span>${fmt(c.costs)}</span></div>
-    <div class="sep"></div>
-    <div class="rl tot"><span>NET TODAY</span><span>${fmt(c.profit)} (${pct(c.margin)})</span></div>
-    <div class="idx"><div class="n">−${pct(c.erosion)}</div><div class="l">planning-scenario margin movement</div></div>
-    <div class="band ${oB.cls}">${oB.txt}</div>
-    <div class="sep"></div>
-    <div class="rl tot"><span>NET UNDER YOUR SCENARIO</span><span>${fmt(c.sProfit)} (${pct(c.sMargin)})</span></div>
-    <div class="rl tot"><span>PRICE / SALES RISE TO STAND STILL</span><span>+${pct(c.upliftNeeded)}</span></div>`;
-
-  const detail = `
-    <div class="sep"></div>
-    <div class="rl"><span>FOOD ${pct(c.foodPct)} of rev</span><span>[${fB.txt}]</span></div>
-    <div class="rl"><span>LABOUR ${pct(c.labPct)} of rev</span><span>[${lB.txt}]</span></div>
-    <div class="rl"><span>PRIME COST ${pct(c.primePct)}</span><span>[${pB.txt}]</span></div>
-    <div class="sep"></div>
-    <div class="rl"><span>SUPPLIER ${pct(c.foodScenario * 100)}</span><span>${fmt(c.food * c.foodScenario)}/mo</span></div>
-    <div class="rl"><span>LABOUR ${pct(c.labourScenario * 100)}</span><span>${fmt(c.lab * c.labourScenario)}/mo</span></div>
-    <div class="rl"><span>ENERGY ${pct(c.energyScenario * 100)}</span><span>${fmt(c.energy * c.energyScenario)}/mo</span></div>
-    <div class="foot">INDICATIVE TRIAGE — NOT ADVICE.<br>THE £95 + VAT WRITTEN REPORT VERIFIES THIS<br>AGAINST YOUR REAL FIGURES IN 48H.</div>`;
-
-  const blurredDetail = `<div class="blur" aria-hidden="true">${detail}</div>`;
-  const gateCopy = oB.cls === 'hi'
-    ? {
-        heading: `${fmt(Math.abs(c.sProfit))} projected monthly loss needs a ranked response`,
-        body: `Unlock the cost-pressure map. The £95 + VAT report then verifies the figures and ranks the three fastest actions to stop the loss within 48 hours.`,
-        action: `Your model projects ${fmt(Math.abs(c.sProfit))} lost per month under the planning assumptions you entered. The written Triage Report identifies where the leak is largest and ranks the first three fixes by monthly value.`
-      }
-    : oB.cls === 'med'
-      ? {
-          heading: 'You are close to the break-even line',
-          body: `Unlock the cost-pressure map. Small moves now decide which side of break-even your planning scenario lands; the £95 + VAT report identifies those moves in pounds.`,
-          action: `Your margin is under pressure. The written Triage Report verifies the position and ranks the first three changes most likely to protect break-even.`
-        }
-      : {
-          heading: 'Your margin is holding — for now',
-          body: `Unlock the cost-pressure map to see what could weaken it. The £95 + VAT report verifies the position and shows which controls protect the margin before costs move again.`,
-          action: `Your model remains positive under the planning assumptions you entered. The written Triage Report tests that resilience against your real figures and identifies the controls worth protecting first.`
-        };
-
-  if (unlocked) {
-    r.innerHTML = head + free + detail;
-    gw.innerHTML = `
-      <div class="result-action">
-        <h4>${gateCopy.heading}</h4>
-        <p>${gateCopy.action}</p>
-        <p><strong>The £95 + VAT fee is credited in full against the £395 + VAT Diagnostic within 30 days.</strong></p>
-        <a class="btn btn-gold" href="${CONFIG.stripeTriage}" rel="noopener">Commission the 48-Hour Triage — £95 + VAT</a>
-      </div>`;
-  } else {
-    r.innerHTML = head + free + blurredDetail;
-    gw.innerHTML = `
-      <div class="gate">
-        <h4>${gateCopy.heading}</h4>
-        <p>${gateCopy.body}</p>
-        <form id="gateform" novalidate>
-          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
-          <input type="email" id="gateemail" placeholder="Email" required aria-label="Email">
-          <button class="btn btn-gold" type="submit">Unlock the cost map</button>
-        </form>
-        <div class="err" id="gateerr"></div>
-        <p style="font-size:.74rem;color:#7E91A6;margin-top:10px">By unlocking, you will receive a short written MyProfit follow-up series. You can reply "unsubscribe" at any time. <a href="/privacy.html">Privacy</a></p>
-      </div>`;
-    const form = document.getElementById('gateform');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const email = document.getElementById('gateemail').value.trim();
-      const err = document.getElementById('gateerr');
-      err.style.display = 'none';
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        err.textContent = 'Enter a valid email address.'; err.style.display = 'block'; return;
-      }
-      e.submitter.disabled = true; e.submitter.textContent = '…';
-      try {
-        const resp = await fetch(CONFIG.apiBase + '/save-lead.php', {
-          method:'POST', headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({
-            source:'estimator', email,
-            est_revenue: lastCalc.rev, est_margin_pp: lastCalc.erosion,
-            website: form.querySelector('.hp').value
-          })
-        });
-        const j = await resp.json();
-        if (!j.ok) throw new Error(j.error || 'failed');
-        unlocked = true; render();
-      } catch(ex) {
-        err.textContent = 'Could not save just now — email the desk and we will send the read-out.';
-        err.style.display = 'block';
-        e.submitter.disabled = false; e.submitter.textContent = 'Unlock';
-      }
-    });
-  }
-}
 </script>
 </body>
 </html>
