@@ -31,10 +31,13 @@ jobs:
           test -n "$FTP_PASSWORD"
           test -n "$FTP_ROOT"
           lftp -u "$FTP_USER","$FTP_PASSWORD" -e "
+            set net:timeout 30;
+            set net:max-retries 1;
             set ftp:ssl-force true;
             set ftp:ssl-protect-data true;
+            set ftp:ssl-auth TLS;
             set ssl:verify-certificate yes;
-            open ftps://$FTP_HOST;
+            open ftp://$FTP_HOST:21;
             mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* epr $FTP_ROOT/epr;
             mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* myprofit $FTP_ROOT/myprofit;
             bye
