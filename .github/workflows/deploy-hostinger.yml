@@ -16,37 +16,38 @@ jobs:
       - name: Check out release source
         uses: actions/checkout@v4
 
-      - name: Install FTPS deployment client
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Configure restricted SSH deployment
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.HOSTINGER_SSH_PRIVATE_KEY }}
+        run: |
+          test -n "$SSH_PRIVATE_KEY"
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 65002 145.14.153.34 >> ~/.ssh/known_hosts
+
+      - name: Verify remote deployment target
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            u609349519@145.14.153.34 \
+            'test -d /home/u609349519/domains/thefoodeconomist.co.uk/public_html/epr && test -d /home/u609349519/domains/thefoodeconomist.co.uk/public_html/myprofit'
 
       - name: Upload Git-managed site files
-        env:
-          FTP_HOST: ${{ secrets.HOSTINGER_FTP_HOST }}
-          FTP_USER: ${{ secrets.HOSTINGER_FTP_USER }}
-          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-          FTP_ROOT: ${{ secrets.HOSTINGER_FTP_ROOT }}
         run: |
-          test -n "$FTP_HOST"
-          test -n "$FTP_USER"
-          test -n "$FTP_PASSWORD"
-          test -n "$FTP_ROOT"
-          lftp -u "$FTP_USER","$FTP_PASSWORD" -e "
-            set net:timeout 30;
-            set net:max-retries 1;
-            set ftp:ssl-force true;
-            set ftp:ssl-protect-data true;
-            set ftp:ssl-auth TLS;
-            set ftp:passive-mode true;
-            set ftp:prefer-epsv false;
-            set ssl:verify-certificate yes;
-            open ftp://$FTP_HOST:21;
-            mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* epr $FTP_ROOT/epr;
-            mirror --reverse --verbose --only-newer --exclude-glob api/config.php --exclude-glob api/booking-data/* myprofit $FTP_ROOT/myprofit;
-            bye
-          "
+          tar \
+            --exclude='epr/api/config.php' \
+            --exclude='epr/api/booking-data' \
+            --exclude='epr/api/booking-data/*' \
+            --exclude='myprofit/api/config.php' \
+            --exclude='myprofit/api/booking-data' \
+            --exclude='myprofit/api/booking-data/*' \
+            -czf - epr myprofit | \
+          ssh -i ~/.ssh/id_ed25519 -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            u609349519@145.14.153.34 \
+            'tar -xzf - -C /home/u609349519/domains/thefoodeconomist.co.uk/public_html'
 
       - name: Write deployment summary
         run: |
           echo "## Hostinger deployment" >> "$GITHUB_STEP_SUMMARY"
-          echo "Updated Git-managed EPR and MyProfit files." >> "$GITHUB_STEP_SUMMARY"
+          echo "Updated Git-managed EPR and MyProfit files over SSH." >> "$GITHUB_STEP_SUMMARY"
           echo "Protected server configuration and booking data were excluded." >> "$GITHUB_STEP_SUMMARY"
