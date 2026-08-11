@@ -1,83 +1,302 @@
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sample 48-Hour Profit Triage Report | MyProfit</title>
-<meta name="description" content="Redacted sample of the MyProfit 48-hour restaurant margin triage report.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sample 48-Hour Profit Triage Report | MyProfit — The Food Economist</title>
+<meta name="description" content="A worked example of the £95 + VAT 48-Hour Profit Triage Report for UK restaurants: margin position, stated planning assumptions, standstill price rise, a fully costed dish line and three ranked actions.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://myprofit.thefoodeconomist.co.uk/sample-report.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MyProfit — The Food Economist">
+<meta property="og:url" content="https://myprofit.thefoodeconomist.co.uk/sample-report.html">
+<meta property="og:title" content="Sample 48-Hour Profit Triage Report">
+<meta property="og:description" content="A worked example of the written £95 + VAT report: where the margin goes, what it would take to stand still, and one dish costed line by line.">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#101F33;--gold:#C9A14E;--paper:#F7F4EE;--rule:#D8CFBE;--risk:#A8432D;--safe:#3E7A52}
-*{box-sizing:border-box}
-body{margin:0;background:#E9E3D7;color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
-.page{max-width:900px;margin:32px auto;background:var(--paper);padding:48px;box-shadow:0 20px 60px rgba(0,0,0,.18)}
-.top{border-bottom:3px solid var(--gold);padding-bottom:20px;margin-bottom:28px}
-.eyebrow{font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:#7A612E;font-weight:700}
-h1,h2,h3{line-height:1.15;margin:0 0 12px}
-h1{font-size:2rem;margin-top:10px}
-h2{font-size:1.25rem;margin-top:30px;border-bottom:1px solid var(--rule);padding-bottom:8px}
+:root{--ink:#101F33;--navy:#1B3A5C;--gold:#C9A14E;--paper:#F7F4EE;--rule:#D8CFBE;
+--risk:#A8432D;--safe:#3E7A52;--warn:#8A6A1F;
+--font-display:'Playfair Display',Georgia,serif;--font-body:'IBM Plex Sans',system-ui,sans-serif;--font-mono:'IBM Plex Mono',monospace}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E9E3D7;color:var(--ink);font-family:var(--font-body);line-height:1.58;overflow-x:hidden}
+a{color:var(--navy)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:12px;top:12px;z-index:99;background:var(--gold);color:var(--ink);padding:10px 16px}
+
+/* ---- site chrome ---- */
+.sitenav{background:var(--ink);color:var(--paper);padding:14px 0}
+.sitenav .in{width:min(900px,calc(100% - 32px));margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--paper);font-weight:600}
+.brand img{height:24px;width:auto}
+.brand span{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.sitenav .lk{color:#B9C6D4;font-size:.85rem;text-decoration:none}
+.sitenav .lk:hover{color:var(--gold)}
+
+.page{width:min(900px,calc(100% - 24px));margin:26px auto;background:var(--paper);padding:44px;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.letterhead{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;border-bottom:3px solid var(--gold);padding-bottom:18px;margin-bottom:22px;flex-wrap:wrap}
+.letterhead .who b{font-family:var(--font-display);font-size:1.08rem;display:block}
+.letterhead .who span{font-size:.8rem;color:#6B6250}
+.letterhead .ref{font-family:var(--font-mono);font-size:.74rem;color:#6B6250;text-align:right;line-height:1.7}
+.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:#7A612E;font-weight:700}
+h1{font-family:var(--font-display);font-size:clamp(1.6rem,4.2vw,2.1rem);margin:8px 0 10px}
+h2{font-family:var(--font-display);font-size:1.2rem;margin:30px 0 10px;border-bottom:1px solid var(--rule);padding-bottom:7px}
+h3{font-size:1rem;margin-bottom:5px}
 p{margin:0 0 12px}
-.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
-.box{border:1px solid var(--rule);padding:14px;background:#fff}
-.box b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:#6B6250;margin-bottom:4px}
-.red{color:var(--risk);font-weight:700}
-.green{color:var(--safe);font-weight:700}
-table{width:100%;border-collapse:collapse;margin:14px 0 22px;background:#fff}
-th,td{border:1px solid var(--rule);padding:10px;text-align:left;vertical-align:top}
-th{background:#EFE7D8;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em}
-.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-.action{border-left:4px solid var(--gold);background:#fff;padding:14px}
-.note{background:#16283D;color:#fff;padding:18px;margin-top:24px}
-.note a{color:#F0D58A}
-.footer{font-size:.82rem;color:#6B6250;border-top:1px solid var(--rule);margin-top:30px;padding-top:16px}
-.btn{display:inline-block;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:700;padding:12px 18px;margin-top:8px}
-@media(max-width:760px){.page{margin:0;padding:28px 18px}.meta,.actions{grid-template-columns:1fr}h1{font-size:1.65rem}}
-@media print{body{background:#fff}.page{box-shadow:none;margin:0;max-width:none}.btn{display:none}}
+.howto{background:#FFF8E8;border-left:4px solid var(--gold);padding:14px 16px;margin:16px 0}
+.howto b{display:block;margin-bottom:3px}
+.profile{background:#fff;border:1px solid var(--rule);padding:14px 16px;margin:16px 0;font-size:.93rem}
+.profile b{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#6B6250;margin-bottom:4px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.box{border:1px solid var(--rule);padding:13px 15px;background:#fff}
+.box b{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:#6B6250;margin-bottom:3px}
+.box .v{font-family:var(--font-mono);font-size:1.25rem;font-weight:600}
+.red{color:var(--risk);font-weight:700}.green{color:var(--safe);font-weight:700}.warn{color:var(--warn);font-weight:700}
+.tscroll{overflow-x:auto;margin:12px 0 20px}
+table{width:100%;border-collapse:collapse;background:#fff;min-width:420px}
+th,td{border:1px solid var(--rule);padding:9px 10px;text-align:left;vertical-align:top;font-size:.9rem}
+th{background:#EFE7D8;font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}
+td.n,th.n{text-align:right;font-family:var(--font-mono)}
+tr.tot td{font-weight:700;background:#FBF7EF}
+.assume{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--navy);padding:14px 16px;margin:14px 0;font-size:.9rem}
+.assume ul{margin:8px 0 0 18px}
+.assume li{margin-bottom:5px}
+.dish{background:#fff;border:1px solid var(--rule);padding:0;margin:14px 0}
+.dish .h{background:#16283D;color:#fff;padding:10px 15px;font-weight:600;font-size:.92rem}
+.dish .b{padding:15px}
+.dishgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px}
+.dishgrid div{border:1px solid var(--rule);padding:9px 10px}
+.dishgrid b{display:block;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#6B6250}
+.dishgrid span{font-family:var(--font-mono);font-weight:600;font-size:.98rem}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:12px}
+.action{border-left:4px solid var(--gold);background:#fff;padding:13px 15px}
+.action .amt{font-family:var(--font-mono);font-weight:700;color:var(--navy);display:block;margin-bottom:5px}
+.recon{background:#16283D;color:#fff;padding:17px 19px;margin:18px 0}
+.recon b{color:var(--gold)}
+.payback{border:2px solid var(--gold);background:#fff;padding:17px 19px;margin:18px 0}
+.payback .big{font-family:var(--font-mono);font-size:1.35rem;font-weight:700;display:block;margin-bottom:5px}
+.where{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0}
+.where div{border:1px solid var(--rule);background:#fff;padding:12px 14px;font-size:.85rem}
+.where b{display:block;font-family:var(--font-mono);font-size:.98rem;margin-bottom:3px}
+.where .me{border:2px solid var(--gold)}
+.cta{background:var(--ink);color:var(--paper);padding:22px;margin:26px 0 8px;text-align:center}
+.cta h3{font-family:var(--font-display);font-size:1.2rem;margin-bottom:6px;color:#fff}
+.cta p{color:#C6D2DD;font-size:.9rem;max-width:52ch;margin:0 auto 14px}
+.btn{display:inline-block;background:var(--gold);color:var(--ink);text-decoration:none;font-weight:700;padding:13px 22px;border-radius:3px;font-size:1rem}
+.btn.line{background:transparent;color:var(--paper);border:1px solid var(--gold);margin-left:8px}
+.btnrow{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.printbtn{display:inline-block;background:transparent;border:1px solid var(--rule);color:var(--ink);text-decoration:none;padding:9px 15px;font-size:.85rem;border-radius:3px}
+.legal{font-size:.78rem;color:#6B6250;border-top:1px solid var(--rule);margin-top:26px;padding-top:15px}
+.sitefoot{background:var(--ink);color:#9FB0C2;padding:26px 0 40px;font-size:.8rem}
+.sitefoot .in{width:min(900px,calc(100% - 32px));margin:0 auto}
+.sitefoot a{color:#C6D2DD}
+@media(max-width:760px){
+  .page{padding:24px 16px;margin:14px auto}
+  .meta,.actions,.where,.dishgrid{grid-template-columns:1fr}
+  .letterhead .ref{text-align:left}
+}
+@media print{
+  body{background:#fff}
+  .sitenav,.sitefoot,.cta,.printbtn,.skip{display:none!important}
+  .page{box-shadow:none;margin:0;padding:0;width:100%;max-width:none}
+  .letterhead{page-break-after:avoid}
+  h2{page-break-after:avoid}
+  table,.dish,.action,.payback,.recon{page-break-inside:avoid}
+  a[href^="http"]::after{content:" (" attr(href) ")";font-size:.7em;color:#666}
+  @page{margin:16mm}
+}
 </style>
 </head>
 <body>
-<main class="page">
-  <div class="top">
-    <div class="eyebrow">Redacted sample - illustrative structure</div>
-    <h1>48-Hour Profit Triage Report</h1>
-    <p><strong>Client:</strong> Sample Restaurant Ltd &nbsp; <strong>Month reviewed:</strong> Redacted &nbsp; <strong>Prepared by:</strong> The Food Economist - MyProfit</p>
-    <p>This sample shows the format and level of practical output. It is not a live client testimonial and should not be read as advice for your business.</p>
-    <a class="btn" href="javascript:window.print()">Print or save as PDF</a>
+<a class="skip" href="#report">Skip to the report</a>
+
+<nav class="sitenav">
+  <div class="in">
+    <a class="brand" href="/"><img src="/assets/the-food-economist-logo.svg" alt="The Food Economist"><span>MyProfit</span></a>
+    <a class="lk" href="/verdict.html">Run the free Profit Check</a>
+  </div>
+</nav>
+
+<main class="page" id="report">
+
+  <div class="letterhead">
+    <div class="who">
+      <b>The Food Economist · MyProfit</b>
+      <span>Godfred Frimpong · Trade &amp; Food Economist, MSc</span>
+    </div>
+    <div class="ref">
+      REF MP/SAMPLE/2026-08<br>
+      Issued 11 August 2026<br>
+      Worked example — not a client report
+    </div>
+  </div>
+
+  <div class="eyebrow">Worked example · illustrative</div>
+  <h1>48-Hour Profit Triage Report</h1>
+  <a class="printbtn" href="javascript:window.print()">Print or save as PDF</a>
+
+  <div class="howto">
+    <b>How to read this</b>
+    This is the structure and depth of the written report you receive for £95 + VAT. The business is invented,
+    but every figure below reconciles: the assumptions are stated, the arithmetic follows from them, and the
+    actions are costed against the gap they are meant to close. Read section 3 first if you only read one.
+  </div>
+
+  <div class="profile">
+    <b>The business in this example</b>
+    62-cover independent bistro in a market town. Six days a week, lunch and dinner. Around £38,000 a month
+    excluding VAT. No delivery platforms. Owner works in the kitchen and takes a modest wage through payroll.
   </div>
 
   <section class="meta">
-    <div class="box"><b>Current monthly revenue</b>£38,000</div>
-    <div class="box"><b>Current net result</b>£1,140 profit</div>
-    <div class="box"><b>Worked-example scenario result</b><span class="red">£860 loss</span></div>
+    <div class="box"><b>Monthly sales</b><span class="v">£38,000</span></div>
+    <div class="box"><b>Net result now</b><span class="v green">+£1,140</span>3.0% of sales</div>
+    <div class="box"><b>Under the stated scenario</b><span class="v red">−£885</span>−2.3% of sales</div>
   </section>
 
   <h2>1. Verdict</h2>
-  <p>The business is not failing because sales are too low. It is failing because prime cost has moved faster than price, and the busiest menu lines no longer carry enough gross margin to absorb labour and energy.</p>
-  <p class="red">Risk band: RED - profit becomes loss under the planning assumptions selected for this worked example.</p>
+  <p>This business is not failing because sales are too low. It is failing because prime cost has moved faster
+  than menu price, and the busiest dishes no longer carry enough gross margin to absorb labour and energy.</p>
+  <p class="red">Risk band: RED — profit becomes loss under the planning assumptions set out in section 3.</p>
 
-  <h2>2. Margin Snapshot</h2>
+  <h2>2. Margin snapshot</h2>
+  <div class="tscroll">
   <table>
-    <tr><th>Line</th><th>Current month</th><th>Stress view</th><th>Comment</th></tr>
-    <tr><td>Food and drink suppliers</td><td>35.8% of revenue</td><td>39.0%</td><td>Above the workable band for the menu style.</td></tr>
-    <tr><td>Labour</td><td>34.2% of revenue</td><td>35.6%</td><td>Quiet weekday shifts are carrying too many paid hours.</td></tr>
-    <tr><td>Energy and utilities</td><td>4.7% of revenue</td><td>5.4%</td><td>Likely out-of-contract or no shutdown discipline.</td></tr>
-    <tr><td>Net result</td><td class="green">+3.0%</td><td class="red">-2.3%</td><td>The business crosses below break-even under the stress case.</td></tr>
+    <thead><tr><th>Line</th><th class="n">Now</th><th class="n">% of sales</th><th class="n">Scenario</th><th>Comment</th></tr></thead>
+    <tbody>
+      <tr><td>Food and drink suppliers</td><td class="n">£13,604</td><td class="n">35.8%</td><td class="n">39.0%</td><td>Above the workable band for this menu style.</td></tr>
+      <tr><td>Payroll, including owner pay</td><td class="n">£12,996</td><td class="n">34.2%</td><td class="n">35.6%</td><td>Quiet weekday shifts carry too many paid hours.</td></tr>
+      <tr class="tot"><td>Prime cost</td><td class="n">£26,600</td><td class="n">70.0%</td><td class="n">74.6%</td><td>The number that decides whether anything is left.</td></tr>
+      <tr><td>Energy and utilities</td><td class="n">£1,786</td><td class="n">4.7%</td><td class="n">5.4%</td><td>Consistent with an out-of-term contract.</td></tr>
+      <tr><td>Rent, rates and all other costs</td><td class="n">£8,474</td><td class="n">22.3%</td><td class="n">22.3%</td><td>Held flat in this scenario.</td></tr>
+      <tr class="tot"><td>Net result</td><td class="n green">+£1,140</td><td class="n green">3.0%</td><td class="n red">−2.3%</td><td>Crosses below break-even.</td></tr>
+    </tbody>
   </table>
+  </div>
 
-  <h2>3. First Three Fixes</h2>
+  <h2>3. The scenario, and exactly what it assumes</h2>
+  <p>A stress case is only useful if you can see inside it. These are the three movements applied above, and
+  nothing else changes:</p>
+  <div class="assume">
+    <ul>
+      <li><b>Suppliers +9%.</b> A planning assumption chosen for this example. In a live report this comes from
+      your own invoice history, line by line, not from a sector average.</li>
+      <li><b>Payroll +4.1%.</b> The National Living Wage rose to £12.71 an hour from April 2026 for workers aged
+      21 and over, an increase of 4.1%. This is a published, dated change, applied here to the whole payroll cost.</li>
+      <li><b>Energy +15%.</b> A renewal assumption chosen for this example. In a live report this comes from your
+      actual contract end date and current quoted rates.</li>
+    </ul>
+  </div>
+  <p>Those three movements add <strong>£2,025 a month</strong> of cost. That is the whole of the swing from
+  +£1,140 to −£885. Rent, rates and every other line are held flat, so nothing is hidden in a residual.</p>
+
+  <h2>4. What it would take to stand still</h2>
+  <p>To absorb £2,025 a month without changing a single cost, this business would need
+  <strong>+5.3% across the menu</strong>, and would need covers to hold at the higher prices. That is the real
+  size of the problem, stated as the one number an owner can act on.</p>
+
+  <h2>5. Where the margin actually goes — one dish, costed</h2>
+  <p>Generic advice is easy. The reason the written report is worth commissioning is that it names the line and
+  shows the arithmetic. This is one dish from the example menu, redacted for identity only:</p>
+  <div class="dish">
+    <div class="h">Dish 3 — name redacted · 210 covers a month</div>
+    <div class="b">
+      <div class="dishgrid">
+        <div><b>Plate cost</b><span>£4.85</span></div>
+        <div><b>Sell price</b><span>£11.50</span></div>
+        <div><b>Gross margin</b><span class="warn">57.8%</span></div>
+        <div><b>Band for this style</b><span>68.0%</span></div>
+      </div>
+      <p style="margin-bottom:8px"><strong>Correction modelled:</strong> +£1.60, taking the dish to £13.10.
+      Gross margin moves 57.8% → 63.0%. On 210 covers that is <strong>£336 a month</strong> from one line.</p>
+      <p style="margin-bottom:0;font-size:.88rem;color:#5C5546">It does not go to the full 68% band in one move,
+      deliberately. Whether covers hold at £13.10 is a judgement for the operator who knows the room, and the
+      report says so rather than assuming it. What the report gives you is the price, the resulting margin and
+      the monthly value, so the judgement is an informed one.</p>
+    </div>
+  </div>
+
+  <h2>6. The first three actions, ranked</h2>
   <div class="actions">
-    <div class="action"><h3>1. Reprice two high-volume dishes</h3><p>Target impact: £420-£680/month. Do not raise the whole menu; protect covers by correcting the dishes doing the most damage.</p></div>
-    <div class="action"><h3>2. Cut one low-yield labour block</h3><p>Target impact: £300-£500/month. The Tuesday/Wednesday prep and close pattern is heavier than the revenue can carry.</p></div>
-    <div class="action"><h3>3. Challenge supplier line drift</h3><p>Target impact: £180-£350/month. Three regular lines have moved faster than the menu price since the last review.</p></div>
+    <div class="action"><h3>1. Reprice two high-volume dishes</h3><span class="amt">£420 – £680 / month</span>
+      <p style="margin:0;font-size:.88rem">Correct the dishes doing the most damage, as costed in section 5. Do not raise the whole menu.</p></div>
+    <div class="action"><h3>2. Cut one low-yield labour block</h3><span class="amt">£300 – £500 / month</span>
+      <p style="margin:0;font-size:.88rem">The Tuesday and Wednesday prep-and-close pattern is heavier than those days' revenue can carry.</p></div>
+    <div class="action"><h3>3. Challenge supplier line drift</h3><span class="amt">£180 – £350 / month</span>
+      <p style="margin:0;font-size:.88rem">Three regular lines have moved faster than menu price since the last review.</p></div>
   </div>
 
-  <h2>4. What To Send For The Full Diagnostic</h2>
-  <p>For the £395 + VAT Menu &amp; Margin Diagnostic, send the current menu, last four supplier invoices, a typical wage summary, and one month of takings split by day if available. Screenshots are acceptable.</p>
-
-  <div class="note">
-    <strong>Paid trial framing:</strong> The £95 + VAT triage is credited in full against the £395 + VAT Diagnostic within 30 days. If you proceed, this first written read-out becomes the starting brief rather than wasted spend.
+  <div class="recon">
+    <p style="margin-bottom:8px"><b>These three actions target £900 – £1,530 a month against a £2,025 swing.</b></p>
+    <p style="margin-bottom:0">They do not close the whole gap, and the report says so rather than implying
+    otherwise. Closing the remainder means costing the menu dish by dish and rebuilding the rota against the
+    trading pattern. That is the £395 + VAT Menu &amp; Margin Diagnostic, and your £95 is credited in full
+    against it within 30 days.</p>
   </div>
 
-  <p class="footer">MyProfit reports are independent economic analysis, not statutory filing, public-practice services, legal, tax or investment advice. Service prices are exclusive of VAT unless a consumer-facing offer states otherwise. VAT registration: 508927172. ICO registration: ZC112776. This sample is illustrative and redacted for public viewing.</p>
+  <h2>7. What the report costs against what it targets</h2>
+  <div class="payback">
+    <span class="big">£95 + VAT, once. £900 – £1,530 a month identified.</span>
+    <p style="margin-bottom:6px">In this worked example the three actions target £10,800 – £18,360 over a year
+    if they are implemented and hold.</p>
+    <p style="margin-bottom:0;font-size:.88rem;color:#5C5546">Stated as arithmetic from this example, not as a
+    promise about your business. What a report finds depends entirely on what your figures show, and some
+    businesses are told their costs are already tight.</p>
+  </div>
+
+  <h2>8. Where this sits</h2>
+  <div class="where">
+    <div><b>~£129/month</b>Costing software, per site. Powerful once every invoice and recipe is loaded. Weeks of setup.</div>
+    <div class="me"><b>£95 + VAT once</b>This written report. Rough figures in, 48 hours, no setup, no subscription.</div>
+    <div><b>~£2,000</b>A typical menu-engineering consultancy project.</div>
+  </div>
+
+  <h2>9. What to send</h2>
+  <p>For the £95 + VAT Triage: rough monthly sales, supplier spend, payroll and your standing costs. Screenshots,
+  a bank app export or a scribbled list are all workable.</p>
+  <p>For the £395 + VAT Diagnostic: the current menu, your last four supplier invoices, a typical wage summary,
+  and one month of takings split by day if you have it.</p>
+
+  <div class="cta">
+    <h3>Commission the 48-Hour Profit Triage</h3>
+    <p>Written report within 48 hours of your figures arriving. Credited in full against the £395 + VAT
+    Diagnostic within 30 days.</p>
+    <div class="btnrow">
+      <a class="btn" id="buy" href="#" rel="noopener">Commission the Triage — £95 + VAT</a>
+      <a class="btn line" href="/verdict.html">Run the free Profit Check first</a>
+    </div>
+  </div>
+
+  <p class="legal">This is a worked example prepared to show the structure and depth of the written report. The
+  business, its figures and its menu are invented. It is not a client result, not a testimonial, and not advice
+  for your business. MyProfit reports are independent economic and cost analysis: not statutory filing, public
+  practice services, assurance work, legal, tax or regulated financial advice. Figures given as ranges are
+  estimates of order of magnitude, not guarantees of recovery, and no saving or outcome is promised. All prices
+  exclude VAT; VAT is charged at the prevailing UK rate and shown on your invoice. VAT registration:
+  <span data-vat></span>. ICO registration: <span data-ico></span>.</p>
 </main>
+
+<footer class="sitefoot">
+  <div class="in">
+    <p style="margin-bottom:8px"><strong style="color:var(--paper)">MyProfit — The Food Economist</strong><br>
+    Godfred Frimpong · Trade &amp; Food Economist, MSc · <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a> · 07939 823988</p>
+    <p><a href="/">MyProfit home</a> · <a href="/verdict.html">Free Restaurant Profit Check</a> · <a href="/privacy.html">Privacy notice</a> · <a href="/terms.html">Service terms</a></p>
+  </div>
+</footer>
+
+<script>
+/* ===== CONFIG — owner edits ONLY this block ===== */
+const CONFIG = {
+  stripeTriage: 'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
+  vatNumber: '508927172',
+  icoNumber: 'ZC112776'
+};
+document.getElementById('buy').href = CONFIG.stripeTriage;
+document.querySelectorAll('[data-vat]').forEach(function(el){ el.textContent = CONFIG.vatNumber; });
+document.querySelectorAll('[data-ico]').forEach(function(el){ el.textContent = CONFIG.icoNumber; });
+</script>
 </body>
 </html>
