@@ -46,8 +46,42 @@ jobs:
             u609349519@145.14.153.34 \
             'tar -xzf - -C /home/u609349519/domains/thefoodeconomist.co.uk/public_html'
 
+      - name: Upload root umbrella site
+        run: |
+          tar -czf - -C root . | \
+          ssh -i ~/.ssh/id_ed25519 -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            u609349519@145.14.153.34 \
+            'tar -xzf - -C /home/u609349519/domains/thefoodeconomist.co.uk/public_html'
+
+      - name: Retire the temporary root redirect
+        run: |
+          ssh -i ~/.ssh/id_ed25519 -p 65002 -o BatchMode=yes -o StrictHostKeyChecking=yes \
+            u609349519@145.14.153.34 \
+            'cd /home/u609349519/domains/thefoodeconomist.co.uk/public_html
+             if [ -f .htaccess ]; then
+               cp -n .htaccess .htaccess.bak-pre-umbrella 2>/dev/null || true
+               echo "----- .htaccess BEFORE -----"; cat .htaccess
+               grep -vE "RedirectMatch[[:space:]]+302.*epr\.thefoodeconomist\.co\.uk" .htaccess > .htaccess.new || true
+               if [ -s .htaccess.new ]; then mv .htaccess.new .htaccess; else rm -f .htaccess.new; fi
+               echo "----- .htaccess AFTER -----"; cat .htaccess
+             else
+               echo "NOTE: no .htaccess at document root. If the root still redirects, the rule is set elsewhere (for example an hPanel redirect)."
+             fi'
+
+      - name: Verify the root domain serves the umbrella page
+        run: |
+          code=$(curl -s -o /tmp/root.html -w '%{http_code}' -L --max-time 30 https://thefoodeconomist.co.uk/)
+          final=$(curl -s -o /dev/null -w '%{url_effective}' -L --max-time 30 https://thefoodeconomist.co.uk/)
+          echo "HTTP $code, landed on $final"
+          if grep -q "Which of these is you" /tmp/root.html; then
+            echo "RESULT: root is serving the umbrella page."
+          else
+            echo "RESULT: root is NOT serving the umbrella page yet. Files uploaded; the redirect is still in force and must be cleared where it is configured."
+          fi
+
       - name: Write deployment summary
         run: |
           echo "## Hostinger deployment" >> "$GITHUB_STEP_SUMMARY"
-          echo "Updated Git-managed EPR and MyProfit files over SSH." >> "$GITHUB_STEP_SUMMARY"
+          echo "Updated Git-managed EPR, MyProfit and root files over SSH." >> "$GITHUB_STEP_SUMMARY"
           echo "Protected server configuration and booking data were excluded." >> "$GITHUB_STEP_SUMMARY"
+          echo "A backup of the original .htaccess was kept as .htaccess.bak-pre-umbrella." >> "$GITHUB_STEP_SUMMARY"
