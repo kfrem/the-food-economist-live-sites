@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Vitals Wheel | MyProfit — The Food Economist</title>
+<meta name="description" content="Pick your venue type and explore an illustrative cost profile against practical operating targets in sixty seconds.">
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#101F33; --navy:#1B3A5C; --gold:#C9A14E; --paper:#F7F4EE;
+  --rule:#D8CFBE; --risk:#A8432D; --safe:#3E7A52; --warn:#8A6A1F;
+  --font-display:'Playfair Display',Georgia,serif;
+  --font-body:'IBM Plex Sans',system-ui,-apple-system,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{width:min(720px,calc(100% - 28px));margin:0 auto}
+.eyebrow{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
+h1{font-family:var(--font-display);font-size:clamp(1.7rem,5.4vw,2.5rem);line-height:1.08;margin-bottom:10px}
+h2{font-family:var(--font-display);font-size:clamp(1.2rem,3.6vw,1.6rem);margin-bottom:8px}
+h3{font-family:var(--font-display);font-size:1.05rem;margin-bottom:5px}
+.sub{color:#6B6250;font-size:.9rem;max-width:60ch}
+header{background:var(--ink);color:#fff;padding:26px 0 22px}
+header .sub{color:#C9C3B6}
+main{padding:20px 0 40px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:20px;margin:16px 0}
+.card.dark{background:var(--ink);color:#fff;border-color:var(--navy)}
+.card.dark .sub{color:#C9C3B6}
+button{font:inherit;cursor:pointer}
+.btn{display:inline-block;text-align:center;border:0;border-radius:4px;padding:14px 18px;font-weight:600;text-decoration:none;min-height:48px;font-size:1rem}
+.btn-gold{background:var(--gold);color:#2A2113}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--rule)}
+.btn-block{display:block;width:100%}
+/* sector pills */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.pill{border:1.5px solid var(--rule);background:#fff;border-radius:999px;padding:11px 15px;font-size:.9rem;font-weight:500;min-height:44px;color:var(--ink)}
+.pill[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* takings input */
+.takings{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.takings label{font-size:.88rem;font-weight:600}
+.money{display:flex;align-items:center;border:1.5px solid var(--rule);border-radius:4px;background:#fff;overflow:hidden}
+.money span{padding:0 10px;color:#6B6250;font-family:var(--font-mono)}
+.money input{border:0;outline:0;padding:12px 12px 12px 0;font:600 1.05rem var(--font-mono);width:130px;background:transparent;color:var(--ink)}
+/* wheel */
+.wheelwrap{display:flex;justify-content:center;margin:6px 0 2px}
+svg.wheel{width:min(340px,92vw);height:auto;display:block}
+svg.wheel .seg{cursor:pointer;transition:opacity .15s}
+svg.wheel .seg:hover,svg.wheel .seg:focus{opacity:.82}
+svg.wheel text{font-family:var(--font-body)}
+.legend{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font-size:.76rem;color:#6B6250;margin-top:4px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+/* headline */
+.headline{text-align:center;margin:18px 0 4px}
+.headline .big{font-family:var(--font-mono);font-weight:600;font-size:clamp(2.1rem,9vw,3rem);line-height:1;color:var(--risk)}
+.headline .lede{font-size:.98rem;margin-top:8px;color:#4A4436}
+.headline .ann{font-family:var(--font-mono);font-size:1rem;margin-top:4px}
+.capnote{background:#FFF8E8;border-left:3px solid var(--gold);padding:10px 13px;font-size:.82rem;margin:14px 0;border-radius:0 3px 3px 0}
+/* spoke list */
+.spokes{list-style:none;margin-top:12px}
+.spokes li{border-top:1px solid var(--rule)}
+.spokes button{display:flex;width:100%;align-items:center;gap:11px;background:none;border:0;padding:13px 2px;text-align:left;min-height:48px;color:var(--ink)}
+.dot{width:11px;height:11px;border-radius:2px;flex:none}
+.spname{flex:1;font-weight:500}
+.spval{font-family:var(--font-mono);font-weight:600;white-space:nowrap}
+.arrow{color:#9A9285;flex:none}
+/* priorities */
+.pri{border-left:4px solid var(--gold);padding:2px 0 2px 15px;margin:15px 0}
+.pri h3{margin-bottom:3px}
+.pri .amt{font-family:var(--font-mono);font-weight:600;color:var(--risk)}
+.pri p{font-size:.92rem;color:#4A4436;margin-top:4px}
+/* bench */
+.bench{background:var(--navy);color:#fff;border-radius:4px;padding:17px;margin:16px 0}
+.bench .q{font-family:var(--font-display);font-size:1.08rem;line-height:1.35}
+.bench .note{font-size:.78rem;color:#BFD0E0;margin-top:9px}
+/* sliders */
+.srow{margin:15px 0}
+.srow .lab{display:flex;justify-content:space-between;font-size:.9rem;font-weight:500;margin-bottom:6px;gap:10px}
+.srow .lab b{font-family:var(--font-mono)}
+input[type=range]{width:100%;height:40px;accent-color:var(--navy);background:transparent}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.compare div{border:1px solid var(--rule);border-radius:4px;padding:12px;text-align:center;background:#fff}
+.compare .k{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#6B6250}
+.compare .v{font-family:var(--font-mono);font-weight:600;font-size:1.2rem;margin-top:4px}
+.saveline{text-align:center;font-family:var(--font-mono);font-weight:600;font-size:1.35rem;margin-top:14px;color:var(--safe)}
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(16,31,51,.62);display:none;align-items:flex-end;justify-content:center;z-index:50;padding:0}
+.modal.open{display:flex}
+.sheet{background:var(--paper);width:min(560px,100%);max-height:88vh;overflow-y:auto;border-radius:10px 10px 0 0;padding:20px 20px 28px;-webkit-overflow-scrolling:touch}
+.sheet .close{float:right;background:none;border:0;font-size:1.6rem;line-height:1;color:#6B6250;padding:0 4px;min-height:44px;min-width:44px}
+table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:10px}
+th,td{text-align:left;padding:8px 4px;border-bottom:1px solid var(--rule)}
+td.n,th.n{text-align:right;font-family:var(--font-mono);white-space:nowrap}
+.illus{background:#F2EFE7;border-radius:3px;padding:11px 13px;font-size:.8rem;color:#5C5546;margin-top:12px}
+.bars{margin:14px 0}
+.bar{display:flex;align-items:center;gap:9px;margin:7px 0;font-size:.85rem}
+.bar .t{width:58px;flex:none;color:#6B6250}
+.bar .track{flex:1;background:#EDE8DD;border-radius:2px;height:22px;overflow:hidden}
+.bar .fill{height:100%;border-radius:2px}
+.bar .v{width:66px;flex:none;text-align:right;font-family:var(--font-mono);font-weight:600}
+footer{background:var(--ink);color:#C9C3B6;padding:26px 0;font-size:.85rem}
+footer a{color:var(--gold)}
+.small{font-size:.8rem;color:#6B6250}
+@media(min-width:620px){.pill{font-size:.95rem}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="eyebrow">MyProfit · The Food Economist</span>
+    <h1>The Vitals Wheel</h1>
+    <p class="sub">Pick the kind of place you run. In sixty seconds, explore an illustrative cost profile against practical operating targets.</p>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <!-- 1. SECTOR -->
+  <section class="card" aria-labelledby="h-sector">
+    <h2 id="h-sector">What do you run?</h2>
+    <div class="pills" id="pills" role="group" aria-label="Venue type"></div>
+
+    <div class="takings">
+      <label for="rev">Your weekly takings</label>
+      <div class="money"><span>£</span><input id="rev" type="number" inputmode="numeric" min="0" step="250" aria-describedby="revhint"></div>
+    </div>
+    <p class="small" id="revhint" style="margin-top:8px">Change this and everything below recalculates. Nothing is sent anywhere — this stays on your phone.</p>
+  </section>
+
+  <!-- 2. WHEEL -->
+  <section class="card" aria-labelledby="h-wheel">
+    <h2 id="h-wheel">Your reading</h2>
+    <div class="wheelwrap"><svg class="wheel" viewBox="0 0 320 320" role="img" aria-labelledby="wheeldesc"><title id="wheeldesc">Vitals wheel showing cash and margin health with one segment per cost line</title><g id="wg"></g></svg></div>
+    <div class="legend">
+      <span><i style="background:var(--safe)"></i>On or under target</span>
+      <span><i style="background:var(--warn)"></i>Watch</span>
+      <span><i style="background:var(--risk)"></i>Bleeding</span>
+    </div>
+
+    <div class="headline">
+      <div class="big" id="hl">—</div>
+      <div class="lede">a month is leaving a business like this against its own targets</div>
+      <div class="ann" id="ann"></div>
+    </div>
+    <div class="capnote" id="cap" hidden></div>
+
+    <ul class="spokes" id="spokes"></ul>
+    <p class="small" style="margin-top:12px">Tap any line to see what sits underneath it.</p>
+  </section>
+
+  <!-- 3. PRIORITIES -->
+  <section class="card" aria-labelledby="h-pri">
+    <h2 id="h-pri">The three to deal with first</h2>
+    <div id="pri"></div>
+  </section>
+
+  <!-- 4. BENCHMARK -->
+  <section class="bench" aria-labelledby="h-bench">
+    <h3 id="h-bench" style="color:var(--gold);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px">What rough figures cannot tell you</h3>
+    <p class="q" id="benchq">—</p>
+    <p class="note">This wheel is an illustrative guide, not a market-price comparison. A written review uses your invoices, takings and operating data to establish what is actually happening in your business.</p>
+  </section>
+
+  <!-- 5. WHAT-IF -->
+  <section class="card" aria-labelledby="h-what">
+    <h2 id="h-what">What is the gap actually worth?</h2>
+    <p class="sub">Move each line towards its target and watch the year change.</p>
+    <div id="sliders"></div>
+    <div class="compare">
+      <div><div class="k">Now</div><div class="v" id="cnow">—</div></div>
+      <div><div class="k">At target</div><div class="v" id="ctar">—</div></div>
+    </div>
+    <div class="saveline" id="saveline">—</div>
+    <p class="small" style="text-align:center;margin-top:8px">Whether you close the gap depends on what you do on Monday.</p>
+    <button class="btn btn-line btn-block" id="reset" style="margin-top:14px">Reset</button>
+  </section>
+
+  <!-- 6. CTA -->
+  <section class="card dark" aria-labelledby="h-cta">
+    <h2 id="h-cta" style="color:#fff">This wheel is illustrative. The written review works from your invoices.</h2>
+    <p class="sub" style="margin:8px 0 14px">The 48-Hour Profit Triage reads what your business actually did — supplier invoices, takings, rota — and comes back in writing with the leak, the size of it, and what to do. £95 + VAT, credited in full against the £395 + VAT Menu &amp; Margin Diagnostic if you go further within 30 days.</p>
+    <a class="btn btn-gold btn-block" id="buy" href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" rel="noopener">Commission the Triage — £95 + VAT</a>
+    <a class="btn btn-line btn-block" id="wa" href="#" rel="noopener" style="margin-top:10px;color:#fff;border-color:#3B4E66">Ask a question on WhatsApp</a>
+    <p class="small" style="color:#9FB3C6;margin-top:12px">Prefer to see one first? <a href="/sample-report.html" style="color:var(--gold)">Read a worked example</a>, or run the fuller <a href="/verdict.html" style="color:var(--gold)">Restaurant Profit Check</a> with your own cost lines.</p>
+  </section>
+
+  <p class="small" style="text-align:center;margin-top:6px">Figures on this page are illustrative for a venue of the type and size you selected. They are not your business, and nothing you type here is stored or sent.</p>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>MyProfit · The Food Economist — independent food economics for UK operators.</p>
+    <p style="margin-top:6px">No compliance scheme, supplier, broker or software vendor pays us a commission.</p>
+    <p style="margin-top:10px"><a href="/">MyProfit home</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+  </div>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
+  <div class="sheet" id="sheet">
+    <button class="close" id="mclose" aria-label="Close">&times;</button>
+    <div id="mbody"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+"use strict";
+var WPM=4.333, CAP=0.08, WA="447939823988";
+
+var T={
+ cafe:{label:"Café",rev:5500,dl:0.10,dr:0.45,lines:[
+   ["food","Food and drink cost",30,26,"revenue"],["labour","Labour",36,31,"revenue"],
+   ["waste","Waste",9,4,"foodPurchases"],["delivery","Delivery commission",28,20,"deliverySales"],
+   ["energy","Energy",4.5,3.5,"revenue"]]},
+ fishchips:{label:"Fish &amp; chips",rev:7000,dl:0.25,dr:0.08,lines:[
+   ["food","Fish and potatoes",38,33,"revenue"],["labour","Labour",28,24,"revenue"],
+   ["delivery","Delivery commission",30,22,"deliverySales"],["energy","Energy (fryers)",6,4.5,"revenue"],
+   ["oil","Frying oil",3,2,"revenue"],["waste","Waste",7,4,"foodPurchases"]]},
+ pub:{label:"Pub / bar",rev:14000,dl:0.05,dr:0.62,lines:[
+   ["drinks","Drinks cost",34,28,"drinkSales"],["food","Food cost",33,29,"revenue"],
+   ["labour","Labour",30,26,"revenue"],["energy","Energy",5,4,"revenue"],
+   ["waste","Wastage and spillage",8,4,"drinkPurchases"]]},
+ takeaway:{label:"Takeaway",rev:6500,dl:0.55,dr:0.10,lines:[
+   ["food","Food cost",34,29,"revenue"],["delivery","Delivery commission",31,22,"deliverySales"],
+   ["labour","Labour",24,20,"revenue"],["packaging","Packaging",4,2.8,"revenue"],
+   ["energy","Energy",5,4,"revenue"]]},
+ pizzeria:{label:"Pizzeria",rev:9000,dl:0.40,dr:0.15,lines:[
+   ["food","Food cost",30,26,"revenue"],["labour","Labour",31,27,"revenue"],
+   ["delivery","Delivery commission",30,22,"deliverySales"],["energy","Energy (ovens)",5,4,"revenue"],
+   ["waste","Waste",6,3,"foodPurchases"]]},
+ restaurant:{label:"Full restaurant",rev:12000,dl:0.15,dr:0.22,lines:[
+   ["food","Food cost",32,28,"revenue"],["labour","Labour",35,30,"revenue"],
+   ["drinks","Drinks cost",30,24,"drinkSales"],["delivery","Delivery commission",28,22,"deliverySales"],
+   ["waste","Waste",6,3,"foodPurchases"],["energy","Energy",4,3.2,"revenue"]]},
+ mixed:{label:"All-day / mixed",rev:10000,dl:0.20,dr:0.20,lines:[
+   ["food","Food cost",33,28,"revenue"],["labour","Labour",34,29,"revenue"],
+   ["delivery","Delivery commission",30,22,"deliverySales"],["drinks","Drinks cost",32,26,"drinkSales"],
+   ["waste","Waste",7,3,"foodPurchases"],["energy","Energy",4.5,3.5,"revenue"]]}
+};
+
+var ACT={
+ food:"Recount your top five ingredients this week and check the last three delivery notes against the prices on the invoices.",
+ labour:"Put rota hours next to takings by hour for the last seven days. The overlap is usually one shift.",
+ delivery:"Two in five delivery orders are repeat customers. An offer printed on the receipt moves them off commission.",
+ drinks:"Measure two bottles of your fastest spirit against expected yield. Over-pour is the usual answer.",
+ energy:"Check when the fryers and extraction come on against your first covers. Ninety minutes early, six days a week, is real money.",
+ waste:"Weigh the bin for three days. Whatever is in it, you bought it.",
+ oil:"Test oil life with a strip rather than by eye. Most sites change a cycle early.",
+ packaging:"Price a like-for-like container from two suppliers. This line moves quickly."
+};
+
+var SUB={
+ food:[["Meat and poultry",.34],["Fish",.20],["Vegetables and salad",.16],["Dry goods",.18],["Dairy",.12]],
+ labour:[["Kitchen",.44],["Front of house",.36],["Agency cover",.11],["Owner hours",.09]],
+ delivery:[["Platform A commission",.52],["Platform B commission",.31],["Refunds and adjustments",.17]],
+ drinks:[["Draught",.38],["Spirits",.27],["Wine",.22],["Soft drinks",.13]],
+ energy:[["Electricity",.62],["Gas",.29],["Standing charges",.09]],
+ waste:[["Prep waste",.41],["Spoilage",.34],["Plate waste",.25]],
+ oil:[["Oil purchases",.78],["Collection",.22]],
+ packaging:[["Containers",.58],["Bags and cutlery",.26],["Labels",.16]]
+};
+
+var key="restaurant", rev=T.restaurant.rev, adj={}, lastFocus=null;
+var $=function(s){return document.querySelector(s)};
+
+function fmt(n){n=Math.round(n);return "£"+n.toLocaleString("en-GB")}
+function round(n){return n<1000?Math.round(n/10)*10:Math.round(n/50)*50}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+function calc(){
+ var t=T[key], r=(isFinite(rev)&&rev>0)?rev:0;
+ var foodPct=0, drinksPct=0;
+ t.lines.forEach(function(l){ if(l[0]==="food")foodPct=cur(l); if(l[0]==="drinks")drinksPct=cur(l); });
+ var base={revenue:r, deliverySales:r*t.dl, drinkSales:r*t.dr,
+           foodPurchases:r*foodPct/100, drinkPurchases:r*t.dr*drinksPct/100};
+ var out=[], ta=0, tt=0, leak=0;
+ t.lines.forEach(function(l){
+   var b=base[l[4]]||0, a=cur(l), tg=l[3];
+   var av=b*a/100, tv=b*tg/100, v=av-tv;
+   ta+=av; tt+=tv; if(v>0)leak+=v;
+   var st = b<=0 ? "grey" : (v<=0 ? "good" : ((a-tg)/tg<=0.15 ? "warn" : "bad"));
+   out.push({k:l[0],label:l[1],act:a,tar:tg,basis:b,av:av,tv:tv,wk:v,mo:v*WPM,st:st});
+ });
+ var lungs = (r-tt)>0 ? Math.max(0,Math.min(100,(r-ta)/(r-tt)*100)) : 0;
+ var heart = r>0 ? Math.max(15,Math.min(100,100-(leak/r*100)*3)) : 100;
+ var raw=0; out.forEach(function(o){if(o.mo>0)raw+=o.mo});
+ var cap=r*WPM*CAP, disp=Math.min(raw,cap);
+ return {lines:out,lungs:lungs,heart:heart,raw:raw,cap:cap,disp:disp,capped:raw>cap,rev:r,ta:ta,tt:tt};
+}
+function cur(l){ var a=adj[l[0]]; return (a===undefined||a===null)?l[2]:a }
+
+/* ---- wheel geometry ---- */
+function sector(cx,cy,r1,r2,a1,a2){
+ var p=function(r,a){a=(a-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]};
+ var big=(a2-a1)>180?1:0;
+ var A=p(r2,a1),B=p(r2,a2),C=p(r1,a2),D=p(r1,a1);
+ return "M"+A[0].toFixed(2)+","+A[1].toFixed(2)+
+        "A"+r2+","+r2+" 0 "+big+" 1 "+B[0].toFixed(2)+","+B[1].toFixed(2)+
+        "L"+C[0].toFixed(2)+","+C[1].toFixed(2)+
+        "A"+r1+","+r1+" 0 "+big+" 0 "+D[0].toFixed(2)+","+D[1].toFixed(2)+"Z";
+}
+var COL={good:"#3E7A52",warn:"#8A6A1F",bad:"#A8432D",grey:"#B4AC9C"};
+
+function drawWheel(d){
+ var g=$("#wg"), s="", n=d.lines.length, gap=2.4, step=360/n;
+ d.lines.forEach(function(o,i){
+   var a1=i*step+gap/2, a2=(i+1)*step-gap/2, mid=(a1+a2)/2;
+   s+='<path class="seg" d="'+sector(160,160,98,148,a1,a2)+'" fill="'+COL[o.st]+'" '+
+      'tabindex="0" role="button" data-k="'+o.k+'" aria-label="'+esc(o.label)+', '+
+      (o.wk>0?fmt(o.mo)+' a month over target':'on target')+'"><title>'+esc(o.label)+'</title></path>';
+   var rad=(mid-90)*Math.PI/180, lx=160+123*Math.cos(rad), ly=160+123*Math.sin(rad);
+   var short=o.label.length>13?o.label.slice(0,12)+"…":o.label;
+   s+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" '+
+      'font-size="8.5" font-weight="600" fill="#fff" pointer-events="none">'+esc(short)+'</text>';
+ });
+ // lungs ring
+ s+='<circle cx="160" cy="160" r="85" fill="none" stroke="#E4DED1" stroke-width="13"/>';
+ var c=2*Math.PI*85, f=c*d.lungs/100;
+ s+='<circle cx="160" cy="160" r="85" fill="none" stroke="'+(d.lungs>=70?COL.good:d.lungs>=45?COL.warn:COL.bad)+
+    '" stroke-width="13" stroke-linecap="round" stroke-dasharray="'+f.toFixed(1)+' '+(c-f).toFixed(1)+
+    '" transform="rotate(-90 160 160)"/>';
+ // heart
+ s+='<circle cx="160" cy="160" r="74" fill="#fff" stroke="'+COL.grey+'" stroke-width="1"/>';
+ s+='<text x="160" y="140" text-anchor="middle" font-size="8" letter-spacing="1.6" fill="#6B6250">HEART</text>';
+ s+='<text x="160" y="166" text-anchor="middle" font-size="30" font-weight="600" font-family="IBM Plex Mono,monospace" fill="#101F33">'+Math.round(d.heart)+'%</text>';
+ s+='<text x="160" y="184" text-anchor="middle" font-size="8.5" fill="#6B6250">Lungs '+Math.round(d.lungs)+'%</text>';
+ g.innerHTML=s;
+ Array.prototype.forEach.call(g.querySelectorAll(".seg"),function(el){
+   el.addEventListener("click",function(){openLine(el.getAttribute("data-k"))});
+   el.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();openLine(el.getAttribute("data-k"))}});
+ });
+}
+
+function heartWord(h){return h>=70?"Cash position stable":h>=50?"Cash tight — watch the next two weeks":"Cash pressure building — act this week"}
+
+function render(){
+ var d=calc();
+ drawWheel(d);
+ $("#hl").textContent=fmt(round(d.disp));
+ $("#ann").textContent=fmt(round(d.disp)*12)+" a year · "+heartWord(d.heart);
+ var cap=$("#cap");
+ if(d.capped){cap.hidden=false;cap.textContent="Held at a deliberately conservative 8% of turnover. On these inputs the full figure is "+fmt(round(d.raw))+" a month.";}
+ else cap.hidden=true;
+
+ var ul=$("#spokes"), s="";
+ d.lines.slice().sort(function(a,b){return b.mo-a.mo}).forEach(function(o){
+   s+='<li><button data-k="'+o.k+'"><span class="dot" style="background:'+COL[o.st]+'"></span>'+
+      '<span class="spname">'+esc(o.label)+'<br><span class="small">'+o.act.toFixed(1)+'% against a target of '+o.tar+'%</span></span>'+
+      '<span class="spval" style="color:'+(o.wk>0?"var(--risk)":"var(--safe)")+'">'+(o.wk>0?"+"+fmt(o.mo):"on target")+'</span>'+
+      '<span class="arrow">›</span></button></li>';
+ });
+ ul.innerHTML=s;
+ Array.prototype.forEach.call(ul.querySelectorAll("button"),function(b){
+   b.addEventListener("click",function(){openLine(b.getAttribute("data-k"))});
+ });
+
+ var top=d.lines.filter(function(o){return o.mo>0}).sort(function(a,b){return b.mo-a.mo}).slice(0,3), p="";
+ if(!top.length) p='<p class="sub">On these figures every line sits at or under target. Change the takings or a slider to see the effect of drift.</p>';
+ top.forEach(function(o,i){
+   p+='<div class="pri"><h3>'+(i+1)+'. '+esc(o.label)+' <span class="amt">+'+fmt(o.mo)+' a month</span></h3>'+
+      '<p class="small">Running at '+o.act.toFixed(1)+'% against a target of '+o.tar+'%.</p>'+
+      '<p>'+(ACT[o.k]||"")+'</p></div>';
+ });
+ $("#pri").innerHTML=p;
+
+ var worst=(top[0]||d.lines[0]);
+ $("#benchq").innerHTML='In this illustrative profile, <b>'+esc(worst.label)+'</b> is the first cost line to examine. The written review replaces these assumptions with your own figures and invoices.';
+
+ $("#cnow").textContent=fmt((d.rev-d.ta)*WPM);
+ $("#ctar").textContent=fmt((d.rev-d.tt)*WPM);
+ var gain=(d.ta-d.tt)*WPM;
+ $("#saveline").textContent=gain>0?fmt(round(gain))+" a month · "+fmt(round(gain)*12)+" a year":"At target";
+
+ var msg="Hello Godfred. I used the Vitals Wheel on the MyProfit site. I run a "+
+   T[key].label.replace("&amp;","and")+" taking about £"+(d.rev||0).toLocaleString("en-GB")+
+   " a week and it showed about "+fmt(round(d.disp))+" a month against target. Can we talk about the Triage?";
+ $("#wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+}
+
+function openLine(k){
+ var d=calc(), o=null;
+ d.lines.forEach(function(x){if(x.k===k)o=x});
+ if(!o)return;
+ var subs=SUB[k]||[["Not broken down",1]];
+ var rows="";
+ subs.forEach(function(r){rows+='<tr><td>'+esc(r[0])+'</td><td class="n">'+fmt(o.av*r[1])+'</td><td class="n">'+fmt(o.av*r[1]*WPM)+'</td></tr>'});
+ var maxv=Math.max(o.av,o.tv)||1;
+ $("#mbody").innerHTML=
+  '<h2 id="mtitle">'+esc(o.label)+'</h2>'+
+  '<p class="sub">Running at '+o.act.toFixed(1)+'% against a target of '+o.tar+'%.</p>'+
+  '<div class="bars">'+
+    '<div class="bar"><span class="t">Now</span><span class="track"><span class="fill" style="width:'+(o.av/maxv*100).toFixed(1)+'%;background:'+COL[o.st]+'"></span></span><span class="v">'+fmt(o.av)+'</span></div>'+
+    '<div class="bar"><span class="t">Target</span><span class="track"><span class="fill" style="width:'+(o.tv/maxv*100).toFixed(1)+'%;background:'+COL.good+'"></span></span><span class="v">'+fmt(o.tv)+'</span></div>'+
+  '</div>'+
+  (o.wk>0?'<p style="font-family:var(--font-mono);font-weight:600">'+fmt(o.wk)+' a week · '+fmt(o.mo)+' a month · '+fmt(o.mo*12)+' a year</p>':'<p class="small">This line is at or under target.</p>')+
+  '<p style="margin-top:12px">'+(ACT[k]||"")+'</p>'+
+  '<table><thead><tr><th>Underneath it</th><th class="n">Weekly</th><th class="n">Monthly</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+  '<p class="illus">Illustrative split for a venue of this type and size. With your invoices in front of us these become your actual lines, your actual suppliers and your actual prices.</p>'+
+  '<a class="btn btn-gold btn-block" href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" rel="noopener" style="margin-top:14px">Have this done properly — £95 + VAT</a>';
+ lastFocus=document.activeElement;
+ $("#modal").classList.add("open");
+ document.body.style.overflow="hidden";
+ $("#mclose").focus();
+}
+function closeModal(){
+ $("#modal").classList.remove("open");
+ document.body.style.overflow="";
+ if(lastFocus&&lastFocus.focus)lastFocus.focus();
+}
+
+function buildSliders(){
+ var t=T[key], s="";
+ t.lines.forEach(function(l){
+   var lo=Math.min(l[2],l[3]), hi=Math.max(l[2],l[3]);
+   s+='<div class="srow"><div class="lab"><label for="s_'+l[0]+'">'+l[1]+'</label><b><span id="v_'+l[0]+'">'+cur(l).toFixed(1)+'</span>% <span class="small">target '+l[3]+'%</span></b></div>'+
+      '<input id="s_'+l[0]+'" type="range" min="'+lo+'" max="'+hi+'" step="0.1" value="'+cur(l)+'" aria-label="'+esc(l[1])+' percentage"></div>';
+ });
+ $("#sliders").innerHTML=s;
+ t.lines.forEach(function(l){
+   var el=document.getElementById("s_"+l[0]);
+   el.addEventListener("input",function(){
+     adj[l[0]]=parseFloat(el.value);
+     document.getElementById("v_"+l[0]).textContent=parseFloat(el.value).toFixed(1);
+     render();
+   });
+ });
+}
+
+function setType(k){
+ key=k; adj={}; rev=T[k].rev;
+ $("#rev").value=rev;
+ Array.prototype.forEach.call($("#pills").children,function(b){
+   b.setAttribute("aria-pressed", b.getAttribute("data-k")===k ? "true":"false");
+ });
+ buildSliders(); render();
+}
+
+function init(){
+ var p="";
+ Object.keys(T).forEach(function(k){
+   p+='<button class="pill" type="button" data-k="'+k+'" aria-pressed="false">'+T[k].label+'</button>';
+ });
+ $("#pills").innerHTML=p;
+ Array.prototype.forEach.call($("#pills").children,function(b){
+   b.addEventListener("click",function(){setType(b.getAttribute("data-k"))});
+ });
+ $("#rev").addEventListener("input",function(){
+   var v=parseFloat($("#rev").value);
+   rev=(isFinite(v)&&v>=0)?v:0;
+   render();
+ });
+ $("#reset").addEventListener("click",function(){setType(key)});
+ $("#mclose").addEventListener("click",closeModal);
+ $("#modal").addEventListener("click",function(e){if(e.target===$("#modal"))closeModal()});
+ document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
+ setType("restaurant");
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+</body>
+</html>
