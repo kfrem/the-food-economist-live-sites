@@ -22,14 +22,14 @@ li{margin-bottom:8px;font-size:.95rem}
 <body>
 <main class="card">
   <h1>Payment received — your <span id="prodname">engagement</span> is open</h1>
-  <p>Thank you. Stripe has confirmed your payment. One step remains: send the figures so the desk can open the work.</p>
+  <p>Thank you. Stripe has confirmed your payment. Next: record how we will handle your files, then send the figures.</p>
   <ol>
-    <li>Open the intake form below.</li>
-    <li>Enter what you have — rough monthly figures, supplier invoices, screenshots and spreadsheets are all acceptable.</li>
+    <li>Sign the <a href="#" id="todpa">Data Protection Agreement</a> — this is how we record that your invoices and rotas will be handled under written rules.</li>
+    <li>Send your figures. Rough monthly totals, supplier invoices, screenshots and spreadsheets are all acceptable.</li>
     <li>The clock starts when your figures arrive: <strong id="turnaround">48 hours for the Triage, 7 working days for the Diagnostic</strong>.</li>
   </ol>
-  <a class="btn" id="tointake" href="intake.html">Send my figures now</a>
-  <p class="ref">Stripe sends the receipt to the valid email address entered at checkout. If anything looks wrong, email godfred@thefoodeconomist.co.uk. Your purchase is subject to the <a href="/terms.html">service terms</a>.</p>
+  <a class="btn" id="todpa2" href="dpa.html">Sign the data agreement</a>
+  <p class="ref">Stripe sends the receipt to the valid email address entered at checkout. If anything looks wrong, email godfred@thefoodeconomist.co.uk. Your purchase is subject to the <a href="/terms.html">service terms</a> and the <a href="/dpa.html">data protection agreement</a>.</p>
 </main>
 <script>
 // Stripe success URL should be /success.html?p=triage or ?p=diagnostic
@@ -38,7 +38,8 @@ document.getElementById('prodname').textContent =
   p === 'diagnostic' ? 'Menu & Margin Diagnostic' : '48-Hour Profit Triage Report';
 document.getElementById('turnaround').textContent =
   p === 'diagnostic' ? '7 working days for the Diagnostic' : '48 hours for the Triage Report';
-document.getElementById('tointake').href = 'intake.html?p=' + p;
+document.getElementById('todpa').href = 'dpa.html?next=intake&p=' + p;
+document.getElementById('todpa2').href = 'dpa.html?next=intake&p=' + p;
 </script>
 </body>
 </html>

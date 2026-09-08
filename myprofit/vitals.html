@@ -3,9 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Vitals Wheel | MyProfit — The Food Economist</title>
-<meta name="description" content="Pick your venue type and explore an illustrative cost profile against practical operating targets in sixty seconds.">
-<meta name="robots" content="noindex,follow">
+<title>The Vitals Wheel — see the leak, then have it done properly | MyProfit</title>
+<meta name="description" content="Pick the kind of place you run. In sixty seconds see the cost profile of a real UK venue like yours, anonymised. Then find your own number — £95 + VAT, report plus a 30-minute call.">
+<link rel="canonical" href="https://myprofit.thefoodeconomist.co.uk/vitals.html">
+<meta property="og:title" content="The Vitals Wheel | MyProfit">
+<meta property="og:description" content="Real anonymised venue profiles, proof from consented results, and a £95 triage with a 30-minute call.">
+<meta property="og:url" content="https://myprofit.thefoodeconomist.co.uk/vitals.html">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -18,68 +22,115 @@
   --font-mono:'IBM Plex Mono',ui-monospace,monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-text-size-adjust:100%}
-body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
-.wrap{width:min(720px,calc(100% - 28px));margin:0 auto}
+html{scroll-behavior:smooth;scroll-padding-bottom:4.5rem;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--gold)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.wrap{width:min(720px,calc(100% - 32px));margin:0 auto}
 .eyebrow{display:block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px}
-h1{font-family:var(--font-display);font-size:clamp(1.7rem,5.4vw,2.5rem);line-height:1.08;margin-bottom:10px}
-h2{font-family:var(--font-display);font-size:clamp(1.2rem,3.6vw,1.6rem);margin-bottom:8px}
-h3{font-family:var(--font-display);font-size:1.05rem;margin-bottom:5px}
-.sub{color:#6B6250;font-size:.9rem;max-width:60ch}
-header{background:var(--ink);color:#fff;padding:26px 0 22px}
-header .sub{color:#C9C3B6}
-main{padding:20px 0 40px}
-.card{background:#fff;border:1px solid var(--rule);border-radius:4px;padding:20px;margin:16px 0}
-.card.dark{background:var(--ink);color:#fff;border-color:var(--navy)}
-.card.dark .sub{color:#C9C3B6}
-button{font:inherit;cursor:pointer}
-.btn{display:inline-block;text-align:center;border:0;border-radius:4px;padding:14px 18px;font-weight:600;text-decoration:none;min-height:48px;font-size:1rem}
-.btn-gold{background:var(--gold);color:#2A2113}
-.btn-navy{background:var(--navy);color:#fff}
-.btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--rule)}
-.btn-block{display:block;width:100%}
-/* sector pills */
+h1,h2,h3{font-family:var(--font-display);line-height:1.12}
+h1{font-size:clamp(1.85rem,5.6vw,2.65rem);margin-bottom:12px}
+h1 em{font-style:normal;color:var(--gold)}
+h2{font-size:clamp(1.25rem,3.6vw,1.65rem);margin-bottom:8px}
+h3{font-size:1.08rem}
+.sub{color:#6B6250;font-size:.95rem;max-width:62ch}
+nav{background:var(--ink);color:#fff;padding:16px 0;position:sticky;top:0;z-index:40;border-bottom:1px solid rgba(201,161,78,.25)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none}
+.brand-logo{width:150px;height:auto;display:block}
+.brand small{display:block;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.navlinks{display:flex;gap:18px;list-style:none;align-items:center;font-size:.85rem}
+.navlinks a{color:#fff;text-decoration:none}
+.navlinks a:hover{color:var(--gold)}
+@media(max-width:720px){.navlinks .hide-sm{display:none}}
+.hero{background:linear-gradient(180deg,var(--ink) 0%,#0C1828 72%,var(--paper) 72.1%);color:#fff;padding:42px 0 0}
+.hero .lede{font-size:1.08rem;color:#C8D2DD;max-width:54ch;margin:0 0 18px}
+.hero .trust{font-size:.8rem;color:#9FB0C2;margin-top:10px}
+.facts{display:flex;gap:22px;flex-wrap:wrap;margin:22px 0 8px}
+.fact{border-left:2px solid var(--gold);padding-left:12px;max-width:200px}
+.fact b{font-family:var(--font-mono);display:block;font-size:1.05rem}
+.fact span{font-size:.78rem;color:#9FB0C2}
+.setup{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px 22px 18px;margin-top:-8px;box-shadow:0 18px 40px rgba(16,31,51,.18)}
+main{padding:8px 0 28px}
+.card{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px;margin:16px 0}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-.pill{border:1.5px solid var(--rule);background:#fff;border-radius:999px;padding:11px 15px;font-size:.9rem;font-weight:500;min-height:44px;color:var(--ink)}
+.pill{border:1.5px solid var(--rule);background:#fff;border-radius:999px;padding:11px 15px;font-size:.9rem;font-weight:500;min-height:44px;color:var(--ink);font-family:inherit;cursor:pointer}
 .pill[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
-/* takings input */
 .takings{display:flex;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
 .takings label{font-size:.88rem;font-weight:600}
 .money{display:flex;align-items:center;border:1.5px solid var(--rule);border-radius:4px;background:#fff;overflow:hidden}
 .money span{padding:0 10px;color:#6B6250;font-family:var(--font-mono)}
-.money input{border:0;outline:0;padding:12px 12px 12px 0;font:600 1.05rem var(--font-mono);width:130px;background:transparent;color:var(--ink)}
-/* wheel */
-.wheelwrap{display:flex;justify-content:center;margin:6px 0 2px}
-svg.wheel{width:min(340px,92vw);height:auto;display:block}
+.money input{border:0;outline:0;padding:12px 12px 12px 0;font:600 1.05rem var(--font-mono);width:140px;background:transparent;color:var(--ink)}
+.reading{text-align:center}
+.wheelwrap{display:flex;justify-content:center;margin:4px 0}
+svg.wheel{width:min(380px,92vw);height:auto;display:block}
 svg.wheel .seg{cursor:pointer;transition:opacity .15s}
-svg.wheel .seg:hover,svg.wheel .seg:focus{opacity:.82}
-svg.wheel text{font-family:var(--font-body)}
-.legend{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;font-size:.76rem;color:#6B6250;margin-top:4px}
+svg.wheel .seg:hover,svg.wheel .seg:focus{opacity:.84}
+.legend{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;font-size:.76rem;color:#6B6250;margin-top:6px}
 .legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
-/* headline */
-.headline{text-align:center;margin:18px 0 4px}
-.headline .big{font-family:var(--font-mono);font-weight:600;font-size:clamp(2.1rem,9vw,3rem);line-height:1;color:var(--risk)}
-.headline .lede{font-size:.98rem;margin-top:8px;color:#4A4436}
-.headline .ann{font-family:var(--font-mono);font-size:1rem;margin-top:4px}
-.capnote{background:#FFF8E8;border-left:3px solid var(--gold);padding:10px 13px;font-size:.82rem;margin:14px 0;border-radius:0 3px 3px 0}
-/* spoke list */
-.spokes{list-style:none;margin-top:12px}
-.spokes li{border-top:1px solid var(--rule)}
-.spokes button{display:flex;width:100%;align-items:center;gap:11px;background:none;border:0;padding:13px 2px;text-align:left;min-height:48px;color:var(--ink)}
-.dot{width:11px;height:11px;border-radius:2px;flex:none}
-.spname{flex:1;font-weight:500}
-.spval{font-family:var(--font-mono);font-weight:600;white-space:nowrap}
-.arrow{color:#9A9285;flex:none}
-/* priorities */
-.pri{border-left:4px solid var(--gold);padding:2px 0 2px 15px;margin:15px 0}
+.organs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 8px;text-align:left}
+.organ{border:1px solid var(--rule);border-radius:6px;padding:12px 14px;background:#FFFEF9}
+.organ .k{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#6B6250;font-weight:600}
+.organ .q{font-size:.82rem;color:#4A4436;margin:2px 0 4px}
+.organ .v{font-family:var(--font-mono);font-weight:600;font-size:1.35rem}
+.headline{margin:16px 0 4px}
+.headline .big{font-family:var(--font-display);font-weight:800;font-size:clamp(2.35rem,10vw,3.35rem);line-height:1;color:var(--risk)}
+.headline .lede{font-size:1rem;margin-top:10px;color:#4A4436}
+.headline .ann{font-family:var(--font-mono);font-size:.95rem;margin-top:6px;color:#6B6250}
+.capnote{background:#FFF8E8;border-left:3px solid var(--gold);padding:10px 13px;font-size:.82rem;margin:14px auto;border-radius:0 3px 3px 0;text-align:left;max-width:36rem}
+.proof{margin:16px 0}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
+.proof-item{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.1rem 1.2rem}
+.proof-figure{font-family:var(--font-display);font-size:1.35rem;color:var(--gold);font-weight:800;margin-bottom:.4rem}
+.proof-item p{margin:0 0 .8rem;line-height:1.45;font-size:.92rem}
+.proof-tag{display:inline-block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#7a7266;background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:.2rem .6rem}
+.proof-note{color:#7a7266;font-size:.85rem;margin:1.1rem 0 0}
+.triage-detail{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:0 0 1.25rem}
+.triage-detail h4{color:var(--gold);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .5rem}
+.triage-detail p{color:#e7e2d7;line-height:1.5;margin:0;font-size:.92rem}
+.guarantee{color:#fff;background:rgba(201,161,78,.16);border:1px solid var(--gold);border-radius:8px;padding:.75rem 1rem;font-size:.9rem;line-height:1.45;margin:0 0 1rem}
+.riskrev{font-size:.82rem;color:#C8D2DD;margin:8px 0 14px}
+.cred{font-size:.88rem;color:#C8D2DD;margin:14px 0 0;text-align:center}
+.wa-btn{display:block;text-align:center;margin-top:10px;padding:13px 18px;border:1.5px solid #3B4E66;border-radius:4px;color:#fff;text-decoration:none;font-weight:600}
+.faq{margin:1.5rem 0 0}
+.faq details{border-bottom:1px solid var(--rule);padding:.85rem 0}
+.faq summary{cursor:pointer;font-weight:600;color:var(--ink);list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:right;color:var(--gold);font-weight:700}
+.faq details[open] summary::after{content:"–"}
+.faq p{color:#4A4436;line-height:1.5;margin:.6rem 0 0}
+.capture{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.25rem;margin:1.5rem 0}
+.capture form{display:flex;gap:.5rem;margin:.75rem 0 .5rem}
+.capture input{flex:1;padding:.65rem .8rem;border:1px solid var(--rule);border-radius:8px;font-size:1rem;font-family:inherit}
+.capture button{background:var(--navy);color:#fff;border:0;border-radius:8px;padding:.65rem 1rem;font-weight:600;cursor:pointer;font-family:inherit}
+.capture-privacy{color:#7a7266;font-size:.78rem;margin:0}
+.exit{position:fixed;inset:0;background:rgba(16,31,51,.62);display:none;align-items:center;justify-content:center;z-index:70;padding:1rem}
+.exit.open{display:flex}
+.exit-card{background:var(--paper);max-width:420px;width:100%;border-radius:8px;padding:1.4rem;position:relative}
+.exit .close{position:absolute;top:8px;right:10px;background:none;border:0;font-size:1.6rem;line-height:1;color:#6B6250;padding:0 4px;min-height:44px;min-width:44px;cursor:pointer}
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:50;background:var(--ink);
+  display:none;align-items:center;justify-content:space-between;gap:.75rem;
+  padding:.7rem 1rem calc(.7rem + env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(0,0,0,.2)}
+.sticky-cta.is-on{display:flex}
+.sticky-price{color:#e7e2d7;font-size:.8rem;line-height:1.2}
+.sticky-btns{display:flex;gap:.5rem;flex:none}
+.sticky-primary{background:var(--gold);color:#1a1205;font-weight:700;padding:.55rem .9rem;border-radius:8px;text-decoration:none;font-size:.85rem}
+.sticky-secondary{border:1px solid #4a5a72;color:#e7e2d7;padding:.55rem .9rem;border-radius:8px;text-decoration:none;font-size:.85rem}
+@media(min-width:700px){.sticky-cta{display:none !important}}
+@media(max-width:600px){.triage-detail{grid-template-columns:1fr}.capture form{flex-direction:column}}
+.pri{border-left:4px solid var(--gold);padding:2px 0 2px 15px;margin:16px 0}
 .pri h3{margin-bottom:3px}
 .pri .amt{font-family:var(--font-mono);font-weight:600;color:var(--risk)}
 .pri p{font-size:.92rem;color:#4A4436;margin-top:4px}
-/* bench */
-.bench{background:var(--navy);color:#fff;border-radius:4px;padding:17px;margin:16px 0}
-.bench .q{font-family:var(--font-display);font-size:1.08rem;line-height:1.35}
-.bench .note{font-size:.78rem;color:#BFD0E0;margin-top:9px}
-/* sliders */
+.cta{background:var(--ink);color:#fff;border-color:var(--navy)}
+.cta .sub{color:#C9C3B6}
+.btn{display:inline-block;text-align:center;border:0;border-radius:4px;padding:14px 18px;font-weight:600;text-decoration:none;min-height:48px;font-size:1rem;font-family:var(--font-body);cursor:pointer}
+.btn-gold{background:var(--gold);color:#2A2113}
+.btn-gold:hover{background:#D9B469}
+.btn-line{background:transparent;color:var(--ink);border:1.5px solid var(--rule)}
+.cta .btn-line{color:#fff;border-color:#3B4E66}
+.btn-block{display:block;width:100%}
 .srow{margin:15px 0}
 .srow .lab{display:flex;justify-content:space-between;font-size:.9rem;font-weight:500;margin-bottom:6px;gap:10px}
 .srow .lab b{font-family:var(--font-mono)}
@@ -89,11 +140,12 @@ input[type=range]{width:100%;height:40px;accent-color:var(--navy);background:tra
 .compare .k{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:#6B6250}
 .compare .v{font-family:var(--font-mono);font-weight:600;font-size:1.2rem;margin-top:4px}
 .saveline{text-align:center;font-family:var(--font-mono);font-weight:600;font-size:1.35rem;margin-top:14px;color:var(--safe)}
-/* modal */
-.modal{position:fixed;inset:0;background:rgba(16,31,51,.62);display:none;align-items:flex-end;justify-content:center;z-index:50;padding:0}
+details.more{border:1px solid var(--rule);border-radius:6px;padding:4px 18px 14px;margin:16px 0;background:#fff}
+details.more summary{cursor:pointer;font-weight:600;padding:14px 0;font-size:1rem;list-style-position:outside}
+.modal{position:fixed;inset:0;background:rgba(16,31,51,.62);display:none;align-items:flex-end;justify-content:center;z-index:60;padding:0}
 .modal.open{display:flex}
 .sheet{background:var(--paper);width:min(560px,100%);max-height:88vh;overflow-y:auto;border-radius:10px 10px 0 0;padding:20px 20px 28px;-webkit-overflow-scrolling:touch}
-.sheet .close{float:right;background:none;border:0;font-size:1.6rem;line-height:1;color:#6B6250;padding:0 4px;min-height:44px;min-width:44px}
+.sheet .close{float:right;background:none;border:0;font-size:1.6rem;line-height:1;color:#6B6250;padding:0 4px;min-height:44px;min-width:44px;cursor:pointer}
 table{width:100%;border-collapse:collapse;font-size:.9rem;margin-top:10px}
 th,td{text-align:left;padding:8px 4px;border-bottom:1px solid var(--rule)}
 td.n,th.n{text-align:right;font-family:var(--font-mono);white-space:nowrap}
@@ -104,95 +156,180 @@ td.n,th.n{text-align:right;font-family:var(--font-mono);white-space:nowrap}
 .bar .track{flex:1;background:#EDE8DD;border-radius:2px;height:22px;overflow:hidden}
 .bar .fill{height:100%;border-radius:2px}
 .bar .v{width:66px;flex:none;text-align:right;font-family:var(--font-mono);font-weight:600}
-footer{background:var(--ink);color:#C9C3B6;padding:26px 0;font-size:.85rem}
+footer{background:var(--ink);color:#C9C3B6;padding:28px 0 36px;font-size:.85rem}
 footer a{color:var(--gold)}
 .small{font-size:.8rem;color:#6B6250}
-@media(min-width:620px){.pill{font-size:.95rem}}
+.wa{display:block;text-align:center;margin-top:12px;font-size:.9rem}
+@media(max-width:520px){.hero{padding-top:28px}.setup{padding:18px 16px}.card{padding:18px}}
 </style>
 </head>
 <body>
 
-<header>
+<nav>
   <div class="wrap">
-    <span class="eyebrow">MyProfit · The Food Economist</span>
-    <h1>The Vitals Wheel</h1>
-    <p class="sub">Pick the kind of place you run. In sixty seconds, explore an illustrative cost profile against practical operating targets.</p>
+    <a class="brand" href="/" aria-label="MyProfit by The Food Economist">
+      <img class="brand-logo" src="/assets/the-food-economist-logo.svg" alt="The Food Economist">
+      <small>MyProfit</small>
+    </a>
+    <ul class="navlinks">
+      <li class="hide-sm"><a href="/verdict.html">Profit check</a></li>
+      <li class="hide-sm"><a href="/sample-report.html">Sample</a></li>
+      <li><a href="#buy">£95 triage</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Online · sixty seconds · then a written job if you want it</span>
+    <h1>See where a room like yours <em>leaks</em>. Then find out what yours is doing.</h1>
+    <p class="lede">Pick the kind of place you run. In sixty seconds, see the cost profile of a real UK venue like yours, anonymised, against practical operating targets. Then find out what yours is doing.</p>
+    <div class="facts">
+      <div class="fact"><b>Your type of room</b><span>Café, pub, takeaway, mixed, restaurant</span></div>
+      <div class="fact"><b>Your takings</b><span>Stays on this phone. Nothing is sent.</span></div>
+      <div class="fact"><b>£95 + VAT</b><span>Written report plus a 30-minute call</span></div>
+    </div>
   </div>
 </header>
 
 <main>
 <div class="wrap">
 
-  <!-- 1. SECTOR -->
-  <section class="card" aria-labelledby="h-sector">
+  <section class="setup" aria-labelledby="h-sector">
     <h2 id="h-sector">What do you run?</h2>
+    <p class="sub">Tap a type, set weekly takings, and the reading below recalculates.</p>
     <div class="pills" id="pills" role="group" aria-label="Venue type"></div>
-
     <div class="takings">
-      <label for="rev">Your weekly takings</label>
+      <label for="rev">Weekly takings</label>
       <div class="money"><span>£</span><input id="rev" type="number" inputmode="numeric" min="0" step="250" aria-describedby="revhint"></div>
     </div>
-    <p class="small" id="revhint" style="margin-top:8px">Change this and everything below recalculates. Nothing is sent anywhere — this stays on your phone.</p>
+    <p class="small" id="revhint" style="margin-top:8px">Change this and everything below moves. These figures are modelled on a real independent venue of this type. The name is withheld. Nothing is sent anywhere — this stays on your phone.</p>
   </section>
 
-  <!-- 2. WHEEL -->
-  <section class="card" aria-labelledby="h-wheel">
-    <h2 id="h-wheel">Your reading</h2>
-    <div class="wheelwrap"><svg class="wheel" viewBox="0 0 320 320" role="img" aria-labelledby="wheeldesc"><title id="wheeldesc">Vitals wheel showing cash and margin health with one segment per cost line</title><g id="wg"></g></svg></div>
-    <div class="legend">
-      <span><i style="background:var(--safe)"></i>On or under target</span>
-      <span><i style="background:var(--warn)"></i>Watch</span>
-      <span><i style="background:var(--risk)"></i>Bleeding</span>
+  <section class="card reading" id="reading" aria-labelledby="h-wheel">
+    <span class="eyebrow">Your reading</span>
+    <h2 id="h-wheel">One picture of the week</h2>
+    <p class="sub" style="margin:0 auto 8px">Tap a slice for what sits underneath. Heart is cash pressure. Lungs are profit against target.</p>
+    <div class="wheelwrap">
+      <svg class="wheel" viewBox="0 0 320 320" role="img" aria-labelledby="wheeldesc">
+        <title id="wheeldesc">Vitals wheel showing cash and margin health with one segment per cost line</title>
+        <g id="wg"></g>
+      </svg>
     </div>
-
+    <div class="legend">
+      <span><i style="background:var(--safe)"></i>On target</span>
+      <span><i style="background:var(--warn)"></i>Watch</span>
+      <span><i style="background:var(--risk)"></i>Problem</span>
+    </div>
+    <div class="organs">
+      <div class="organ">
+        <div class="k">❤️ Heart</div>
+        <div class="q">Can we pay?</div>
+        <div class="v" id="heartv">—</div>
+        <div class="small" id="heartw"></div>
+      </div>
+      <div class="organ">
+        <div class="k">🫁 Lungs</div>
+        <div class="q">Did we make money?</div>
+        <div class="v" id="lungsv">—</div>
+        <div class="small">Profit vs target mix</div>
+      </div>
+    </div>
     <div class="headline">
       <div class="big" id="hl">—</div>
-      <div class="lede">a month is leaving a business like this against its own targets</div>
       <div class="ann" id="ann"></div>
+      <div class="lede">These figures are modelled on a real independent venue we worked with. The name is withheld. Yours will be different, and the only way to know your own number is to measure it.</div>
     </div>
     <div class="capnote" id="cap" hidden></div>
-
-    <ul class="spokes" id="spokes"></ul>
-    <p class="small" style="margin-top:12px">Tap any line to see what sits underneath it.</p>
   </section>
 
-  <!-- 3. PRIORITIES -->
   <section class="card" aria-labelledby="h-pri">
     <h2 id="h-pri">The three to deal with first</h2>
+    <p class="sub">Monday actions — not a software project.</p>
     <div id="pri"></div>
   </section>
 
-  <!-- 4. BENCHMARK -->
-  <section class="bench" aria-labelledby="h-bench">
-    <h3 id="h-bench" style="color:var(--gold);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:9px">What rough figures cannot tell you</h3>
-    <p class="q" id="benchq">—</p>
-    <p class="note">This wheel is an illustrative guide, not a market-price comparison. A written review uses your invoices, takings and operating data to establish what is actually happening in your business.</p>
+  <section class="proof" aria-labelledby="h-proof">
+    <h2 id="h-proof">Proof, not promises</h2>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="proof-figure">£845 a week</div>
+        <p>An energy switch and menu engineering across two restaurants: £595 a week at one and £250 at a second, each about 6% of that venue's weekly sales. About £44,000 a year, held for six months and counting.</p>
+        <span class="proof-tag">Two-site operator</span>
+      </div>
+      <div class="proof-item">
+        <div class="proof-figure">£1,200 a month</div>
+        <p>Renegotiating payment terms with core suppliers from 15 to 65 days moved this operator from cash-negative to cash-positive. The working capital that freed up was then used to buy on cash-discount terms elsewhere.</p>
+        <span class="proof-tag">Independent restaurant</span>
+      </div>
+      <div class="proof-item">
+        <div class="proof-figure">£25–£60 a day</div>
+        <p>Off delivery costs, across both the delivery platforms and supplier transport: about £25 on a quiet day, £60 on a busy one. Roughly £650 to £1,560 a month on a six-day week.</p>
+        <span class="proof-tag">Café</span>
+      </div>
+      <div class="proof-item">
+        <div class="proof-figure">£1,500–£3,000 a month</div>
+        <p>One kitchen was binning the equivalent of 10 to 20 covers every other day, at about £10 a cover. Added up, that is £1,500 to £3,000 a month in the bin. Seeing it was the first step to cutting it.</p>
+        <span class="proof-tag">Kitchen</span>
+      </div>
+    </div>
+    <p class="proof-note">Real results from separate client venues, used with consent and anonymised to protect them. Figures held on file.</p>
   </section>
 
-  <!-- 5. WHAT-IF -->
-  <section class="card" aria-labelledby="h-what">
-    <h2 id="h-what">What is the gap actually worth?</h2>
-    <p class="sub">Move each line towards its target and watch the year change.</p>
+  <details class="more">
+    <summary>What is the gap actually worth? (optional)</summary>
+    <p class="sub" style="margin-bottom:8px">Move each line towards its target and watch the year change. Reset anytime.</p>
     <div id="sliders"></div>
     <div class="compare">
       <div><div class="k">Now</div><div class="v" id="cnow">—</div></div>
       <div><div class="k">At target</div><div class="v" id="ctar">—</div></div>
     </div>
     <div class="saveline" id="saveline">—</div>
-    <p class="small" style="text-align:center;margin-top:8px">Whether you close the gap depends on what you do on Monday.</p>
-    <button class="btn btn-line btn-block" id="reset" style="margin-top:14px">Reset</button>
+    <button class="btn btn-line btn-block" id="reset" type="button" style="margin-top:14px">Reset sliders</button>
+  </details>
+
+  <section class="card cta" id="buy" aria-labelledby="h-cta">
+    <span class="eyebrow">Have it done properly</span>
+    <h2 id="h-cta" style="color:#fff">This wheel is a real venue, anonymised. The paid job uses your invoices.</h2>
+    <p class="sub" style="margin:8px 0 16px">The 48-Hour Profit Triage reads what your business actually did, your supplier invoices, takings and rota, and comes back in writing with your biggest leak, its size, and what to do, plus a 30-minute call to walk through it. <strong style="color:#fff">£95 + VAT</strong>, credited in full against the £395 + VAT Menu &amp; Margin Diagnostic if you go further within 30 days. Send us the full records and if we do not find at least £500 a month you can recover, it is free.</p>
+    <div class="triage-detail">
+      <div>
+        <h4>All we need from you</h4>
+        <p>Your last month of supplier invoices, one week of takings, and one week's rota. Send them by WhatsApp, email or a shared folder. About ten minutes to gather.</p>
+      </div>
+      <div>
+        <h4>What comes back</h4>
+        <p>A short written report that names your biggest leak, sizes it in pounds, and gives you three moves for that week, plus a 30-minute call to walk through it. Back within 48 hours.</p>
+      </div>
+    </div>
+    <p class="guarantee">Send us the full records we ask for, and if we do not identify at least <strong>£500 a month</strong> you can realistically recover, the triage is free.</p>
+    <p class="riskrev">£95 + VAT · credited in full against the £395 Menu &amp; Margin Diagnostic if you go further within 30 days. Every triage includes a 30-minute call to walk through the findings.</p>
+    <a class="btn btn-gold btn-block js-commission" href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" rel="noopener">Commission the triage — £95 + VAT</a>
+    <a class="wa-btn js-whatsapp" id="wa" href="#">Ask first on WhatsApp</a>
+    <p class="cred">The triage is carried out by a chartered accountant (FCCA) and food economist who works only with independent operators.</p>
+    <p class="small" style="color:#9FB3C6;margin-top:14px;text-align:center">Prefer to type rough figures instead? <a href="/verdict.html">Run the free Profit Check</a>. Or <a href="/sample-report.html">read a worked example</a>.</p>
   </section>
 
-  <!-- 6. CTA -->
-  <section class="card dark" aria-labelledby="h-cta">
-    <h2 id="h-cta" style="color:#fff">This wheel is illustrative. The written review works from your invoices.</h2>
-    <p class="sub" style="margin:8px 0 14px">The 48-Hour Profit Triage reads what your business actually did — supplier invoices, takings, rota — and comes back in writing with the leak, the size of it, and what to do. £95 + VAT, credited in full against the £395 + VAT Menu &amp; Margin Diagnostic if you go further within 30 days.</p>
-    <a class="btn btn-gold btn-block" id="buy" href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" rel="noopener">Commission the Triage — £95 + VAT</a>
-    <a class="btn btn-line btn-block" id="wa" href="#" rel="noopener" style="margin-top:10px;color:#fff;border-color:#3B4E66">Ask a question on WhatsApp</a>
-    <p class="small" style="color:#9FB3C6;margin-top:12px">Prefer to see one first? <a href="/sample-report.html" style="color:var(--gold)">Read a worked example</a>, or run the fuller <a href="/verdict.html" style="color:var(--gold)">Restaurant Profit Check</a> with your own cost lines.</p>
+  <section class="faq" aria-labelledby="h-faq">
+    <h2 id="h-faq">Straight answers</h2>
+    <details><summary>Is it just a report?</summary><p>No. You get a written triage and a 30-minute call to walk through it, so nothing is left unclear.</p></details>
+    <details><summary>Is my data safe?</summary><p>The wheel runs on your phone and stores nothing. For the triage you send only what you choose, and we delete working files within 30 days, unless you ask us to keep them for your ongoing management accounts.</p></details>
+    <details><summary>What if you find nothing?</summary><p>Send us the full records, and if we do not identify at least £500 a month you can recover, the triage is free.</p></details>
+    <details><summary>I am only small. Is it worth it?</summary><p>The tighter the margin, the more a single leak hurts. Most venues we see lose more on one cost line each month than the triage costs.</p></details>
+    <details><summary>How much of my time does it take?</summary><p>Ten minutes to send what we need. You get the written triage back within 48 hours, then your call.</p></details>
+    <details><summary>Are you selling me software or a supplier?</summary><p>No. We take no commission from any supplier, scheme or software vendor.</p></details>
   </section>
 
-  <p class="small" style="text-align:center;margin-top:6px">Figures on this page are illustrative for a venue of the type and size you selected. They are not your business, and nothing you type here is stored or sent.</p>
+  <div class="capture">
+    <p><strong>Not ready to commission?</strong> Get the one-page worked example sent to you, plus a short monthly note on where independents are quietly losing money.</p>
+    <form id="captureForm">
+      <input type="email" name="email" required placeholder="your@email.co.uk" aria-label="Email address" autocomplete="email">
+      <button type="submit">Send me the example</button>
+    </form>
+    <p class="capture-privacy" id="captureMsg">One email at a time, unsubscribe whenever. We never pass on your address.</p>
+  </div>
+
+  <p class="small" style="text-align:center;margin:10px 0 8px">Nothing you type here is stored or sent. The profile is a real anonymised venue of this type and size — not your invoices yet.</p>
 </div>
 </main>
 
@@ -200,13 +337,37 @@ footer a{color:var(--gold)}
   <div class="wrap">
     <p>MyProfit · The Food Economist — independent food economics for UK operators.</p>
     <p style="margin-top:6px">No compliance scheme, supplier, broker or software vendor pays us a commission.</p>
-    <p style="margin-top:10px"><a href="/">MyProfit home</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
+    <p style="margin-top:10px"><a href="/">MyProfit home</a> · <a href="/verdict.html">Profit Check</a> · <a href="/dpa.html">Data agreement</a> · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></p>
   </div>
 </footer>
 
+<div id="stickyCta" class="sticky-cta" hidden>
+  <span class="sticky-price">£95 + VAT · report + 30-min call</span>
+  <div class="sticky-btns">
+    <a href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" class="sticky-primary js-commission" rel="noopener">Commission</a>
+    <a href="#" class="sticky-secondary js-whatsapp" id="waSticky">WhatsApp</a>
+  </div>
+</div>
+
+<div class="exit" id="exit" role="dialog" aria-modal="true" aria-labelledby="exittitle">
+  <div class="exit-card">
+    <button class="close" id="exitclose" type="button" aria-label="Close">&times;</button>
+    <h2 id="exittitle" style="margin-bottom:8px">Not ready to commission?</h2>
+    <p class="sub">Get the one-page worked example sent to you, plus a short monthly note on where independents are quietly losing money.</p>
+    <form id="exitForm">
+      <div class="capture" style="margin:12px 0 0;padding:0;border:0">
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <input type="email" name="email" required placeholder="your@email.co.uk" aria-label="Email address" autocomplete="email" style="flex:1;min-width:180px;padding:.65rem .8rem;border:1px solid var(--rule);border-radius:8px;font-size:1rem;font-family:inherit">
+          <button type="submit">Send me the example</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="mtitle">
   <div class="sheet" id="sheet">
-    <button class="close" id="mclose" aria-label="Close">&times;</button>
+    <button class="close" id="mclose" type="button" aria-label="Close">&times;</button>
     <div id="mbody"></div>
   </div>
 </div>
@@ -215,6 +376,7 @@ footer a{color:var(--gold)}
 (function(){
 "use strict";
 var WPM=4.333, CAP=0.08, WA="447939823988";
+var STRIPE="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02";
 
 var T={
  cafe:{label:"Café",rev:5500,dl:0.10,dr:0.45,lines:[
@@ -298,7 +460,6 @@ function calc(){
 }
 function cur(l){ var a=adj[l[0]]; return (a===undefined||a===null)?l[2]:a }
 
-/* ---- wheel geometry ---- */
 function sector(cx,cy,r1,r2,a1,a2){
  var p=function(r,a){a=(a-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)]};
  var big=(a2-a1)>180?1:0;
@@ -314,25 +475,24 @@ function drawWheel(d){
  var g=$("#wg"), s="", n=d.lines.length, gap=2.4, step=360/n;
  d.lines.forEach(function(o,i){
    var a1=i*step+gap/2, a2=(i+1)*step-gap/2, mid=(a1+a2)/2;
-   s+='<path class="seg" d="'+sector(160,160,98,148,a1,a2)+'" fill="'+COL[o.st]+'" '+
+   s+='<path class="seg" d="'+sector(160,160,102,152,a1,a2)+'" fill="'+COL[o.st]+'" '+
       'tabindex="0" role="button" data-k="'+o.k+'" aria-label="'+esc(o.label)+', '+
       (o.wk>0?fmt(o.mo)+' a month over target':'on target')+'"><title>'+esc(o.label)+'</title></path>';
-   var rad=(mid-90)*Math.PI/180, lx=160+123*Math.cos(rad), ly=160+123*Math.sin(rad);
-   var short=o.label.length>13?o.label.slice(0,12)+"…":o.label;
+   var rad=(mid-90)*Math.PI/180, lx=160+127*Math.cos(rad), ly=160+127*Math.sin(rad);
+   var short=o.label.length>12?o.label.slice(0,11)+"…":o.label;
    s+='<text x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'" text-anchor="middle" dominant-baseline="middle" '+
-      'font-size="8.5" font-weight="600" fill="#fff" pointer-events="none">'+esc(short)+'</text>';
+      'font-size="8.2" font-weight="600" fill="#fff" pointer-events="none">'+esc(short)+'</text>';
  });
- // lungs ring
- s+='<circle cx="160" cy="160" r="85" fill="none" stroke="#E4DED1" stroke-width="13"/>';
- var c=2*Math.PI*85, f=c*d.lungs/100;
- s+='<circle cx="160" cy="160" r="85" fill="none" stroke="'+(d.lungs>=70?COL.good:d.lungs>=45?COL.warn:COL.bad)+
-    '" stroke-width="13" stroke-linecap="round" stroke-dasharray="'+f.toFixed(1)+' '+(c-f).toFixed(1)+
+ s+='<circle cx="160" cy="160" r="88" fill="none" stroke="#E4DED1" stroke-width="11"/>';
+ var c=2*Math.PI*88, f=c*d.lungs/100;
+ s+='<circle cx="160" cy="160" r="88" fill="none" stroke="'+(d.lungs>=70?COL.good:d.lungs>=45?COL.warn:COL.bad)+
+    '" stroke-width="11" stroke-linecap="round" stroke-dasharray="'+f.toFixed(1)+' '+(c-f).toFixed(1)+
     '" transform="rotate(-90 160 160)"/>';
- // heart
- s+='<circle cx="160" cy="160" r="74" fill="#fff" stroke="'+COL.grey+'" stroke-width="1"/>';
- s+='<text x="160" y="140" text-anchor="middle" font-size="8" letter-spacing="1.6" fill="#6B6250">HEART</text>';
- s+='<text x="160" y="166" text-anchor="middle" font-size="30" font-weight="600" font-family="IBM Plex Mono,monospace" fill="#101F33">'+Math.round(d.heart)+'%</text>';
- s+='<text x="160" y="184" text-anchor="middle" font-size="8.5" fill="#6B6250">Lungs '+Math.round(d.lungs)+'%</text>';
+ s+='<circle cx="160" cy="160" r="78" fill="#fff" stroke="#E4DED1" stroke-width="1"/>';
+ s+='<text x="160" y="138" text-anchor="middle" font-size="7.5" letter-spacing="1.4" fill="#6B6250">NERVE CENTRE</text>';
+ s+='<text x="160" y="162" text-anchor="middle" font-size="26" font-weight="600" font-family="IBM Plex Mono,monospace" fill="#101F33">'+Math.round(d.heart)+'</text>';
+ s+='<text x="160" y="180" text-anchor="middle" font-size="8" fill="#6B6250">Heart · can we pay?</text>';
+ s+='<text x="160" y="194" text-anchor="middle" font-size="8" fill="#6B6250">Lungs '+Math.round(d.lungs)+'% · profit</text>';
  g.innerHTML=s;
  Array.prototype.forEach.call(g.querySelectorAll(".seg"),function(el){
    el.addEventListener("click",function(){openLine(el.getAttribute("data-k"))});
@@ -340,31 +500,39 @@ function drawWheel(d){
  });
 }
 
-function heartWord(h){return h>=70?"Cash position stable":h>=50?"Cash tight — watch the next two weeks":"Cash pressure building — act this week"}
+function heartWord(h){return h>=70?"Cash looks stable on this profile":h>=50?"Cash is tight — watch the next two weeks":"Cash pressure — act this week"}
+
+function track(name, params){
+ params = params || {};
+ try{ if(window.gtag) gtag("event", name, params); }catch(e){}
+ try{ if(window.plausible) plausible(name, {props: params}); }catch(e){}
+ try{ if(window.dataLayer) dataLayer.push(Object.assign({event: name}, params)); }catch(e){}
+}
+
+function waHref(){
+ var d=calc();
+ var shown=fmt(round(d.disp));
+ var msg="Hello Godfred. I used the Vitals Wheel on the MyProfit site. I run a "+
+   T[key].label.replace("&amp;","and")+" taking about £"+(d.rev||0).toLocaleString("en-GB")+
+   " a week and it showed about "+shown+" a month against target. Can we talk about the Triage?";
+ return "https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+}
 
 function render(){
  var d=calc();
  drawWheel(d);
- $("#hl").textContent=fmt(round(d.disp));
- $("#ann").textContent=fmt(round(d.disp)*12)+" a year · "+heartWord(d.heart);
+ var mo=round(d.disp), yr=mo*12, shown=fmt(mo);
+ $("#hl").textContent=fmt(yr)+" a year";
+ $("#ann").textContent="that is "+shown+" a month on this profile";
+ $("#heartv").textContent=Math.round(d.heart)+"%";
+ $("#heartw").textContent=heartWord(d.heart);
+ $("#lungsv").textContent=Math.round(d.lungs)+"%";
  var cap=$("#cap");
- if(d.capped){cap.hidden=false;cap.textContent="Held at a deliberately conservative 8% of turnover. On these inputs the full figure is "+fmt(round(d.raw))+" a month.";}
+ if(d.capped){cap.hidden=false;cap.textContent="Held at a conservative 8% of turnover as a floor. On these inputs the full figure is "+fmt(round(d.raw))+" a month ("+fmt(round(d.raw)*12)+" a year).";}
  else cap.hidden=true;
 
- var ul=$("#spokes"), s="";
- d.lines.slice().sort(function(a,b){return b.mo-a.mo}).forEach(function(o){
-   s+='<li><button data-k="'+o.k+'"><span class="dot" style="background:'+COL[o.st]+'"></span>'+
-      '<span class="spname">'+esc(o.label)+'<br><span class="small">'+o.act.toFixed(1)+'% against a target of '+o.tar+'%</span></span>'+
-      '<span class="spval" style="color:'+(o.wk>0?"var(--risk)":"var(--safe)")+'">'+(o.wk>0?"+"+fmt(o.mo):"on target")+'</span>'+
-      '<span class="arrow">›</span></button></li>';
- });
- ul.innerHTML=s;
- Array.prototype.forEach.call(ul.querySelectorAll("button"),function(b){
-   b.addEventListener("click",function(){openLine(b.getAttribute("data-k"))});
- });
-
  var top=d.lines.filter(function(o){return o.mo>0}).sort(function(a,b){return b.mo-a.mo}).slice(0,3), p="";
- if(!top.length) p='<p class="sub">On these figures every line sits at or under target. Change the takings or a slider to see the effect of drift.</p>';
+ if(!top.length) p='<p class="sub">On these figures every line sits at or under target. Raise takings or move a slider to see drift.</p>';
  top.forEach(function(o,i){
    p+='<div class="pri"><h3>'+(i+1)+'. '+esc(o.label)+' <span class="amt">+'+fmt(o.mo)+' a month</span></h3>'+
       '<p class="small">Running at '+o.act.toFixed(1)+'% against a target of '+o.tar+'%.</p>'+
@@ -372,18 +540,15 @@ function render(){
  });
  $("#pri").innerHTML=p;
 
- var worst=(top[0]||d.lines[0]);
- $("#benchq").innerHTML='In this illustrative profile, <b>'+esc(worst.label)+'</b> is the first cost line to examine. The written review replaces these assumptions with your own figures and invoices.';
-
  $("#cnow").textContent=fmt((d.rev-d.ta)*WPM);
  $("#ctar").textContent=fmt((d.rev-d.tt)*WPM);
  var gain=(d.ta-d.tt)*WPM;
- $("#saveline").textContent=gain>0?fmt(round(gain))+" a month · "+fmt(round(gain)*12)+" a year":"At target";
+ $("#saveline").textContent=gain>0?fmt(round(gain)*12)+" a year · "+fmt(round(gain))+" a month":"At target";
 
- var msg="Hello Godfred. I used the Vitals Wheel on the MyProfit site. I run a "+
-   T[key].label.replace("&amp;","and")+" taking about £"+(d.rev||0).toLocaleString("en-GB")+
-   " a week and it showed about "+fmt(round(d.disp))+" a month against target. Can we talk about the Triage?";
- $("#wa").href="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);
+ var href=waHref();
+ $("#wa").href=href;
+ var sticky=$("#waSticky");
+ if(sticky) sticky.href=href;
 }
 
 function openLine(k){
@@ -404,8 +569,9 @@ function openLine(k){
   (o.wk>0?'<p style="font-family:var(--font-mono);font-weight:600">'+fmt(o.wk)+' a week · '+fmt(o.mo)+' a month · '+fmt(o.mo*12)+' a year</p>':'<p class="small">This line is at or under target.</p>')+
   '<p style="margin-top:12px">'+(ACT[k]||"")+'</p>'+
   '<table><thead><tr><th>Underneath it</th><th class="n">Weekly</th><th class="n">Monthly</th></tr></thead><tbody>'+rows+'</tbody></table>'+
-  '<p class="illus">Illustrative split for a venue of this type and size. With your invoices in front of us these become your actual lines, your actual suppliers and your actual prices.</p>'+
-  '<a class="btn btn-gold btn-block" href="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02" rel="noopener" style="margin-top:14px">Have this done properly — £95 + VAT</a>';
+  '<p class="illus">Split modelled on a real independent venue of this type. The name is withheld. The paid triage replaces this with your invoices, suppliers and prices.</p>'+
+  '<a class="btn btn-gold btn-block js-commission" href="'+STRIPE+'" rel="noopener" style="margin-top:14px">Have this done properly — £95 + VAT</a>';
+ track("line_expanded", {line: k});
  lastFocus=document.activeElement;
  $("#modal").classList.add("open");
  document.body.style.overflow="hidden";
@@ -430,18 +596,74 @@ function buildSliders(){
    el.addEventListener("input",function(){
      adj[l[0]]=parseFloat(el.value);
      document.getElementById("v_"+l[0]).textContent=parseFloat(el.value).toFixed(1);
+     if(!window._gapTracked){window._gapTracked=true;track("gap_slider_used",{line:l[0]});}
      render();
    });
  });
 }
 
-function setType(k){
+function setType(k, fromUser){
  key=k; adj={}; rev=T[k].rev;
  $("#rev").value=rev;
  Array.prototype.forEach.call($("#pills").children,function(b){
    b.setAttribute("aria-pressed", b.getAttribute("data-k")===k ? "true":"false");
  });
+ if(fromUser) track("venue_selected", {venue: k});
  buildSliders(); render();
+}
+
+function bindCapture(form, msgEl){
+ if(!form) return;
+ form.addEventListener("submit", function(e){
+   e.preventDefault();
+   var email=(form.email && form.email.value || "").trim();
+   if(!email) return;
+   var btn=form.querySelector("button[type=submit]");
+   if(btn) btn.disabled=true;
+   var d=calc();
+   var payload={
+     source:"contact",
+     email:email,
+     message:"Vitals Wheel: send the one-page worked example. Venue: "+T[key].label.replace("&amp;","and")+
+       ". Weekly takings: £"+(d.rev||0).toLocaleString("en-GB")+"."
+   };
+   fetch("/api/save-lead.php", {
+     method:"POST",
+     headers:{"Content-Type":"application/json"},
+     body:JSON.stringify(payload)
+   }).then(function(r){return r.json().then(function(j){return {ok:r.ok, j:j};});})
+     .then(function(res){
+       if(res.ok && res.j && res.j.ok){
+         track("email_captured", {venue: key});
+         try{ sessionStorage.setItem("myprofitVitalsEmail","1"); }catch(err){}
+         if(msgEl) msgEl.textContent="Sent. Check your inbox for the worked example.";
+         form.reset();
+         closeExit();
+       } else {
+         if(msgEl) msgEl.textContent=(res.j && res.j.error) || "Could not save. Email godfred@thefoodeconomist.co.uk.";
+         if(btn) btn.disabled=false;
+       }
+     })
+     .catch(function(){
+       if(msgEl) msgEl.textContent="Could not save. Email godfred@thefoodeconomist.co.uk.";
+       if(btn) btn.disabled=false;
+     });
+ });
+}
+
+function syncSticky(){
+ var bar=$("#stickyCta");
+ if(!bar) return;
+ var y=window.scrollY||document.documentElement.scrollTop;
+ var show=y>=500 && window.innerWidth<700;
+ bar.hidden=!show;
+ bar.classList.toggle("is-on", show);
+ document.body.style.paddingBottom=show?"4.8rem":"";
+}
+
+function closeExit(){
+ var el=$("#exit");
+ if(el) el.classList.remove("open");
 }
 
 function init(){
@@ -451,18 +673,61 @@ function init(){
  });
  $("#pills").innerHTML=p;
  Array.prototype.forEach.call($("#pills").children,function(b){
-   b.addEventListener("click",function(){setType(b.getAttribute("data-k"))});
+   b.addEventListener("click",function(){setType(b.getAttribute("data-k"), true)});
  });
+ var takingsTimer=null;
  $("#rev").addEventListener("input",function(){
    var v=parseFloat($("#rev").value);
    rev=(isFinite(v)&&v>=0)?v:0;
    render();
+   clearTimeout(takingsTimer);
+   takingsTimer=setTimeout(function(){track("takings_entered", {revenue: rev});}, 600);
  });
  $("#reset").addEventListener("click",function(){setType(key)});
  $("#mclose").addEventListener("click",closeModal);
  $("#modal").addEventListener("click",function(e){if(e.target===$("#modal"))closeModal()});
- document.addEventListener("keydown",function(e){if(e.key==="Escape")closeModal()});
+ document.addEventListener("keydown",function(e){
+   if(e.key==="Escape"){ closeModal(); closeExit(); }
+ });
+ document.addEventListener("click", function(e){
+   var c=e.target.closest && e.target.closest(".js-commission");
+   if(c) track("cta_commission_click");
+   var w=e.target.closest && e.target.closest(".js-whatsapp");
+   if(w) track("cta_whatsapp_click");
+ });
+ Array.prototype.forEach.call(document.querySelectorAll(".faq details"), function(d){
+   d.addEventListener("toggle", function(){
+     if(d.open){
+       var s=d.querySelector("summary");
+       track("faq_opened", {question: s ? s.textContent : ""});
+     }
+   });
+ });
+ bindCapture($("#captureForm"), $("#captureMsg"));
+ bindCapture($("#exitForm"), $("#captureMsg"));
+ var exitClose=$("#exitclose");
+ if(exitClose) exitClose.addEventListener("click", closeExit);
+ $("#exit").addEventListener("click", function(e){ if(e.target===$("#exit")) closeExit(); });
+ var depths={25:false,50:false,75:false,100:false};
+ window.addEventListener("scroll", function(){
+   syncSticky();
+   var h=document.documentElement;
+   var max=h.scrollHeight-h.clientHeight;
+   var pct=max>0 ? (h.scrollTop/max)*100 : 0;
+   [25,50,75,100].forEach(function(n){
+     if(!depths[n] && pct>=n){ depths[n]=true; track("scroll_depth", {percent: n}); }
+   });
+ }, {passive:true});
+ window.addEventListener("resize", syncSticky);
+ document.addEventListener("mouseout", function(e){
+   if(e.clientY>0) return;
+   if(window.innerWidth<700) return;
+   try{ if(sessionStorage.getItem("myprofitVitalsEmail") || sessionStorage.getItem("myprofitVitalsExit")) return; }catch(err){}
+   try{ sessionStorage.setItem("myprofitVitalsExit","1"); }catch(err){}
+   $("#exit").classList.add("open");
+ });
  setType("restaurant");
+ syncSticky();
 }
 if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
 })();

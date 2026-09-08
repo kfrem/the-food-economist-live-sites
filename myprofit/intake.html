@@ -63,6 +63,10 @@ textarea{min-height:140px;resize:vertical}
       <label for="notes">Your monthly figures and notes *</label>
       <textarea id="notes" required maxlength="6000" placeholder="Example: current monthly takings, supplier costs, wage total, energy, rent and any delivery or platform fees. Note which days are busiest, quieter periods, and the decision you need to make."></textarea>
       <p class="filenote">Have invoices or spreadsheets? After submitting, email them to <strong>godfred@thefoodeconomist.co.uk</strong> with your company name in the subject — the desk will match them to this form.</p>
+      <label class="check" style="display:flex;gap:10px;align-items:flex-start;margin:16px 0;font-size:.88rem;font-weight:500">
+        <input id="dpaok" type="checkbox" required style="margin-top:4px">
+        <span>I have signed the <a href="dpa.html" id="dpalink">Data Protection Agreement</a> for this engagement. <span id="dparefnote"></span></span>
+      </label>
       <button class="btn" type="submit">Submit figures — start the clock</button>
       <div class="err" id="formerr"></div>
     </form>
@@ -74,6 +78,12 @@ textarea{min-height:140px;resize:vertical}
 </main>
 <script>
 const product = new URLSearchParams(location.search).get('p') === 'diagnostic' ? 'diagnostic' : 'triage';
+const dpaRef = new URLSearchParams(location.search).get('dpa') || (function(){ try { return sessionStorage.getItem('myprofitDpaRef') || ''; } catch(e){ return ''; } })();
+document.getElementById('dpalink').href = 'dpa.html?next=intake&p=' + encodeURIComponent(product);
+if (dpaRef) {
+  document.getElementById('dpaok').checked = true;
+  document.getElementById('dparefnote').textContent = 'Reference ' + dpaRef + '.';
+}
 const form = document.getElementById('intakeform');
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -83,6 +93,10 @@ form.addEventListener('submit', async (e) => {
   if (!get('name') || !get('company') || !get('notes') ||
       !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(get('email'))) {
     err.textContent = 'Name, company, a valid email and your figures are required.';
+    err.style.display = 'block'; return;
+  }
+  if (!document.getElementById('dpaok').checked) {
+    err.textContent = 'Please sign the Data Protection Agreement before sending figures.';
     err.style.display = 'block'; return;
   }
   e.submitter.disabled = true; e.submitter.textContent = 'Sending…';

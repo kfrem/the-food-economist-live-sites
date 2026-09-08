@@ -26,3 +26,17 @@ CREATE TABLE IF NOT EXISTS myprofit_intakes (
   main_concern   VARCHAR(255) NOT NULL DEFAULT '',
   INDEX idx_email (email), INDEX idx_created (created_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS myprofit_dpa_acceptances (
+  id            INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  created_at    DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  version       VARCHAR(40) NOT NULL,
+  name          VARCHAR(120) NOT NULL,
+  role          VARCHAR(120) NOT NULL DEFAULT '',
+  company       VARCHAR(160) NOT NULL,
+  email         VARCHAR(190) NOT NULL,
+  signature     VARCHAR(120) NOT NULL,
+  ip            VARCHAR(80)  NOT NULL DEFAULT '',
+  user_agent    VARCHAR(250) NOT NULL DEFAULT '',
+  INDEX idx_email (email), INDEX idx_created (created_at)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
