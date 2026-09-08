@@ -44,14 +44,14 @@ nav .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px
 .navlinks a{color:#fff;text-decoration:none}
 .navlinks a:hover{color:var(--gold)}
 @media(max-width:720px){.navlinks .hide-sm{display:none}}
-.hero{background:linear-gradient(180deg,var(--ink) 0%,#0C1828 72%,var(--paper) 72.1%);color:#fff;padding:42px 0 0}
+.hero{background:var(--ink);color:#fff;padding:42px 0 36px}
 .hero .lede{font-size:1.08rem;color:#C8D2DD;max-width:54ch;margin:0 0 18px}
 .hero .trust{font-size:.8rem;color:#9FB0C2;margin-top:10px}
-.facts{display:flex;gap:22px;flex-wrap:wrap;margin:22px 0 8px}
-.fact{border-left:2px solid var(--gold);padding-left:12px;max-width:200px}
-.fact b{font-family:var(--font-mono);display:block;font-size:1.05rem}
-.fact span{font-size:.78rem;color:#9FB0C2}
-.setup{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px 22px 18px;margin-top:-8px;box-shadow:0 18px 40px rgba(16,31,51,.18)}
+.facts{display:flex;gap:22px;flex-wrap:wrap;margin:22px 0 0}
+.fact{border-left:2px solid var(--gold);padding-left:12px;max-width:220px}
+.fact b{font-family:var(--font-mono);display:block;font-size:1.05rem;color:#fff}
+.fact span{display:block;font-size:.78rem;color:#C8D2DD;margin-top:4px;line-height:1.35}
+.setup{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px 22px 18px;margin-top:-18px;box-shadow:0 18px 40px rgba(16,31,51,.18)}
 main{padding:8px 0 28px}
 .card{background:#fff;border:1px solid var(--rule);border-radius:6px;padding:22px;margin:16px 0}
 .pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
@@ -79,13 +79,18 @@ svg.wheel .seg:hover,svg.wheel .seg:focus{opacity:.84}
 .headline .lede{font-size:1rem;margin-top:10px;color:#4A4436}
 .headline .ann{font-family:var(--font-mono);font-size:.95rem;margin-top:6px;color:#6B6250}
 .capnote{background:#FFF8E8;border-left:3px solid var(--gold);padding:10px 13px;font-size:.82rem;margin:14px auto;border-radius:0 3px 3px 0;text-align:left;max-width:36rem}
-.proof{margin:16px 0}
+.proof{margin:20px 0;padding:1.4rem 0 0.2rem}
+.proof h2{margin-bottom:6px}
+.proof .sub{margin-bottom:14px}
 .proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem}
-.proof-item{background:#fff;border:1px solid var(--rule);border-radius:10px;padding:1.1rem 1.2rem}
-.proof-figure{font-family:var(--font-display);font-size:1.35rem;color:var(--gold);font-weight:800;margin-bottom:.4rem}
-.proof-item p{margin:0 0 .8rem;line-height:1.45;font-size:.92rem}
-.proof-tag{display:inline-block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#7a7266;background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:.2rem .6rem}
+.proof-item{background:#fff;border:1px solid var(--rule);border-left:4px solid var(--gold);border-radius:10px;padding:1.15rem 1.2rem 1.15rem 1.3rem;display:flex;flex-direction:column}
+.proof-figure{font-family:var(--font-display);font-size:1.45rem;color:var(--gold);font-weight:800;margin-bottom:.45rem;line-height:1.1}
+.proof-item p{margin:0 0 .9rem;line-height:1.5;font-size:.92rem;color:var(--ink)}
+.proof-item p::before{content:"“";color:var(--gold);font-family:var(--font-display);font-size:1.35rem;line-height:0;margin-right:.15rem}
+.proof-tag{display:inline-block;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:#7a7266;background:var(--paper);border:1px solid var(--rule);border-radius:999px;padding:.2rem .6rem;margin-top:auto}
 .proof-note{color:#7a7266;font-size:.85rem;margin:1.1rem 0 0}
+.proof-jump{margin:12px 0 0;font-size:.92rem}
+.proof-jump a{color:var(--gold);font-weight:600}
 .triage-detail{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:0 0 1.25rem}
 .triage-detail h4{color:var(--gold);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 .5rem}
 .triage-detail p{color:#e7e2d7;line-height:1.5;margin:0;font-size:.92rem}
@@ -239,18 +244,14 @@ footer a{color:var(--gold)}
       <div class="big" id="hl">—</div>
       <div class="ann" id="ann"></div>
       <div class="lede">These figures are modelled on a real independent venue we worked with. The name is withheld. Yours will be different, and the only way to know your own number is to measure it.</div>
+      <p class="proof-jump"><a href="#h-proof">Four real results from consented venues ↓</a></p>
     </div>
     <div class="capnote" id="cap" hidden></div>
   </section>
 
-  <section class="card" aria-labelledby="h-pri">
-    <h2 id="h-pri">The three to deal with first</h2>
-    <p class="sub">Monday actions — not a software project.</p>
-    <div id="pri"></div>
-  </section>
-
   <section class="proof" aria-labelledby="h-proof">
     <h2 id="h-proof">Proof, not promises</h2>
+    <p class="sub">What actually happened for venues like yours. Names withheld; figures held on file.</p>
     <div class="proof-grid">
       <div class="proof-item">
         <div class="proof-figure">£845 a week</div>
@@ -273,7 +274,13 @@ footer a{color:var(--gold)}
         <span class="proof-tag">Kitchen</span>
       </div>
     </div>
-    <p class="proof-note">Real results from separate client venues, used with consent and anonymised to protect them. Figures held on file.</p>
+    <p class="proof-note">Real results from separate client venues, used with consent and anonymised to protect them. No invented names or quotes.</p>
+  </section>
+
+  <section class="card" aria-labelledby="h-pri">
+    <h2 id="h-pri">The three to deal with first</h2>
+    <p class="sub">Monday actions — not a software project.</p>
+    <div id="pri"></div>
   </section>
 
   <details class="more">
@@ -719,8 +726,10 @@ function init(){
    });
  }, {passive:true});
  window.addEventListener("resize", syncSticky);
- document.addEventListener("mouseout", function(e){
-   if(e.clientY>0) return;
+ var readyExit=false;
+ setTimeout(function(){ readyExit=true; }, 12000);
+ document.documentElement.addEventListener("mouseleave", function(){
+   if(!readyExit) return;
    if(window.innerWidth<700) return;
    try{ if(sessionStorage.getItem("myprofitVitalsEmail") || sessionStorage.getItem("myprofitVitalsExit")) return; }catch(err){}
    try{ sessionStorage.setItem("myprofitVitalsExit","1"); }catch(err){}
