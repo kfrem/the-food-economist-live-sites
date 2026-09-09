@@ -151,12 +151,20 @@ function tfe_acknowledge_lead(string $site, array $lead): void {
     $email = (string)($lead['email'] ?? '');
     if (!valid_email($email)) return;
     $desk = $site === 'epr' ? 'EPR desk' : 'MyProfit desk';
-    $subject = $site === 'epr' ? 'Your EPR enquiry has been received' : 'Your MyProfit enquiry has been received';
-    $body = "Thanks for sending this through.\n\n"
-        . "This is an automatic confirmation from The Food Economist {$desk}. Your details have been received and logged. "
-        . "If your note needs a prepared reply, it is now in the owner review queue.\n\n"
-        . "Nothing in this email is accountancy, tax, legal or statutory filing advice. The Food Economist provides independent economic and regulatory-data analysis; you should rely on your own appointed advisers for formal filing, tax or legal decisions.\n\n"
-        . "The Food Economist\n";
+    $isVitalsExample = $site === 'myprofit' && str_starts_with((string)($lead['message'] ?? ''), 'Vitals Wheel:');
+    $subject = $isVitalsExample
+        ? 'Your MyProfit worked example'
+        : ($site === 'epr' ? 'Your EPR enquiry has been received' : 'Your MyProfit enquiry has been received');
+    $body = $isVitalsExample
+        ? "Thanks for requesting the MyProfit worked example.\n\n"
+          . "Open it here: https://myprofit.thefoodeconomist.co.uk/sample-report.html\n\n"
+          . "It is an illustrative, fully reconciled example of the written report. It is not a forecast or a promise of a particular saving for your business.\n\n"
+          . "The Food Economist\n"
+        : "Thanks for sending this through.\n\n"
+          . "This is an automatic confirmation from The Food Economist {$desk}. Your details have been received and logged. "
+          . "If your note needs a prepared reply, it is now in the owner review queue.\n\n"
+          . "Nothing in this email is accountancy, tax, legal or statutory filing advice. The Food Economist provides independent economic and regulatory-data analysis; you should rely on your own appointed advisers for formal filing, tax or legal decisions.\n\n"
+          . "The Food Economist\n";
     @mail($email, $subject, $body, "From: " . FROM_EMAIL . "\r\nContent-Type: text/plain; charset=utf-8");
 }
 
