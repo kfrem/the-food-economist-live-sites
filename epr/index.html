@@ -705,9 +705,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
   <div class="wrap">
     <h2>Prefer to start with a question?</h2>
     <p>Everything is handled in writing. Send a message and you will receive a written reply, usually within one working day. A short call is available on request.</p>
-    <a class="btn btn-gold" id="mailto" href="mailto:godfred@thefoodeconomist.co.uk?subject=EPR%20forecast%20enquiry">Email the desk</a>
+    <a class="btn btn-gold" id="mailto" href="mailto:contact@thefoodeconomist.co.uk?subject=EPR%20forecast%20enquiry">Email the desk</a>
     &nbsp;&nbsp;
-    <a class="btn btn-line" id="whatsapp" href="https://wa.me/447939823988?text=EPR%20forecast%20enquiry%20(written%20please)" rel="noopener">WhatsApp (written)</a>
+    <a class="btn btn-line" id="whatsapp" href="https://wa.me/447878228201?text=EPR%20forecast%20enquiry%20(written%20please)" rel="noopener">WhatsApp (written)</a>
   </div>
 </section>
 
@@ -716,8 +716,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
     <div class="footer-brand-block">
       <img class="footer-logo" src="/assets/the-food-economist-logo.svg?v=logo-reference-mark-20260720" alt="The Food Economist">
       <div class="address-block">
-        <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a><br>
-        Mobile: 07939 823988
+        <a href="mailto:contact@thefoodeconomist.co.uk">contact@thefoodeconomist.co.uk</a><br>
+        Business mobile: 07878 228201<br>
+        Landline: 020 8050 1884
       </div>
       <div style="margin-top:10px">© 2026 The Food Economist · Statutory Cost Intelligence</div>
     </div>
@@ -731,7 +732,7 @@ const CONFIG = {
   stripeSnapshot: 'https://buy.stripe.com/dRm28qcqh05abXAePKcjS00',
   stripeForecast: 'https://buy.stripe.com/6oUeVc61T6tygdQ5facjS01',
   sampleForecast: '/sample-forecast.html',
-  whatsapp: '447939823988',
+  whatsapp: '447878228201',
   apiBase: '/api',
   vatRate: 0.20,
   vatNumber: '508927172',
@@ -839,7 +840,7 @@ document.querySelectorAll('.scoped-lead-form').forEach(form => {
       form.reset();
       btn.textContent = 'Sent';
     } catch(ex) {
-      status.textContent = 'Could not save just now. Email godfred@thefoodeconomist.co.uk and include these details.';
+      status.textContent = 'Could not save just now. Email contact@thefoodeconomist.co.uk and include these details.';
       status.classList.add('err');
       status.style.display = 'block';
       btn.disabled = false;
@@ -879,7 +880,7 @@ function setupBooking(){
   };
   const renderSlots = (slots) => {
     selectedSlot = '';
-    slotList.innerHTML = slots.length ? '' : '<p style="color:#C8D2DD">No slots are open right now. Email godfred@thefoodeconomist.co.uk and the desk will offer times manually.</p>';
+    slotList.innerHTML = slots.length ? '' : '<p style="color:#C8D2DD">No slots are open right now. Email contact@thefoodeconomist.co.uk and the desk will offer times manually.</p>';
     slots.forEach(slot => {
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -914,7 +915,7 @@ function setupBooking(){
       slotWrap.classList.add('show');
       setStatus('Choose one available UK-time slot.', 'ok');
     } catch(ex) {
-      setStatus('Could not load slots just now. Email godfred@thefoodeconomist.co.uk and include your preferred times.', 'err');
+      setStatus('Could not load slots just now. Email contact@thefoodeconomist.co.uk and include your preferred times.', 'err');
     }
   });
 

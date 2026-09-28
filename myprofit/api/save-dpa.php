@@ -82,7 +82,7 @@ try {
     $id = (int) db()->lastInsertId();
 } catch (Throwable $e) {
     http_response_code(500);
-    echo json_encode(['ok' => false, 'error' => 'Could not save. Please email godfred@thefoodeconomist.co.uk.']);
+    echo json_encode(['ok' => false, 'error' => 'Could not save. Please email contact@thefoodeconomist.co.uk.']);
     exit;
 }
 

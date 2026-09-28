@@ -473,7 +473,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
         <p>Use the sample report as the opener: send it to restaurant clients who are busy but cash-tight, then refer the ones who need a written margin check before the next cost rise lands.</p>
       </div>
       <div style="text-align:center">
-        <a class="btn btn-gold" href="mailto:godfred@thefoodeconomist.co.uk?subject=MyProfit%20partner%20enquiry">Enquire as a partner</a>
+        <a class="btn btn-gold" href="mailto:contact@thefoodeconomist.co.uk?subject=MyProfit%20partner%20enquiry">Enquire as a partner</a>
         <p style="font-size:.82rem;color:#9FB0C2;margin-top:12px">A dedicated partner page can be added after the EPR-first test path is complete.</p>
       </div>
     </div>
@@ -520,7 +520,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
   <div class="wrap">
     <h2>Prefer to start with a question?</h2>
     <p>Everything is handled in writing. Send a message and you will get a written reply, usually within one working day.</p>
-    <a class="btn btn-gold" href="mailto:godfred@thefoodeconomist.co.uk?subject=MyProfit%20enquiry">Email the desk</a>
+    <a class="btn btn-gold" href="mailto:contact@thefoodeconomist.co.uk?subject=MyProfit%20enquiry">Email the desk</a>
     &nbsp;&nbsp;
     <a class="btn btn-line" id="whatsapp" href="#" rel="noopener">WhatsApp (written)</a>
   </div>
@@ -531,8 +531,9 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
     <div class="footer-brand-block">
       <img class="footer-logo" src="/assets/the-food-economist-logo.svg" alt="The Food Economist">
       <div class="address-block">
-        <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a><br>
-        Mobile: 07939 823988
+        <a href="mailto:contact@thefoodeconomist.co.uk">contact@thefoodeconomist.co.uk</a><br>
+        Business mobile: 07878 228201<br>
+        Landline: 020 8050 1884
       </div>
       <div style="margin-top:10px">© <span id="yr"></span> MyProfit · The Food Economist</div>
     </div>
@@ -545,7 +546,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
 const CONFIG = {
   stripeTriage:     'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
   stripeDiagnostic: 'https://buy.stripe.com/8x2fZg1LD05zcdLGcjS03',
-  whatsapp: '447939823988',
+  whatsapp: '447878228201',
   apiBase: '/api',   /* deployed at subdomain root; use '/myprofit/api' if under a path */
   vatRate: 0.20,
   vatNumber: '508927172',
@@ -615,7 +616,7 @@ function setupBooking(){
   };
   const renderSlots = (slots) => {
     selectedSlot = '';
-    slotList.innerHTML = slots.length ? '' : '<p style="color:#C8D2DD">No slots are open right now. Email godfred@thefoodeconomist.co.uk and the desk will offer times manually.</p>';
+    slotList.innerHTML = slots.length ? '' : '<p style="color:#C8D2DD">No slots are open right now. Email contact@thefoodeconomist.co.uk and the desk will offer times manually.</p>';
     slots.forEach(slot => {
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -650,7 +651,7 @@ function setupBooking(){
       slotWrap.classList.add('show');
       setStatus('Choose one available UK-time slot.', 'ok');
     } catch(ex) {
-      setStatus('Could not load slots just now. Email godfred@thefoodeconomist.co.uk and include your preferred times.', 'err');
+      setStatus('Could not load slots just now. Email contact@thefoodeconomist.co.uk and include your preferred times.', 'err');
     }
   });
 

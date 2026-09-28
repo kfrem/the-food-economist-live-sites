@@ -62,7 +62,7 @@ textarea{min-height:140px;resize:vertical}
       </select>
       <label for="notes">Your packaging figures and notes *</label>
       <textarea id="notes" required maxlength="6000" placeholder="Example: roughly 120t plastic, 60t card, 15t glass per year, mostly retail packs. Two main suppliers. Received October Notice of Liability for £41,300…"></textarea>
-      <p class="filenote">Have invoices or spreadsheets? After submitting, email them to <strong>godfred@thefoodeconomist.co.uk</strong> with your company name in the subject — the desk will match them to this form.</p>
+      <p class="filenote">Have invoices or spreadsheets? After submitting, email them to <strong>contact@thefoodeconomist.co.uk</strong> with your company name in the subject — the desk will match them to this form.</p>
       <button class="btn" type="submit">Submit figures — start the clock</button>
       <div class="err" id="formerr"></div>
     </form>
@@ -101,7 +101,7 @@ form.addEventListener('submit', async (e) => {
     document.getElementById('formwrap').style.display = 'none';
     document.getElementById('done').style.display = 'block';
   } catch(ex) {
-    err.textContent = 'Could not send just now. Please email your figures directly to godfred@thefoodeconomist.co.uk.';
+    err.textContent = 'Could not send just now. Please email your figures directly to contact@thefoodeconomist.co.uk.';
     err.style.display = 'block';
     e.submitter.disabled = false; e.submitter.textContent = 'Submit figures — start the clock';
   }

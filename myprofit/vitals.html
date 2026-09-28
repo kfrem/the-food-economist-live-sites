@@ -396,7 +396,7 @@ footer a{color:var(--gold)}
 <script>
 (function(){
 "use strict";
-var WPM=4.333, CAP=0.08, WA="447939823988";
+var WPM=4.333, CAP=0.08, WA="447878228201";
 var STRIPE="https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02";
 
 var T={
@@ -661,12 +661,12 @@ function bindCapture(form, msgEl){
          form.reset();
          closeExit();
        } else {
-         if(msgEl) msgEl.textContent=(res.j && res.j.error) || "Could not save. Email godfred@thefoodeconomist.co.uk.";
+         if(msgEl) msgEl.textContent=(res.j && res.j.error) || "Could not save. Email contact@thefoodeconomist.co.uk.";
          if(btn) btn.disabled=false;
        }
      })
      .catch(function(){
-       if(msgEl) msgEl.textContent="Could not save. Email godfred@thefoodeconomist.co.uk.";
+       if(msgEl) msgEl.textContent="Could not save. Email contact@thefoodeconomist.co.uk.";
        if(btn) btn.disabled=false;
      });
  });

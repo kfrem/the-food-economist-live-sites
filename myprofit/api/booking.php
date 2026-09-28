@@ -5,7 +5,7 @@ date_default_timezone_set('Europe/London');
 
 const BOOKING_SITE = 'MyProfit desk';
 const BOOKING_SERVICE_DEFAULT = 'MyProfit prepared call';
-const OWNER_WHATSAPP = '447939823988';
+const OWNER_WHATSAPP = '447878228201';
 const SLOT_DAYS_AHEAD = 21;
 const SLOT_LENGTH_MINUTES = 15;
 const SLOT_BUFFER_MINUTES = 15;

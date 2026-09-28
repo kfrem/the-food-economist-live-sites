@@ -213,7 +213,7 @@ form.addEventListener('submit', async (e) => {
     document.getElementById('nextbtn').href = next;
     try { sessionStorage.setItem('myprofitDpaRef', j.ref); } catch (ex) {}
   } catch (ex) {
-    err.textContent = ex.message || 'Could not save just now. Email godfred@thefoodeconomist.co.uk and we will send the agreement to sign by reply.';
+    err.textContent = ex.message || 'Could not save just now. Email contact@thefoodeconomist.co.uk and we will send the agreement to sign by reply.';
     err.style.display = 'block';
     btn.disabled = false;
     btn.textContent = 'Agree and sign';

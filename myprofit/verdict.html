@@ -266,7 +266,7 @@ footer p{margin-bottom:8px;max-width:78ch}
       <div class="pricebar"><span class="p">£95 + VAT</span><span class="c">delivered within 48 hours of receiving your figures</span></div>
       <p style="font-size:.9rem;margin-bottom:4px"><a href="/sample-report.html" style="color:var(--gold)">See a worked example of the report</a> before you commission it.</p>
       <a class="btn btn-gold btn-block" id="buy" href="#" rel="noopener" style="margin-top:10px">Commission the 48-Hour Triage — £95 + VAT</a>
-      <p style="font-size:.82rem;margin-top:12px">Prefer to ask something first? <a id="wa" href="#" rel="noopener" style="color:var(--gold)">Message the desk</a> or email <a href="mailto:godfred@thefoodeconomist.co.uk" style="color:var(--gold)">godfred@thefoodeconomist.co.uk</a>.</p>
+      <p style="font-size:.82rem;margin-top:12px">Prefer to ask something first? <a id="wa" href="#" rel="noopener" style="color:var(--gold)">Message the desk</a> or email <a href="mailto:contact@thefoodeconomist.co.uk" style="color:var(--gold)">contact@thefoodeconomist.co.uk</a>.</p>
     </section>
 
   </div>
@@ -274,7 +274,7 @@ footer p{margin-bottom:8px;max-width:78ch}
 
 <footer>
   <div class="wrap">
-    <p><strong style="color:var(--paper)">MyProfit — The Food Economist</strong><br>Godfred Frimpong · Trade &amp; Food Economist, MSc · <a href="mailto:godfred@thefoodeconomist.co.uk">godfred@thefoodeconomist.co.uk</a> · 07939 823988</p>
+    <p><strong style="color:var(--paper)">MyProfit — The Food Economist</strong><br>Godfred Frimpong · Trade &amp; Food Economist, MSc · <a href="mailto:contact@thefoodeconomist.co.uk">contact@thefoodeconomist.co.uk</a> · 07878 228201 · 020 8050 1884</p>
     <p>This Restaurant Profit Check is an indicative planning tool. It works only from the figures you enter, it does not verify them against any record, and it does not produce an exact profit figure. It is not an accounts review, a statutory filing service, public-practice services, or legal, tax or regulated financial advice. Sector bands are indicative reference ranges, not targets. No saving or outcome is promised.</p>
     <p>All prices exclude VAT. VAT registration: <span data-vat></span>. ICO registration: <span data-ico></span>. <a href="/privacy.html">Privacy notice</a> · <a href="/terms.html">Service terms</a></p>
   </div>
@@ -285,7 +285,7 @@ footer p{margin-bottom:8px;max-width:78ch}
 const CONFIG = {
   stripeTriage:     'https://buy.stripe.com/4gM4gy3TL2diaTw8rmcjS02',
   stripeDiagnostic: 'https://buy.stripe.com/8x2fZg1LD05zcdLGcjS03',
-  whatsapp: '447939823988',
+  whatsapp: '447878228201',
   apiBase: '/api',
   vatRate: 0.20,
   vatNumber: '508927172',
@@ -672,11 +672,11 @@ function bindLeadForm(){
       const j = await resp.json().catch(() => ({ok:false}));
       if (!resp.ok || !j.ok) throw new Error(j.error || 'save failed');
       form.classList.add('hidden');
-      ok.innerHTML = '<strong>Sent.</strong> Your written summary will arrive within one working day, from godfred@thefoodeconomist.co.uk.';
+      ok.innerHTML = '<strong>Sent.</strong> Your written summary will arrive within one working day, from contact@thefoodeconomist.co.uk.';
       ok.classList.remove('hidden');
     }catch(ex){
       btn.disabled = false; btn.textContent = 'Send me the written summary';
-      err.innerHTML = 'That did not save just now. Please email your figures to <a href="mailto:godfred@thefoodeconomist.co.uk" style="color:#fff"><u>godfred@thefoodeconomist.co.uk</u></a> and you will receive the same summary.';
+      err.innerHTML = 'That did not save just now. Please email your figures to <a href="mailto:contact@thefoodeconomist.co.uk" style="color:#fff"><u>contact@thefoodeconomist.co.uk</u></a> and you will receive the same summary.';
       err.classList.remove('hidden');
     }
   });
